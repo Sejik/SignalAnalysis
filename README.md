@@ -5,5 +5,18 @@
 - [Sejik Park](sejik6307@gmail.com)
 
 ### Abstract
-- We present the new state-of-the-art semantic parsing model that translates a natural language (NL) utterance into a SQL query.
-- The model is evaluated on [WikiSQL](https://github.com/salesforce/WikiSQL), a semantic parsing dataset consisting of 80,654 (NL, SQL) pairs over 24,241 table
+- This predict dynamic gait index (DGI) by inertial measurement units (IMU).
+
+### Result
+- healthy and patients groups
+- first week: quaternion w; all sensors + relative(head/waist)
+- statistic, outlier
+
+### Source code
+#### Source code
+- 'python3.7.3' or higher
+- 'Clang 4.0.1' or higher
+- Python libraries: 'matplotlib'
+
+### Running code
+- Python3 main_SA.py
