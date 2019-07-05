@@ -18,10 +18,10 @@ def construct_param(parser):
 
     # 1.5. Signal processing
     parser.add_argument('--sensor', default='9DOF_W_WR', type=str, help='which sensor to analyze')
-    parser.add_arguemnt('--sectionN', default=9, type=int, help='how many sections in experience')
+    parser.add_argument('--sectionN', default=9, type=int, help='how many sections in experience')
     # 1.6. Result
     parser.add_argument('--draw', default=1, type=int, help='plot 1 or not 0')
-    parser.add_arugmnet('--result_name', default='wDiff.png', type=str, help='result picture name')
+    parser.add_argument('--result_name', default='wDiff.png', type=str, help='result picture name')
 
     args = parser.parse_args()
 
@@ -104,6 +104,7 @@ def load_csv(args, filename):
     df[col_EMName] = df[col_EMName].astype('int64')  # future update: int(marker) check
     return pd.concat([df[col_sensor], df[col_EMName]], axis=1) # cdf[col_time]
 
+
 def getSplitIndexNPArray(df):
     """
     Split data with triggers
@@ -169,9 +170,11 @@ if __name__ == '__main__':
     args = construct_param(parser)
 
     ## 2. Paths
-    path_h = '/Users/sejik/Documents/VR_Programming'
-    path_input = os.path.join(path_h, '*', '*', '*.csv')
-    path_output = os.path.join(path_h, 'Result')
+    path_base = '/Users/sejik/Documents/VR_Programming'
+    path_input = 'SignalAnalysis_data'
+    path_output = 'SignalAnalysis_result'
+    path_input = os.path.join(path_base, path_input, '*', '*.csv')
+    path_output = os.path.join(path_base, path_output)
     if not os.path.exists(path_output):
         os.mkdir(path_output)
 
@@ -208,7 +211,7 @@ if __name__ == '__main__':
                 person_ID = 'normal'
 
             currentSensor = ''
-            for i, sensorCurrent in enumerate(args.sensorList):
+            for i, sensorCurrent in enumerate(args.sensors):
                 if dest_file_name.find(sensorCurrent) > -1:
                     currentSensor = sensorCurrent
 
@@ -237,7 +240,7 @@ if __name__ == '__main__':
             gc.collect()
             df = pd.DataFrame()
         dataNum += 1
-        plotResult(average_data, subject_name, exercise_num, sensor_name)
+        plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
 
 
     ## 4. Preprocessing
@@ -245,25 +248,3 @@ if __name__ == '__main__':
     ## 5. Signal processing
 
     ## 6. Result
-
-
-# 1. BERT
-# 1-1. Parameters
-# 1-2. Seq-toSQL module parameters
-# 1-3. Execution-guided decoding beam-size. It is used only in test.py
-
-# Decide whether to use lower_case
-# Seeds for random number generation
-
-# 모델 구성을 어떻게 할 지
-# 변수 설명을 어디서 얼만큼 할 것인가
-# csv 파일을 어떻게 얻어올 것인지
-# 변수를 get field로 구성하는 방법
-
-# report 부분을 분리해서 진행
-# shimmer 정보 분석해서 진행
-
-# parameter 설정
-# load_csv
-# getSplitIndexNPArray
-# plotResult
