@@ -245,3 +245,25 @@ if __name__ == '__main__':
     ## 5. Signal processing
 
     ## 6. Result
+
+
+# 1. BERT
+# 1-1. Parameters
+# 1-2. Seq-toSQL module parameters
+# 1-3. Execution-guided decoding beam-size. It is used only in test.py
+
+# Decide whether to use lower_case
+# Seeds for random number generation
+
+# 모델 구성을 어떻게 할 지
+# 변수 설명을 어디서 얼만큼 할 것인가
+# csv 파일을 어떻게 얻어올 것인지
+# 변수를 get field로 구성하는 방법
+
+# report 부분을 분리해서 진행
+# shimmer 정보 분석해서 진행
+
+# parameter 설정
+# load_csv
+# getSplitIndexNPArray
+# plotResult
