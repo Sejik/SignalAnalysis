@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
+<<<<<<< HEAD
     <list default="true" id="95b732f0-48ee-4647-aebf-06328e5c974f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/main_SA.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_SA.py" afterDir="false" />
     </list>
+=======
+    <list default="true" id="95b732f0-48ee-4647-aebf-06328e5c974f" name="Default Changelist" comment="" />
+>>>>>>> develop
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -15,11 +19,22 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_SA.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="203">
               <caret line="173" column="38" lean-forward="true" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
               <folding>
                 <element signature="e#64#93#0" expanded="true" />
                 <element signature="e#201#1950#0" />
+=======
+            <state relative-caret-position="266">
+              <caret line="159" column="17" lean-forward="true" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+              <folding>
+                <element signature="e#64#93#0" expanded="true" />
+                <element signature="e#201#1950#0" />
+                <element signature="e#1987#3266#0" />
+                <element signature="e#3302#3715#0" />
+                <element signature="e#3812#4948#0" />
+>>>>>>> develop
               </folding>
             </state>
           </provider>
@@ -37,8 +52,17 @@
   <component name="FindInProjectRecents">
     <findStrings>
       <find>patient</find>
+<<<<<<< HEAD
       <find>input</find>
       <find>input`</find>
+=======
+      <find>sensorList</find>
+      <find>sensor</find>
+      <find>load_csv</find>
+      <find>output</find>
+      <find>path_h</find>
+      <find>path</find>
+>>>>>>> develop
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -150,15 +174,20 @@
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32924107" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.43080357" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Python Console" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+      <window_info anchor="bottom" id="Python Console" order="10" />
+>>>>>>> develop
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -167,11 +196,22 @@
   <component name="editorHistoryManager">
     <entry file="file://$PROJECT_DIR$/main_SA.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="203">
           <caret line="173" column="38" lean-forward="true" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
           <folding>
             <element signature="e#64#93#0" expanded="true" />
             <element signature="e#201#1950#0" />
+=======
+        <state relative-caret-position="266">
+          <caret line="159" column="17" lean-forward="true" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+          <folding>
+            <element signature="e#64#93#0" expanded="true" />
+            <element signature="e#201#1950#0" />
+            <element signature="e#1987#3266#0" />
+            <element signature="e#3302#3715#0" />
+            <element signature="e#3812#4948#0" />
+>>>>>>> develop
           </folding>
         </state>
       </provider>
