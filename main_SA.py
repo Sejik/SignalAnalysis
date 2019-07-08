@@ -148,7 +148,8 @@ def plotResult(args, path_output, average_data, subject_name, exercise_num, sens
     # plt.suptitle("row:sensor, column:experiment")
     # plt.xlabel("ankleL, R, head, wristL, R, waist")
     # plt.ylabel("normal, velocity, visionLR, UD, action1, 2, 3, 4, 5")
-    plt.show()
+    plt.show() # plt.ylim() range distinct
+    # w graph, sensors & head/waist
     fig = plt.gcf()
     saveDir = path_output + args.result_name
     fig.savefig(saveDir)
@@ -170,7 +171,7 @@ if __name__ == '__main__':
     args = construct_param(parser)
 
     ## 2. Paths
-    path_base = '/Users/sejik/Documents/VR_Programming'
+    path_base = '/Users/sejik/Documents/my_project'
     path_input = 'SignalAnalysis_data'
     path_output = 'SignalAnalysis_result'
     path_input = os.path.join(path_base, path_input, '*', '*.csv')
@@ -240,7 +241,7 @@ if __name__ == '__main__':
             gc.collect()
             df = pd.DataFrame()
         dataNum += 1
-        plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
+    plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
 
 
     ## 4. Preprocessing
