@@ -2,11 +2,18 @@
 <project version="4">
   <component name="ChangeListManager">
 <<<<<<< HEAD
+<<<<<<< HEAD
     <list default="true" id="95b732f0-48ee-4647-aebf-06328e5c974f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/main_SA.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_SA.py" afterDir="false" />
     </list>
 =======
     <list default="true" id="95b732f0-48ee-4647-aebf-06328e5c974f" name="Default Changelist" comment="" />
+>>>>>>> develop
+=======
+    <list default="true" id="a617b348-6cb2-45cc-a198-13230a830d13" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main_SA.py" beforeDir="false" afterPath="$PROJECT_DIR$/main_SA.py" afterDir="false" />
+    </list>
 >>>>>>> develop
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -15,10 +22,11 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+    <leaf>
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/main_SA.py">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
             <state relative-caret-position="203">
               <caret line="173" column="38" lean-forward="true" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
@@ -28,12 +36,20 @@
 =======
             <state relative-caret-position="266">
               <caret line="159" column="17" lean-forward="true" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+=======
+            <state relative-caret-position="284">
+              <caret line="283" column="46" lean-forward="true" selection-start-line="283" selection-start-column="46" selection-end-line="283" selection-end-column="46" />
+>>>>>>> develop
               <folding>
                 <element signature="e#64#93#0" expanded="true" />
                 <element signature="e#201#1950#0" />
                 <element signature="e#1987#3266#0" />
+<<<<<<< HEAD
                 <element signature="e#3302#3715#0" />
                 <element signature="e#3812#4948#0" />
+>>>>>>> develop
+=======
+                <element signature="e#3303#3716#0" />
 >>>>>>> develop
               </folding>
             </state>
@@ -62,6 +78,15 @@
       <find>output</find>
       <find>path_h</find>
       <find>path</find>
+<<<<<<< HEAD
+>>>>>>> develop
+=======
+      <find>*</find>
+      <find>result_name</find>
+      <find>path_output</find>
+      <find>sensor_name</find>
+      <find>sensors</find>
+      <find>args</find>
 >>>>>>> develop
     </findStrings>
   </component>
@@ -95,18 +120,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="ProjectPane" />
       <pane id="Scope" />
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="SignalAnalysis" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SignalAnalysis" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -169,23 +184,27 @@
     <frame x="0" y="23" width="1680" height="988" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.06931887" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.12296564" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info active="true" anchor="bottom" id="Run" order="2" visible="true" weight="0.32924107" />
-      <window_info anchor="bottom" id="Debug" order="3" weight="0.43080357" />
+      <window_info active="true" anchor="bottom" id="Run" order="2" sideWeight="0.4996986" visible="true" weight="0.32924107" />
+      <window_info anchor="bottom" id="Debug" order="3" weight="0.3984375" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Version Control" order="7" />
       <window_info anchor="bottom" id="Terminal" order="8" />
 <<<<<<< HEAD
+<<<<<<< HEAD
       <window_info anchor="bottom" id="Python Console" order="9" />
       <window_info anchor="bottom" id="Event Log" order="10" side_tool="true" />
 =======
       <window_info anchor="bottom" id="Event Log" order="9" side_tool="true" />
+=======
+      <window_info anchor="bottom" id="Event Log" order="9" sideWeight="0.50030136" side_tool="true" weight="0.32924107" />
+>>>>>>> develop
       <window_info anchor="bottom" id="Python Console" order="10" />
 >>>>>>> develop
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
@@ -193,9 +212,203 @@
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout>
   </component>
+  <component name="debuggerHistoryManager">
+    <expressions id="evaluateCodeFragment">
+      <expression>
+        <expression-string>plt.rcParams[&quot;figure.figsize&quot;] = (18, 2)
+fig = plt.figure()
+for j, ay in enumerate(exercise_index):
+    nowP = fig.add_subplot(1, exerciseNum, j + 1)
+    nowY_head_normal = []
+    nowY_head_patient = []
+    nowY_waist_normal = []
+    nowY_waist_patient = []
+    nowY = []
+    nowX = ['normal', 'patient']
+    for w in range(len(sensor_name)):
+        if ('7756' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_head_normal.append(average_data[w])
+            else:
+                nowY_head_patient.append(average_data[w])
+        if ('CD82' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_waist_normal.append(average_data[w])
+            else:
+                nowY_waist_patient.append(average_data[w])
+    nowY.append(np.mean(nowY_head_normal) / np.mean(nowY_waist_normal))
+    nowY.append(np.mean(nowY_head_patient) / np.mean(nowY_waist_patient))
+    nowP.bar(nowX, nowY)
+    plt.ylim(0.5, 1)
+# plt.show()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>plt.rcParams[&quot;figure.figsize&quot;] = (18, 2)
+fig = plt.figure()
+for j, ay in enumerate(exercise_index):
+    nowP = fig.add_subplot(1, exerciseNum, j + 1)
+    nowY_head_normal = []
+    nowY_head_patient = []
+    nowY_waist_normal = []
+    nowY_waist_patient = []
+    nowY = []
+    nowX = ['normal', 'patient']
+    for w in range(len(sensor_name)):
+        if ('7756' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_head_normal.append(average_data[w])
+            else:
+                nowY_head_patient.append(average_data[w])
+        if ('CD82' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_waist_normal.append(average_data[w])
+            else:
+                nowY_waist_patient.append(average_data[w])
+    nowY.append(np.mean(nowY_head_normal) / np.mean(nowY_waist_normal))
+    nowY.append(np.mean(nowY_head_patient) / np.mean(nowY_waist_patient))
+    nowP.bar(nowX, nowY)
+    plt.ylim(0, 2)
+# plt.show()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>plt.rcParams[&quot;figure.figsize&quot;] = (18, 2)
+fig = plt.figure()
+for j, ay in enumerate(exercise_index):
+    nowP = fig.add_subplot(1, exerciseNum, j + 1)
+    nowY_head_normal = []
+    nowY_head_patient = []
+    nowY_waist_normal = []
+    nowY_waist_patient = []
+    nowY = []
+    nowX = ['normal', 'patient']
+    for w in range(len(sensor_name)):
+        if ('7756' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_head_normal.append(average_data[w])
+            else:
+                nowY_head_patient.append(average_data[w])
+        if ('CD82' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_waist_normal.append(average_data[w])
+            else:
+                nowY_waist_patient.append(average_data[w])
+    nowY.append(np.mean(nowY_head_normal) / np.mean(nowY_waist_normal))
+    nowY.append(np.mean(nowY_head_patient) / np.mean(nowY_waist_patient))
+    nowP.bar(nowX, nowY)
+    #plt.ylim(min_value, max_value)
+# plt.show()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>plt.rcParams[&quot;figure.figsize&quot;] = (18, 2)
+fig = plt.figure()
+for j, ay in enumerate(exercise_index):
+    nowP = fig.add_subplot(1, exerciseNum, j + 1)
+    nowY_head_normal = []
+    nowY_head_patient = []
+    nowY_waist_normal = []
+    nowY_waist_patient = []
+    nowY = []
+    nowX = ['normal', 'patient']
+    for w in range(len(sensor_name)):
+        if ('7756' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_head_normal.append(average_data[w])
+            else:
+                nowY_head_patient.append(average_data[w])
+        if ('CD82' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            if ('normal' == subject_name[w]):
+                nowY_waist_normal.append(average_data[w])
+            else:
+                nowY_waist_patient.append(average_data[w])
+    nowY.append(np.mean(nowY_head_normal) / np.mean(nowY_waist_normal))
+    nowY.append(np.mean(nowY_head_patient) / np.mean(nowY_waist_patient))
+    nowP.bar(nowX, nowY)
+    plt.ylim(min_value, max_value)
+# plt.show()</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>plt.rcParams[&quot;figure.figsize&quot;] = (18, 2)
+fig = plt.figure()
+for j, ay in enumerate(exercise_index):
+    nowP = fig.add_subplot(1, exerciseNum, j + 1)
+    nowY = []
+    nowX = []
+    for w in range(len(sensor_name)):
+        if ('7756' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            nowY.append(average_data[w])
+            nowX.append(subject_name[w])
+        if ('CD82' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            nowY.append(-average_data[w])
+            nowX.append(subject_name[w])
+    nowP.bar(nowX, nowY)
+    plt.ylim(min_value, max_value)
+# plt.show()
+saveDir = os.path.join(path_output, (&quot;HeadWaist&quot; + args.result_name))
+fig.savefig(saveDir)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>fig = plt.figure()
+for j, ay in enumerate(exercise_index):
+    nowP = fig.add_subplot(1, exerciseNum, j + 1)
+    nowY = []
+    nowX = []
+    for w in range(len(sensor_name)):
+        if ('7756' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            nowY.append(subject_name[w])
+            nowX.append(subject_name[w])
+        if ('CD82' == sensor_name[w]) &amp; (ay == exercise_num[w]):
+            nowY.append(-subject_name[w])
+            nowX.append(subject_name[w])
+    nowP.bar(nowX, nowY)
+    plt.ylim(min_value, max_value)</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>range(len(sensor_name))</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>sensor_name[1] == 'CD82'</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+      <expression>
+        <expression-string>sensor_name[1] == '774A'</expression-string>
+        <language-id>Python</language-id>
+        <evaluation-mode>CODE_FRAGMENT</evaluation-mode>
+      </expression>
+    </expressions>
+  </component>
   <component name="editorHistoryManager">
+    <entry file="file://$USER_HOME$/anaconda3/lib/python3.7/site-packages/cffi/api.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/_pydev_imps/_pydev_execfile.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" selection-start-line="17" selection-end-line="17" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/main_SA.py">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
 <<<<<<< HEAD
         <state relative-caret-position="203">
           <caret line="173" column="38" lean-forward="true" selection-start-line="173" selection-start-column="38" selection-end-line="173" selection-end-column="38" />
@@ -205,12 +418,20 @@
 =======
         <state relative-caret-position="266">
           <caret line="159" column="17" lean-forward="true" selection-start-line="159" selection-start-column="17" selection-end-line="159" selection-end-column="17" />
+=======
+        <state relative-caret-position="284">
+          <caret line="283" column="46" lean-forward="true" selection-start-line="283" selection-start-column="46" selection-end-line="283" selection-end-column="46" />
+>>>>>>> develop
           <folding>
             <element signature="e#64#93#0" expanded="true" />
             <element signature="e#201#1950#0" />
             <element signature="e#1987#3266#0" />
+<<<<<<< HEAD
             <element signature="e#3302#3715#0" />
             <element signature="e#3812#4948#0" />
+>>>>>>> develop
+=======
+            <element signature="e#3303#3716#0" />
 >>>>>>> develop
           </folding>
         </state>

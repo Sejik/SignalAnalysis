@@ -2,7 +2,7 @@
 
 # Sejik Park
 # July1, 2019
-import os, argparse, glob, gc
+import os, argparse, glob, gc, shelve
 
 import pandas as pd
 import numpy as np
@@ -128,13 +128,15 @@ def plotResult(args, path_output, average_data, subject_name, exercise_num, sens
     y: value(F_W average(time domain)
     c: experiment
     """
-    sensor_index = set(sensor_name)
+    sensor_index = args.sensors
     exercise_index = set(exercise_num)
 
     plt.rcParams["figure.figsize"] = (18, 12)
     fig = plt.figure()
     sensorNum = len(sensor_index)
     exerciseNum = len(exercise_index)
+    min_value = min(average_data)
+    max_value = max(average_data)
     for i, ax in enumerate(sensor_index):
         for j, ay in enumerate(exercise_index):
             nowP = fig.add_subplot(sensorNum, exerciseNum, exerciseNum*i+j+1)
@@ -145,15 +147,40 @@ def plotResult(args, path_output, average_data, subject_name, exercise_num, sens
                     nowY.append(average_data[w])
                     nowX.append(subject_name[w])
             nowP.bar(nowX, nowY)
-    # plt.suptitle("row:sensor, column:experiment")
-    # plt.xlabel("ankleL, R, head, wristL, R, waist")
-    # plt.ylabel("normal, velocity, visionLR, UD, action1, 2, 3, 4, 5")
-    plt.show() # plt.ylim() range distinct
-    # w graph, sensors & head/waist
-    fig = plt.gcf()
-    saveDir = path_output + args.result_name
+            plt.ylim(min_value, max_value)
+
+    saveDir = os.path.join(path_output, ("all"+args.result_name))
     fig.savefig(saveDir)
 
+    plt.rcParams["figure.figsize"] = (18, 2)
+    fig = plt.figure()
+    for j, ay in enumerate(exercise_index):
+        nowP = fig.add_subplot(1,exerciseNum,j+1)
+        nowY_head_normal = []
+        nowY_head_patient = []
+        nowY_waist_normal = []
+        nowY_waist_patient = []
+        nowY = []
+        nowX = ['normal', 'patient']
+        for w in range(len(sensor_name)):
+            if ('7756' == sensor_name[w]) & (ay == exercise_num[w]):
+                if ('normal' == subject_name[w]):
+                    nowY_head_normal.append(average_data[w])
+                else:
+                    nowY_head_patient.append(average_data[w])
+            if ('CD82' == sensor_name[w]) & (ay == exercise_num[w]):
+                if ('normal' == subject_name[w]):
+                    nowY_waist_normal.append(average_data[w])
+                else:
+                    nowY_waist_patient.append(average_data[w])
+        nowY.append(np.mean(nowY_head_normal)/np.mean(nowY_waist_normal))
+        nowY.append(np.mean(nowY_head_patient)/np.mean(nowY_waist_patient))
+        nowP.bar(nowX, nowY)
+        plt.ylim(0.5, 1) # ratio ylim (future update: find perfer ylim)
+    #plt.show()
+    saveDir = os.path.join(path_output, ("HeadWaist"+args.result_name))
+    fig.savefig(saveDir)
+    # plt.subtitle("titleName"), plt.xlabel("labelName"), plt.ylabel("lavelName")
 
 
 if __name__ == '__main__':
@@ -173,8 +200,10 @@ if __name__ == '__main__':
     ## 2. Paths
     path_base = '/Users/sejik/Documents/my_project'
     path_input = 'SignalAnalysis_data'
+    path_csvInput = 'shelve'
     path_output = 'SignalAnalysis_result'
-    path_input = os.path.join(path_base, path_input, '*', '*.csv')
+    path_input = os.path.join(path_base, path_input, '*', '*', '*.csv')
+    path_csvInput = os.path.join(path_base, path_csvInput)
     path_output = os.path.join(path_base, path_output)
     if not os.path.exists(path_output):
         os.mkdir(path_output)
@@ -186,61 +215,77 @@ if __name__ == '__main__':
     sensor_name = []
 
     ## 3. Load data
-    dataNum = 0
-    for filename in glob.iglob(path_input, recursive=True):
-        filename = filename.replace(os.sep, '/')
-        if os.path.isfile(filename):
-            print('processing for [{}]'.format(filename), end='')
-            df = load_csv(args, filename)
-            splitIndexArr = getSplitIndexNPArray(df)
-            print('. has {} sections.'. format(len(splitIndexArr)), end='\n')
+    if os.path.exists(path_csvInput + '.db'):
+        print('loading db file instead of csv file')
+        my_shelf = shelve.open(path_csvInput)
+        for key in my_shelf:
+            globals()[key]=my_shelf[key]
+        my_shelf.close()
+    else:
+        dataNum = 0
+        for filename in glob.iglob(path_input, recursive=True):
+            filename = filename.replace(os.sep, '/')
+            if os.path.isfile(filename):
+                print('processing for [{}]'.format(filename), end='')
+                df = load_csv(args, filename)
+                splitIndexArr = getSplitIndexNPArray(df)
+                print('. has {} sections.'.format(len(splitIndexArr)), end='\n')
 
-            dest_file_name = os.path.splitext(os.path.basename(filename))[0]
+                dest_file_name = os.path.splitext(os.path.basename(filename))[0]
 
-            # check unusable trigger
-            index_shimmer = dest_file_name.find("Shimmer")
-            if index_shimmer != -1:
-                person_ID = dest_file_name[:index_shimmer - 1]
-            else:
-                person_ID = dest_file_name[:4]
+                # check unusable trigger
+                index_shimmer = dest_file_name.find("Shimmer")
+                if index_shimmer != -1:
+                    person_ID = dest_file_name[:index_shimmer - 1]
+                else:
+                    person_ID = dest_file_name[:4]
 
-            remove_nums = args.dic_remove_num.get(person_ID, [])
+                remove_nums = args.dic_remove_num.get(person_ID, [])
 
-            if person_ID.find('Q0') > -1:
-                person_ID = 'patient'
-            else:
-                person_ID = 'normal'
+                if person_ID.find('Q0') > -1:
+                    person_ID = 'patient'
+                else:
+                    person_ID = 'normal'
 
-            currentSensor = ''
-            for i, sensorCurrent in enumerate(args.sensors):
-                if dest_file_name.find(sensorCurrent) > -1:
-                    currentSensor = sensorCurrent
+                currentSensor = ''
+                for i, sensorCurrent in enumerate(args.sensors):
+                    if dest_file_name.find(sensorCurrent) > -1:
+                        currentSensor = sensorCurrent
 
-            # check number of triggers
-            if len(splitIndexArr) - len(remove_nums) != args.sectionN:
-                print('{} has not {} exer!!'.format(filename, args.sectionN), end='\n')
-                continue
-
-            # subject data analysis
-            exerNumCounter = 1
-            for splitI in range(0, len(splitIndexArr)):
-                if (splitI + 1) in remove_nums:
+                # check number of triggers
+                if len(splitIndexArr) - len(remove_nums) != args.sectionN:
+                    print('{} has not {} exer!!'.format(filename, args.sectionN), end='\n')
                     continue
-                splitIndex = splitIndexArr[splitI]
-                rdf = df.iloc[splitIndex[0]:splitIndex[1], :]
-                rdf = np.abs(rdf)
-                col_sensor = [col for col in df.columns if args.sensor in col]
-                cur_mean = rdf[col_sensor].mean().values.tolist()
-                average_data.append(cur_mean[0])
-                subject_name.append(person_ID)
-                exercise_num.append(exerNumCounter)
-                sensor_name.append(currentSensor)
 
-                exerNumCounter += 1
-            del [[df]]  # divide section with trigger
-            gc.collect()
-            df = pd.DataFrame()
-        dataNum += 1
+                # subject data analysis
+                exerNumCounter = 1
+                for splitI in range(0, len(splitIndexArr)):
+                    if (splitI + 1) in remove_nums:
+                        continue
+                    splitIndex = splitIndexArr[splitI]
+                    rdf = df.iloc[splitIndex[0]:splitIndex[1], :]
+                    rdf = np.abs(rdf)
+                    col_sensor = [col for col in df.columns if args.sensor in col]
+                    cur_mean = rdf[col_sensor].mean().values.tolist()
+                    average_data.append(cur_mean[0])
+                    subject_name.append(person_ID)
+                    exercise_num.append(exerNumCounter)
+                    sensor_name.append(currentSensor)
+
+                    exerNumCounter += 1
+                del [[df]]  # divide section with trigger
+                gc.collect()
+                df = pd.DataFrame()
+            dataNum += 1
+        my_shelf = shelve.open(path_csvInput,'n')
+
+        for key in ['average_data', 'subject_name', 'exercise_num', 'sensor_name']:
+            try:
+                my_shelf[key] = globals()[key]
+            except TypeError:
+                print('ERROR shelving: {0}'.format(key))
+        my_shelf.close()
+
     plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
 
 
