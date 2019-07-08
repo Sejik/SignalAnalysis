@@ -128,13 +128,15 @@ def plotResult(args, path_output, average_data, subject_name, exercise_num, sens
     y: value(F_W average(time domain)
     c: experiment
     """
-    sensor_index = set(sensor_name)
+    sensor_index = args.sensors
     exercise_index = set(exercise_num)
 
     plt.rcParams["figure.figsize"] = (18, 12)
     fig = plt.figure()
     sensorNum = len(sensor_index)
     exerciseNum = len(exercise_index)
+    min_value = min(average_data)
+    max_value = max(average_data)
     for i, ax in enumerate(sensor_index):
         for j, ay in enumerate(exercise_index):
             nowP = fig.add_subplot(sensorNum, exerciseNum, exerciseNum*i+j+1)
@@ -145,14 +147,40 @@ def plotResult(args, path_output, average_data, subject_name, exercise_num, sens
                     nowY.append(average_data[w])
                     nowX.append(subject_name[w])
             nowP.bar(nowX, nowY)
-    # plt.suptitle("row:sensor, column:experiment")
-    # plt.xlabel("ankleL, R, head, wristL, R, waist")
-    # plt.ylabel("normal, velocity, visionLR, UD, action1, 2, 3, 4, 5")
-    plt.show()
-    fig = plt.gcf()
-    saveDir = path_output + args.result_name
+            plt.ylim(min_value, max_value)
+
+    saveDir = os.path.join(path_output, ("all"+args.result_name))
     fig.savefig(saveDir)
 
+    plt.rcParams["figure.figsize"] = (18, 2)
+    fig = plt.figure()
+    for j, ay in enumerate(exercise_index):
+        nowP = fig.add_subplot(1,exerciseNum,j+1)
+        nowY_head_normal = []
+        nowY_head_patient = []
+        nowY_waist_normal = []
+        nowY_waist_patient = []
+        nowY = []
+        nowX = ['normal', 'patient']
+        for w in range(len(sensor_name)):
+            if ('7756' == sensor_name[w]) & (ay == exercise_num[w]):
+                if ('normal' == subject_name[w]):
+                    nowY_head_normal.append(average_data[w])
+                else:
+                    nowY_head_patient.append(average_data[w])
+            if ('CD82' == sensor_name[w]) & (ay == exercise_num[w]):
+                if ('normal' == subject_name[w]):
+                    nowY_waist_normal.append(average_data[w])
+                else:
+                    nowY_waist_patient.append(average_data[w])
+        nowY.append(np.mean(nowY_head_normal)/np.mean(nowY_waist_normal))
+        nowY.append(np.mean(nowY_head_patient)/np.mean(nowY_waist_patient))
+        nowP.bar(nowX, nowY)
+        plt.ylim(0.5, 1) # ratio ylim (future update: find perfer ylim)
+    #plt.show()
+    saveDir = os.path.join(path_output, ("HeadWaist"+args.result_name))
+    fig.savefig(saveDir)
+    # plt.subtitle("titleName"), plt.xlabel("labelName"), plt.ylabel("lavelName")
 
 
 if __name__ == '__main__':
@@ -170,10 +198,10 @@ if __name__ == '__main__':
     args = construct_param(parser)
 
     ## 2. Paths
-    path_base = '/Users/sejik/Documents/VR_Programming'
+    path_base = '/Users/sejik/Documents/my_project'
     path_input = 'SignalAnalysis_data'
     path_output = 'SignalAnalysis_result'
-    path_input = os.path.join(path_base, path_input, '*', '*.csv')
+    path_input = os.path.join(path_base, path_input, '*', '*', '*.csv')
     path_output = os.path.join(path_base, path_output)
     if not os.path.exists(path_output):
         os.mkdir(path_output)
@@ -240,7 +268,7 @@ if __name__ == '__main__':
             gc.collect()
             df = pd.DataFrame()
         dataNum += 1
-        plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
+    plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
 
 
     ## 4. Preprocessing
