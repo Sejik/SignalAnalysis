@@ -2,7 +2,7 @@
 
 # Sejik Park
 # July1, 2019
-import os, argparse, glob, gc
+import os, argparse, glob, gc, shelve
 
 import pandas as pd
 import numpy as np
@@ -200,8 +200,10 @@ if __name__ == '__main__':
     ## 2. Paths
     path_base = '/Users/sejik/Documents/my_project'
     path_input = 'SignalAnalysis_data'
+    path_csvInput = 'shelve'
     path_output = 'SignalAnalysis_result'
     path_input = os.path.join(path_base, path_input, '*', '*', '*.csv')
+    path_csvInput = os.path.join(path_base, path_csvInput)
     path_output = os.path.join(path_base, path_output)
     if not os.path.exists(path_output):
         os.mkdir(path_output)
@@ -213,61 +215,77 @@ if __name__ == '__main__':
     sensor_name = []
 
     ## 3. Load data
-    dataNum = 0
-    for filename in glob.iglob(path_input, recursive=True):
-        filename = filename.replace(os.sep, '/')
-        if os.path.isfile(filename):
-            print('processing for [{}]'.format(filename), end='')
-            df = load_csv(args, filename)
-            splitIndexArr = getSplitIndexNPArray(df)
-            print('. has {} sections.'. format(len(splitIndexArr)), end='\n')
+    if os.path.exists(path_csvInput + '.db'):
+        print('loading db file instead of csv file')
+        my_shelf = shelve.open(path_csvInput)
+        for key in my_shelf:
+            globals()[key]=my_shelf[key]
+        my_shelf.close()
+    else:
+        dataNum = 0
+        for filename in glob.iglob(path_input, recursive=True):
+            filename = filename.replace(os.sep, '/')
+            if os.path.isfile(filename):
+                print('processing for [{}]'.format(filename), end='')
+                df = load_csv(args, filename)
+                splitIndexArr = getSplitIndexNPArray(df)
+                print('. has {} sections.'.format(len(splitIndexArr)), end='\n')
 
-            dest_file_name = os.path.splitext(os.path.basename(filename))[0]
+                dest_file_name = os.path.splitext(os.path.basename(filename))[0]
 
-            # check unusable trigger
-            index_shimmer = dest_file_name.find("Shimmer")
-            if index_shimmer != -1:
-                person_ID = dest_file_name[:index_shimmer - 1]
-            else:
-                person_ID = dest_file_name[:4]
+                # check unusable trigger
+                index_shimmer = dest_file_name.find("Shimmer")
+                if index_shimmer != -1:
+                    person_ID = dest_file_name[:index_shimmer - 1]
+                else:
+                    person_ID = dest_file_name[:4]
 
-            remove_nums = args.dic_remove_num.get(person_ID, [])
+                remove_nums = args.dic_remove_num.get(person_ID, [])
 
-            if person_ID.find('Q0') > -1:
-                person_ID = 'patient'
-            else:
-                person_ID = 'normal'
+                if person_ID.find('Q0') > -1:
+                    person_ID = 'patient'
+                else:
+                    person_ID = 'normal'
 
-            currentSensor = ''
-            for i, sensorCurrent in enumerate(args.sensors):
-                if dest_file_name.find(sensorCurrent) > -1:
-                    currentSensor = sensorCurrent
+                currentSensor = ''
+                for i, sensorCurrent in enumerate(args.sensors):
+                    if dest_file_name.find(sensorCurrent) > -1:
+                        currentSensor = sensorCurrent
 
-            # check number of triggers
-            if len(splitIndexArr) - len(remove_nums) != args.sectionN:
-                print('{} has not {} exer!!'.format(filename, args.sectionN), end='\n')
-                continue
-
-            # subject data analysis
-            exerNumCounter = 1
-            for splitI in range(0, len(splitIndexArr)):
-                if (splitI + 1) in remove_nums:
+                # check number of triggers
+                if len(splitIndexArr) - len(remove_nums) != args.sectionN:
+                    print('{} has not {} exer!!'.format(filename, args.sectionN), end='\n')
                     continue
-                splitIndex = splitIndexArr[splitI]
-                rdf = df.iloc[splitIndex[0]:splitIndex[1], :]
-                rdf = np.abs(rdf)
-                col_sensor = [col for col in df.columns if args.sensor in col]
-                cur_mean = rdf[col_sensor].mean().values.tolist()
-                average_data.append(cur_mean[0])
-                subject_name.append(person_ID)
-                exercise_num.append(exerNumCounter)
-                sensor_name.append(currentSensor)
 
-                exerNumCounter += 1
-            del [[df]]  # divide section with trigger
-            gc.collect()
-            df = pd.DataFrame()
-        dataNum += 1
+                # subject data analysis
+                exerNumCounter = 1
+                for splitI in range(0, len(splitIndexArr)):
+                    if (splitI + 1) in remove_nums:
+                        continue
+                    splitIndex = splitIndexArr[splitI]
+                    rdf = df.iloc[splitIndex[0]:splitIndex[1], :]
+                    rdf = np.abs(rdf)
+                    col_sensor = [col for col in df.columns if args.sensor in col]
+                    cur_mean = rdf[col_sensor].mean().values.tolist()
+                    average_data.append(cur_mean[0])
+                    subject_name.append(person_ID)
+                    exercise_num.append(exerNumCounter)
+                    sensor_name.append(currentSensor)
+
+                    exerNumCounter += 1
+                del [[df]]  # divide section with trigger
+                gc.collect()
+                df = pd.DataFrame()
+            dataNum += 1
+        my_shelf = shelve.open(path_csvInput,'n')
+
+        for key in ['average_data', 'subject_name', 'exercise_num', 'sensor_name']:
+            try:
+                my_shelf[key] = globals()[key]
+            except TypeError:
+                print('ERROR shelving: {0}'.format(key))
+        my_shelf.close()
+
     plotResult(args, path_output, average_data, subject_name, exercise_num, sensor_name)
 
 
