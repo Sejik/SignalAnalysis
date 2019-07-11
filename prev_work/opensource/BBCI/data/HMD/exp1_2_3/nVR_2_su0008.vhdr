@@ -1,0 +1,144 @@
+Brain Vision Data Exchange Header File Version 1.0
+; Data created by the Vision Recorder
+
+[Common Infos]
+Codepage=UTF-8
+DataFile=nVR_2_su0008.eeg
+MarkerFile=nVR_2_su0008.vmrk
+DataFormat=BINARY
+; Data orientation: MULTIPLEXED=ch1,pt1, ch2,pt1 ...
+DataOrientation=MULTIPLEXED
+NumberOfChannels=32
+; Sampling interval in microseconds
+SamplingInterval=1000
+
+[Binary Infos]
+BinaryFormat=INT_16
+
+[Channel Infos]
+; Each entry: Ch<Channel number>=<Name>,<Reference channel name>,
+; <Resolution in "Unit">,<Unit>, Future extensions..
+; Fields are delimited by commas, some fields might be omitted (empty).
+; Commas in channel names are coded as "\1".
+Ch1=Fp1,,0.1,µV
+Ch2=Fp2,,0.1,µV
+Ch3=F7,,0.1,µV
+Ch4=F3,,0.1,µV
+Ch5=Fz,,0.1,µV
+Ch6=F4,,0.1,µV
+Ch7=F8,,0.1,µV
+Ch8=FC5,,0.1,µV
+Ch9=FC1,,0.1,µV
+Ch10=FC2,,0.1,µV
+Ch11=FC6,,0.1,µV
+Ch12=T7,,0.1,µV
+Ch13=C3,,0.1,µV
+Ch14=Cz,,0.1,µV
+Ch15=C4,,0.1,µV
+Ch16=T8,,0.1,µV
+Ch17=EOG,,0.1,µV
+Ch18=CP5,,0.1,µV
+Ch19=CP1,,0.1,µV
+Ch20=CP2,,0.1,µV
+Ch21=CP6,,0.1,µV
+Ch22=Null,,0.1,µV
+Ch23=P7,,0.1,µV
+Ch24=P3,,0.1,µV
+Ch25=Pz,,0.1,µV
+Ch26=P4,,0.1,µV
+Ch27=P8,,0.1,µV
+Ch28=PO9,,0.1,µV
+Ch29=O1,,0.1,µV
+Ch30=Oz,,0.1,µV
+Ch31=O2,,0.1,µV
+Ch32=PO10,,0.1,µV
+
+[Comment]
+
+BrainVision Recorder Professional   -   V. 1.20.0801
+
+
+A m p l i f i e r  S e t u p
+============================
+Number of channels: 32
+Sampling Rate [Hz]: 1000
+Sampling Interval [µS]: 1000
+
+Channels
+--------
+#     Name      Phys. Chn.    Resolution / Unit   Low Cutoff [s]   High Cutoff [Hz]   Notch [Hz]    Series Res. [kOhm] Gradient         Offset
+1     Fp1         1                0.1 µV             10              250              Off                0                 
+2     Fp2         2                0.1 µV             10              250              Off                0                 
+3     F7          3                0.1 µV             10              250              Off                0                 
+4     F3          4                0.1 µV             10              250              Off                0                 
+5     Fz          5                0.1 µV             10              250              Off                0                 
+6     F4          6                0.1 µV             10              250              Off                0                 
+7     F8          7                0.1 µV             10              250              Off                0                 
+8     FC5         8                0.1 µV             10              250              Off                0                 
+9     FC1         9                0.1 µV             10              250              Off                0                 
+10    FC2         10               0.1 µV             10              250              Off                0                 
+11    FC6         11               0.1 µV             10              250              Off                0                 
+12    T7          12               0.1 µV             10              250              Off                0                 
+13    C3          13               0.1 µV             10              250              Off                0                 
+14    Cz          14               0.1 µV             10              250              Off                0                 
+15    C4          15               0.1 µV             10              250              Off                0                 
+16    T8          16               0.1 µV             10              250              Off                0                 
+17    EOG         17               0.1 µV             10              250              Off                0                 
+18    CP5         18               0.1 µV             10              250              Off                0                 
+19    CP1         19               0.1 µV             10              250              Off                0                 
+20    CP2         20               0.1 µV             10              250              Off                0                 
+21    CP6         21               0.1 µV             10              250              Off                0                 
+22    Null        22               0.1 µV             10              250              Off                0                 
+23    P7          23               0.1 µV             10              250              Off                0                 
+24    P3          24               0.1 µV             10              250              Off                0                 
+25    Pz          25               0.1 µV             10              250              Off                0                 
+26    P4          26               0.1 µV             10              250              Off                0                 
+27    P8          27               0.1 µV             10              250              Off                0                 
+28    PO9         28               0.1 µV             10              250              Off                0                 
+29    O1          29               0.1 µV             10              250              Off                0                 
+30    Oz          30               0.1 µV             10              250              Off                0                 
+31    O2          31               0.1 µV             10              250              Off                0                 
+32    PO10        32               0.1 µV             10              250              Off                0                 
+
+S o f t w a r e  F i l t e r s
+==============================
+Disabled
+
+
+Test Signal from actiCAP is used.
+Impedances Imported from actiCAP Control Software:
+Impedance [kOhm] at 20:29:54 :
+Fp1:         10
+Fp2:         18
+F7:          29
+F3:          46
+Fz:          21
+F4:          13
+F8:          12
+FC5:         17
+FC1:         16
+FC2:         20
+FC6:          6
+T7:          26
+C3:          26
+Cz:          13
+C4:          32
+T8:          11
+EOG:      Out of Range!
+CP5:         18
+CP1:         18
+CP2:         14
+CP6:         28
+Null:     Out of Range!
+P7:          17
+P3:          33
+Pz:          35
+P4:          31
+P8:           9
+PO9:          9
+O1:          52
+Oz:          33
+O2:          50
+PO10:        34
+Gnd:          4
+Ref:         13

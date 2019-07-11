@@ -1,0 +1,32 @@
+#!/bin/sh
+
+# fabber_var
+# Calculate variances from fabber results (using zstat and mean images)
+# M Chappell 1/11/2007
+# Analysis Group, FMRIB, University of Oxford
+
+# HISTORY
+# 13-12-2007 Update to use mvntool to get varainces directly from the saved mvn (rather than from the z-stat)
+
+#deal with options
+until [ -z $1 ]; do
+    case $1 in
+	-d) dirflag=1 datdir=$2;;
+	-m) maskflag=1 mask=$2;;
+     esac
+    shift
+done
+echo "Fabber variance calcualtor"
+echo "Working in $datdir"
+
+params=`cat $datdir/paramnames.txt`
+
+index=1
+for param in $params; do
+    echo "Calculating variance for: $param"
+    #fslmaths $datdir/mean_$param -div $datdir/zstat_$param -sqr $datdir/var_$param
+    mvntool --input=$datdir/finalMVN --mask=$mask --output=$datdir/var_$param --param=$index --var
+    index=`echo "$index +1" | bc`
+done
+
+echo "Done."

@@ -1,0 +1,29 @@
+
+License Agreement for the LORETA, sLORETA, eLORETA Software
+
+You may install and use this software under the following binding agreement. You will agree to:
+- not use the software for commercial or clinical purposes.
+- not copy ANY of the files (including the MNI templates, the cortical surface files, the lead field, EEG files, ERP files; age regression files from the BRL sLORETA norms including the intercepts, slopes, and standard deviations) included in this package, for any form of direct or indirect commercial use;
+- not copy, not modify, not decrypt ANY of the files (including the MNI templates, the cortical surface files, the lead field, EEG files, ERP files; age regression files from the BRL sLORETA norms including the intercepts, slopes, and standard deviations) included in this package, for any form of direct or indirect commercial use.
+- not erase the "sLORETA" text that appears in any of the files and in any of the images produced by this software;
+- not make changes to this software;
+- not change the name of this method, LORETA, sLORETA, eLORETA to any other name;
+- not misuse this software, as explained below under sLORETA MISUSE.
+
+This package includes EEG and ERP data. This is real data, with fictitious labels for the description of the experiments for the recordings. The data is included for tutorial purposes, exclusively. You are not allowed to redistribute this data, nor produce images using this data for any publication purposes or any commercial purposes.
+
+If you don't agree with these conditions, then quit now.
+
+If you don't agree, but you've decided to still install this software, then you might be accused of performing an unethical act.
+
+DISCLAIMER OF WARRANTY: THIS SOFTWARE IS LICENSED ON AN AS-IS BASIS, WITHOUT WARRANTY OR CONDITION OF ANY KIND AND THE KEY INSTITUTE FOR BRAIN-MIND RESEARCH DISCLAIMS ALL WARRANTIES AND CONDITIONS, INCLUDING WITHOUT LIMITATION THE IMPLIED WARRANTIES OF FITNESS FOR A PARTICULAR PURPOSE, AND NON-INFRINGEMENT. The entire risk as to the quality and performance of the Software is borne by you. Should the Software prove defective, you and not THE KEY INSTITUTE FOR BRAIN-MIND RESEARCH assume the entire responsibility. This Disclaimer of Warranty constitutes an essential part of the License Agreement.
+
+LIMITATION OF LIABILITY: UNDER NO CIRCUMSTANCES AND UNDER NO LEGAL THEORY, WHETHER TORT, CONTRACT, OR OTHERWISE, SHALL THE KEY INSTITUTE FOR BRAIN-MIND RESEARCH BE LIABLE TO YOU OR ANY OTHER PERSON FOR ANY INDIRECT, SPECIAL, INCIDENTAL, OR CONSEQUENTIAL DAMAGES OF ANY TYPE INCLUDING, WITHOUT LIMITATION, DAMAGES FOR COMPUTER FAILURE OR MALFUNCTION, OR LOSS OF DATA.
+
+sLORETA MISUSE:
+This software computes sLORETA from scalp electric potential differences (time domain EEG/ERP) or from EEG cross-spectra (frequency domain). Three examples of misuse follow:
+1. Inputting scalp electric potential spectral powers will not output sLORETA (current density) spectral powers.
+2. Inputting scalp electric potential square roots of spectral powers will not output sLORETA (current density) square roots of spectral powers.
+3. Inputting scalp z-transformed-maps will not output sLORETA (current density) z-transformed-values.
+The three previous invalid inputs to sLORETA violate the mathematics and the physics underlying all computations. Furthermore, they violate any correct usage of statistical analysis.
+

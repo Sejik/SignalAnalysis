@@ -1,0 +1,19 @@
+%     ECOG Head File.
+%     '%' means the line is comment. 
+%     Please refer to the order as follows.
+
+% Number of channels
+Channels = 
+64 
+
+% Total points recorded
+Points = 
+2000
+
+% Sampling rate
+Srate = 
+400
+
+% Unit of the potential value
+Unit = 
+mV

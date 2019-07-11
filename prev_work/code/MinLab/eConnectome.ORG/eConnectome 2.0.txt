@@ -1,0 +1,22 @@
+eConnectome 2.0 is released! 
+Please visit http://econnectome.umn.edu to download the new version. 
+
+This is the 2.0 version of eConnectome, which includes the EEG/MEG/ECoG functional connectivity modules.s. 
+
+The MEG connectivity analysis module was implemented and included in the new version. 
+The main functionality of the MEG connectivity analysis module includes:   
+(1) Preprocessing of multi-channel MEG data, including filtering, baseline correction, 
+    bad channel rejection, time-frequency representation, power spectral density analysis, 
+    field mapping, spectral mapping, ERF analysis etc.
+
+(2) Estimation of directional connectivity among multi-channel MEG sensors based on the
+    Directed Transfer Function (DTF) or Adaptive DTF (ADTF) method, and visualization of 
+    the directional connectivity over the MEG sensor surface.
+
+(3) Cortical current sources can be reconstructed from MEG data. 
+    Besides a standard geometry model from the MNI brain, an individual BEM model with 
+    the relative lead field matrix can be used for cortical source imaging. 
+
+(4) Directional connectivity among selected cortical ROIs can be estimated with the DTF or ADTF 
+    method and visualized over the cortex model.
+

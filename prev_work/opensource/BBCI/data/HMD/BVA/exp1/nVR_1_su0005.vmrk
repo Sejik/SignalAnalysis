@@ -1,0 +1,41 @@
+Brain Vision Data Exchange Marker File, Version 1.0
+
+[Common Infos]
+DataFile=nVR_1_su0005.eeg
+
+[Marker Infos]
+Mk1=New Segment,S  0,1,1,0,20160407200723700964
+Mk2=Comment,S  0,1,1,0,
+Mk3=Stimulus,S  1,57,1,0,
+Mk4=Stimulus,S  1,3977,1,0,
+Mk5=Stimulus,S  1,5517,1,0,
+Mk6=Stimulus,S  1,11617,1,0,
+Mk7=Stimulus,S  1,12967,1,0,
+Mk8=Stimulus,S  1,18257,1,0,
+Mk9=Stimulus,S  1,20407,1,0,
+Mk10=Stimulus,S  1,23907,1,0,
+Mk11=Stimulus,S  1,30437,1,0,
+Mk12=Stimulus,S  1,40357,1,0,
+Mk13=Stimulus,S  1,43537,1,0,
+Mk14=Stimulus,S  1,50117,1,0,
+Mk15=Stimulus,S  1,52947,1,0,
+Mk16=Stimulus,S  1,63697,1,0,
+Mk17=Stimulus,S  1,65667,1,0,
+Mk18=Stimulus,S  1,68757,1,0,
+Mk19=Stimulus,S  1,80197,1,0,
+Mk20=Stimulus,S  1,82867,1,0,
+Mk21=Stimulus,S  1,86157,1,0,
+Mk22=Stimulus,S  1,88027,1,0,
+Mk23=Stimulus,S  1,90417,1,0,
+Mk24=Stimulus,S  1,106597,1,0,
+Mk25=Stimulus,S  1,111357,1,0,
+Mk26=Stimulus,S  1,117177,1,0,
+Mk27=Stimulus,S  1,124187,1,0,
+Mk28=Stimulus,S  1,126867,1,0,
+Mk29=Stimulus,S  1,143667,1,0,
+Mk30=Stimulus,S  1,153407,1,0,
+Mk31=Stimulus,S  1,161267,1,0,
+Mk32=Stimulus,S  1,164447,1,0,
+Mk33=Stimulus,S  1,169987,1,0,
+Mk34=Stimulus,S  1,173217,1,0,
+Mk35=Stimulus,S  1,198497,1,0,

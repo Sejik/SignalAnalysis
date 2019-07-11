@@ -1,0 +1,161 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>sLORETA to ROIs</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>sLORETA to ROIs:</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-indent:0cm'><img width=805 height=789
+src="0017_files/image001.jpg"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This module is a region of interest (ROI) extractor. It will
+process sLORETA files and produce text files with the sLORETA values at the
+specified ROIs. sLORETA files to be processed can be dropped onto the <b>Input
+sLORETA files</b> pane. Be sure to set properly the <b>File mask</b>: only
+files that match the extension will be added to the list. sLORETA files should
+have <b>*.slor</b> as <b>File mask</b>.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The ROIs are specified in the <b>ROI-definitions file
+(*ROI.csv)</b>. Such files can be produced in the modules <b>ROI maker 1</b>,<b>
+ROI maker 2</b>, and <b>ROI maker 3</b>. Read carefully the <b>help text</b>
+within these modules.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Corresponding to each sLORETA file, a file with extension <b>*-sLorRoi.txt</b>
+will be produced. This text file will have <b>Nroi</b> columns, and <b>NT</b>
+rows. <b>Nroi</b> is equal to the number of regions of interest. <b>NT</b> is
+equal to the number of sLORETA images in the sLORETA file (typically, but not
+always, equal to the number of time frames or of discrete frequencies).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

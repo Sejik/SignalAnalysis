@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css" href="../fsl.css">
+<TITLE>POSSUM</TITLE></HEAD><BODY><IFRAME width="100%" scrolling="no"
+frameborder="0" src="top.html">Broken</IFRAME>
+
+<H2>Adding white (thermal) noise</H2>
+
+<p>POSSUM GUI adds any noise you have specified before running 
+POSSUM. However, if you want to add different levels of noise to the same
+simulation you should do that by using two easy and quick command-line programs.
+
+<p>Firstly, you should add thermal noise to your <I>signal</I> (or <I>signal_nonoise</I> if the <I>signal</I> is already generated with added thermal noise) by the use of a command-line program <b>systemnoise</b>. If you type <b>systemnoise</b> into your terminal you will get something similar to this:
+
+<pre>
+systemnoise
+
+systemnoise [options] --in=<I>signal_nonoise</I> --out=<I>signal_with_noise</I> --sigma=value
+
+Compulsory arguments (You MUST set one or more of):
+        -i,--in         input signal 
+        -o,--out        output signal 
+
+Optional arguments (You may optionally specify one or more of):
+        -s,--sigma      set noise standard deviation (units of intensity)
+        --seed          input seed value for the sequence
+        -v,--verbose    switch on diagnostic messages
+        -h,--help       display this message
+</pre>
+
+<p>Note that the output of this command-line should not be given the same name as the input because in that case you will lose your original signal file (which usually takes a long time to generate). 
+
+<p>After you have added thermal noise to the signal, you can reconstruct the image using a command line program <b>signal2image</b>. 
+
+</BODY></HTML>
+
+<HR><FONT SIZE=1>Copyright &copy; 2007, University of Oxford. <A
+HREF="http://www.fmrib.ox.ac.uk/~ivana">Ivana Drobnjak</A> and <A
+HREF="http://www.fmrib.ox.ac.uk/~mark">Mark Jenkinson</A>.</FONT>
+ 

@@ -1,0 +1,53 @@
+
+Current density power time series
+Current density XYZ time series
+Total linear connectivity
+Instantaneous linear connectivity
+Lagged linear connectivity
+Total nonlinear connectivity
+Instantaneous nonlinear connectivity
+Lagged nonlinear connectivity
+Total coherence
+Instantaneous coherence
+Lagged coherence
+Total phase synchronization
+Instantaneous phase synchronization
+Lagged phase synchronization
+
+
+
+-------- START AT ONE: below are the numbered items ------------------
+
+01. Current density power time series
+02. Current density XYZ time series
+03. Total linear connectivity
+04. Instantaneous linear connectivity
+05. Lagged linear connectivity
+06. Total nonlinear connectivity
+07. Instantaneous nonlinear connectivity
+08. Lagged nonlinear connectivity
+09. Total coherence
+10. Instantaneous coherence
+11. Lagged coherence
+12. Total phase synchronization
+13. Instantaneous phase synchronization
+14. Lagged phase synchronization
+
+
+-------- START AT ZERO: below are the numbered items ------------------
+
+00. Current density power time series
+01. Current density XYZ time series
+02. Total linear connectivity
+03. Instantaneous linear connectivity
+04. Lagged linear connectivity
+05. Total nonlinear connectivity
+06. Instantaneous nonlinear connectivity
+07. Lagged nonlinear connectivity
+08. Total coherence
+09. Instantaneous coherence
+10. Lagged coherence
+11. Total phase synchronization
+12. Instantaneous phase synchronization
+13. Lagged phase synchronization
+

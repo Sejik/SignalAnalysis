@@ -1,0 +1,27 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css"
+href="../fsl.css"><TITLE>FSL</TITLE></HEAD>
+<BODY><IFRAME width="100%" scrolling="no" frameborder="0" src="fdt_top.html">Broken</IFRAME>
+
+
+<IMG ALIGN=MIDDLE hspace=10 vspace=20 SRC="fdt_images/fdt_vectorsx.jpg" ALT="Visualising vector data">
+<h3>Displaying DWI images in fslview</h3>
+Outputs of <a href="fdt_bedpostx.html"><b>bedpostx</b></a> or <a href="fdt_dtifit.html"><b>dtifit</b></a> can be conveniently displayed in fslview.  
+If you open an image of diffusion vectors (e.g., dtifit_V1 output of <b>dtifit</b> or dyads&#60;i&#62; output of <b>bedpostx</b>) then it is
+possible to display these vectors using <b>RGB</b> coding (where the colours red,green and blue represent diffusion in the x,y,z axes respectively) or
+using <b>lines</b> where a line at each voxel represents the principle
+diffusion direction at that voxel. <br>
+It is also possible to display multiple lines per voxel. Each line will be displayed in a different colour. In the example above, the red lines represent the main fibre orientation, and the blue lines represent the secondary fibre orientations (thresholded at an f-value of 0.05), as calculated by bedpostx.<br>
+If you only want to visualise fibres within voxels where multiple fibres are supported (e.g. above a certain threshold for the corresponding mean_f&#60;i&#62;samples), then you first have to create a vector file where the voxels below a certain f-threshold are zeroed. You may use the two following commands for that:<br><br>
+<verb>fslmaths mean_f&#60;i&#62;samples -thr 0.05 -bin tmpmask</verb><br>
+<verb>fslmaths dyads&#60;i&#62; -mas tmpmask dyads&#60;i&#62;_masked</verb>
+
+
+<p>
+For more details see the relevant fslview
+<a href="http://www.fmrib.ox.ac.uk/fsl/fslview/dti.html"
+target="_top">tutorial</a>.
+

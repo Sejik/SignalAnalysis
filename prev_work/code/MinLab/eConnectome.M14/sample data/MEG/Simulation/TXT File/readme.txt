@@ -1,0 +1,1 @@
+Simulated-MEG-by-Interictal-ECoG.txt is the head file, Simulated-MEG-by-Interictal-ECoG.dat is the data file.

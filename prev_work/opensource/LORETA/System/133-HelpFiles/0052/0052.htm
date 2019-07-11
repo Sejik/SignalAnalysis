@@ -1,0 +1,189 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=windows-1252">
+	<TITLE></TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 3.1  (Win32)">
+	<META NAME="AUTHOR" CONTENT="Gandalf the Grey">
+	<META NAME="CREATED" CONTENT="20100209;10270000">
+	<META NAME="CHANGEDBY" CONTENT="Gandalf the Grey">
+	<META NAME="CHANGED" CONTENT="20100209;10410100">
+	<STYLE TYPE="text/css">
+	<!--
+		@page { size: 8.27in 11.69in; margin: 0.79in }
+		H1 { margin-bottom: 0.04in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		H1.western { font-family: "Cambria", serif; font-size: 16pt; so-language: en-US }
+		H1.cjk { font-family: "Times New Roman", serif; font-size: 16pt }
+		H1.ctl { font-family: "Arial", sans-serif; font-size: 16pt; so-language: ar-SA }
+		P { text-indent: 0.5in; margin-bottom: 0.08in; direction: ltr; color: #000000; text-align: justify; widows: 2; orphans: 2 }
+		P.western { font-family: "Cambria", serif; font-size: 12pt; so-language: en-US }
+		P.cjk { font-family: "Times New Roman", serif; font-size: 12pt }
+		P.ctl { font-family: "Calibri", sans-serif; font-size: 12pt; so-language: ar-SA }
+		A:link { color: #0000ff }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="en-US" TEXT="#000000" LINK="#0000ff" DIR="LTR">
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<H1 CLASS="western">Help on &ldquo;Conjunction statistics for
+z-scores&rdquo;</H1>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">This utility combines
+two independent statistical analyses performed in the same cortical
+space as the sLORETA images. The two statistical analyses must be in
+the form of sLORETA files (*.slor) containing z-scores, i.e. standard
+Gaussian values.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">As one example,
+consider two different subjects compared to the sLORETA-BRL norms.
+The two z-score files can be analyzed in terms of conjunction.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Conjunction analysis is
+explained in the papers:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">1. Friston, K., Holmes,
+A., Price, C., Buchel, C., Worsley, K., 1999. Multisubject fMRI
+studies and conjunction analyses. NeuroImage 10, 385-396.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">2. Nichols, T., Brett,
+M., Andersson, J., Wager, T., Poline, J.-B., 2004. Valid Conjunction
+Inference with the Minimum Statistic. NeuroImage 25, 653&ndash;660.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">3. Friston, K.J.,
+Penny,W.D., Glaser, D.E., 2005. Conjunction revisited. NeuroImage 25,
+661-667.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Consider the previously
+mentioned simple example consisting of two z-score files (one for
+each subject). For each voxel and each frequency, there are two
+z-scores, denoted z<SUB>a</SUB> and z<SUB>b</SUB>. Let the two tailed
+probabilities be denoted as p<SUB>a</SUB> and p<SUB>b</SUB>,
+respectively. These probabilities correspond to the Gaussian
+distribution. For instance, if z<SUB>a</SUB> = 1.96, then p<SUB>a</SUB>
+= 0.05; and if z<SUB>b</SUB> = 2.57, then p<SUB>b</SUB> = 0.01. Then
+the probability for the conjunction p<SUB>c</SUB> is (see references
+above):</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">p<SUB>c</SUB> = [max(p<SUB>a</SUB>
+, p<SUB>a</SUB>)]<SUP>2</SUP></P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">In the example above,
+it follows that:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">p<SUB>c</SUB> = [max(p<SUB>a</SUB>
+, p<SUB>a</SUB>)]<SUP>2</SUP> = [max(0.05 , 0.01)]<SUP>2</SUP> =
+[0.05]<SUP>2</SUP> = 0.0025</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">which is very
+significant.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">In fact, all that is
+needed for a significant conjunction at a given voxel and frequency
+is that the minimum z-score of the pair of values (or equivalently
+the maximum p) be z<SUB>min</SUB>= 1.23, which gives:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">p<SUB>c</SUB> =
+[0.224]<SUP>2</SUP> = 0.05</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">This program computes
+for each voxel and frequency the conjunction probabilities, and
+outputs a file with:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">-Log<SUB>10</SUB>p<SUB>c</SUB></P>
+<P CLASS="western" STYLE="margin-bottom: 0in">which is conveniently
+scaled to be interpreted as:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">-Log<SUB>10</SUB>p<SUB>c</SUB>=1
+corresponds to p<SUB>c</SUB>=0.1</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">-Log<SUB>10</SUB>p<SUB>c</SUB>=2
+corresponds to p<SUB>c</SUB>=0.01</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">-Log<SUB>10</SUB>p<SUB>c</SUB>=3
+corresponds to p<SUB>c</SUB>=0.001</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">-Log<SUB>10</SUB>p<SUB>c</SUB>=4
+corresponds to p<SUB>c</SUB>=0.0001</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">And so on..</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Also, this program
+computes for each voxel and frequency the conjunction z-score, which
+is conveniently interpreted as:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Conjunction
+z-score=1.95 corresponds to p<SUB>c</SUB>=0.05</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Conjunction
+z-score=2.57 corresponds to p<SUB>c</SUB>=0.01</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">And so on..</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">As a second example,
+consider one subject that has been compared to the sLORETA-BRL norms,
+and that independently was also studied by SPECT imaging and compared
+to SPECT norms. If the z-score SPECT results can be converted to the
+sLORETA format, then the conjunction statistics can be calculated by
+this program. In this case, there are 6239 voxels and 87 discrete
+frequencies for the sLORETA-BRL z-scores, whereas for the SPECT
+z-score image there are only 6239 z-scores (there is no frequency
+information). Under these conditions, the program will perform a
+conjunction analysis using the same SPECT image for all frequencies.
+The resulting conjunction files will consist of conjunction p and z
+values for 6239 voxels and 87 discrete frequencies.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The following
+screenshot shows an example:</P>
+<P CLASS="western" STYLE="text-indent: 0in; margin-bottom: 0in"><IMG SRC="image1a-1.jpg" NAME="graphics4" ALIGN=LEFT WIDTH=1242 HEIGHT=994 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P CLASS="western" STYLE="text-indent: 0in; margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">When the option &ldquo;Sign
+sensitive output&rdquo; is checked, the conjunction values (z and
+minus Log(p)) will be negative if the two z-scores analyzed for
+conjunction have different signs, and positive if the signs are the
+same. Otherwise (i.e. non-checked option &ldquo;Sign sensitive
+output&rdquo;), the conjunction values are always positive.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">In this example, there
+are two files in &ldquo;List A&rdquo;, corresponding to two different
+subjects. The files in List A contain sLORETA-BRL z-scores. The two
+files in List B contain SPECT z-scores (at 6239 voxels),
+corresponding to the same subjects in List A. The program will
+perform a conjunction analysis for each subject, i.e. for each pair
+of files.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Note that in the
+example, the second pair consists of the files:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Second line, Subject 2,
+list A = 02-z-SubjWise.slor (containing 6239x87 BRL z-scores)</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Second line, Subject 2,
+list B = D002_6239.slor (containing 6239 SPECT z-scores)</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">The single SPECT image
+is used for all sLORETA images (an image for each frequency, i.e. 87
+frequencies) in the conjunction analysis. The resulting output files
+are:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">02-z-SubjWise-Log10p.slor
+: corresponding to the minus base 10 Logarithm of the conjunction
+probabilities (values larger than 2 are highly significant).</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">02-z-SubjWise-zConj.slor
+: corresponding to the conjunction z-scores (values larger than 2.57
+are highly significant)</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">Screenshots displaying
+these files follow.</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">For the conjunction
+z-score:</P>
+<P CLASS="western" STYLE="text-indent: 0in; margin-bottom: 0in"><IMG SRC="image2.jpg" NAME="graphics1" ALIGN=LEFT WIDTH=1242 HEIGHT=994 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in">For the conjunction
+minus base 10 Logarithm probability:</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><IMG SRC="0052_html_366b206c.jpg" NAME="graphics2" ALIGN=LEFT WIDTH=1242 HEIGHT=994 BORDER=0><BR CLEAR=LEFT><BR>
+</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><FONT SIZE=4><B>NOTE</B></FONT>:
+these conjunction statistics are not corrected for multiple testing,
+and they should be reported as such!</P>
+<P CLASS="western" STYLE="margin-bottom: 0in"><BR>
+</P>
+</BODY>
+</HTML>

@@ -1,0 +1,37 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css"
+href="../fsl.css"><TITLE>FSL</TITLE></HEAD>
+<BODY><IFRAME width="100%" scrolling="no" frameborder="0" src="fdt_top.html">Broken</IFRAME>
+
+<h3>Registration within FDT</h3>
+<p>If tractography results are to be stored in any space other than diffusion
+space then registration must be run.
+
+<p>Registration within Fdt uses <a href="http://www.fmrib.ox.ac.uk/fsl/flirt/index.html" target="_top">flirt</a>. Registration can only be applied after <b>bedpostx</b> has been run.  Typically, registration will be run between three spaces:
+<ul><li>Diffusion space (using the nodif_brain image in the bedpostX directory)</li>
+<li>Structural space (using the struct image in the bedpostX directory, e.g., the space of a high resolution T1-weighted image of the same subject)</li>
+<li>Standard space (by default, the MNI152 brain stored within $FSLDIR/etc/standard)</li></ul>
+
+<p>Note that struct must have had <a href="http://www.fmrib.ox.ac.uk/fsl/bet/index.html" target="_top">bet</a> applied.  The nodif_brain image should be the brain extracted version of the nodif image that is automatically stored in the bedpostX directory.  The user will have to manually apply bet to this image after running <b>bedpostx</b> and before running registration.  (it is important that the user check the quality of bet results on these images and adjust the settings in bet where appropriate).
+
+<p>Transformation matrices, and their inverses, will be derived from diffusion to structural space and
+from structural to standard space.  Relevant matrices will be concatenated to
+produce transformation matrices between diffusion and standard space.  The resulting matrices are stored within
+the 'xfms' subdirectory of the bedpost directory and named as follows:  
+
+<ul><li>diff2str.mat - from diffusion to structural space</li>
+<li>str2diff.mat - from structural to diffusion space</li>
+<li>diff2standard.mat - from diffusion to standard space</li>
+<li>standard2diff.mat - from standard to diffusion space</li>
+<li>str2standard.mat - from structural to standard space</li>
+<li>standard2str.mat - from standard to structural space</li></ul>
+
+<p>By default, transformation matrices between diffusion and structural space are
+derived using 12 degrees of freedom, the mutual information cost
+function and normal search; transformations matrices between structural and standard space
+are derived using 12 degrees of freedom, the correlation ratio cost
+function and normal search.  These parameters may be adjusted if required
+using the drop down menus in the registration panel.

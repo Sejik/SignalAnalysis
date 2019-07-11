@@ -1,0 +1,71 @@
+#!/bin/sh
+
+
+if [ $# -lt 1 ]; then 
+    echo "Usage: $0 data_dir"
+    exit 1;
+fi
+
+DIR=$1;
+for img in ${DIR}/data ${DIR}/nodif_brain_mask ;do
+    if [ `${FSLDIR}/bin/imtest $img` -eq 1 ] ; then
+	echo $img
+	${FSLDIR}/bin/fslinfo $img;
+	echo ""
+    else
+	echo $img does not exist;
+    fi
+done
+
+for bv in ${DIR}/bvals ${DIR}/bvecs;do
+    echo " num lines in $bv "
+    cat $bv |grep -v "^[ 	]*$"|wc -l
+    echo " num words in $bv "
+    cat $bv|wc -w
+done
+
+if [ `${FSLDIR}/bin/imtest ${DIR}/data` -eq 1 -a `${FSLDIR}/bin/imtest ${DIR}/nodif_brain_mask` -eq 1 ];then
+
+    dx=`${FSLDIR}/bin/fslval ${DIR}/data dim1`
+    dy=`${FSLDIR}/bin/fslval ${DIR}/data dim2`
+    dz=`${FSLDIR}/bin/fslval ${DIR}/data dim3`
+    dt=`${FSLDIR}/bin/fslval ${DIR}/data dim4`
+    
+    nbmx=`${FSLDIR}/bin/fslval ${DIR}/nodif_brain_mask dim1`
+    nbmy=`${FSLDIR}/bin/fslval ${DIR}/nodif_brain_mask dim2`
+    nbmz=`${FSLDIR}/bin/fslval ${DIR}/nodif_brain_mask dim3`
+    
+    
+    if [ $dx -ne $nbmx -o  $dy -ne $nbmy -o $dz -ne $nbmz ];then 
+	echo "data dimensions do not match mask dimensions"
+    fi
+    
+    bvallenw=`cat ${DIR}/bvals|wc -w`
+    bvallenl=`cat ${DIR}/bvals|grep -v "^[ 	]*$"|wc -l`
+    bvallen=`echo "$bvallenw / $bvallenl"|bc`
+
+    bveclenw=`cat ${DIR}/bvecs|wc -w`
+    bveclenl=`cat ${DIR}/bvecs|grep -v "^[ 	]*$"|wc -l`
+    bveclen=`echo "$bveclenw / $bveclenl"|bc`
+
+    if [ $bveclenl -ne 3 -a $bveclen -ne 3 ];then
+	echo "bvecs is not 3xN or Nx3 format"
+    fi
+
+    if [ $bvallenl -ge 2 -a $bvallen -ge 2 ];then
+	echo "bvals is not 1xN or Nx1 format"
+    fi
+ 
+    if [ $bveclen -ne $bvallenw -a $bveclenl -ne $bvallenw ];then
+	echo "bvecs and bvals are incompatible"
+    fi
+
+    if [ $bvallenw -ne $dt ];then 
+	echo "number of elements in bvals is not equal to number of vols in data"
+    fi
+
+    if [ $bveclen -ne $dt -a $bveclenl -ne $dt ];then 
+	echo "number of vectors in bvecs is not equal to number of vols in data"
+    fi
+	
+fi

@@ -1,0 +1,3 @@
+# 만약 HERMES new version을 설치한다면, 반드시 여기 있는
+# H_path.m 를 $(HERMES)/H_minifunction/H_path.m 에
+# overwrite 할 것.

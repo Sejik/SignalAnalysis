@@ -1,0 +1,81 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css"
+href="../fsl.css"><TITLE>FSL</TITLE></HEAD>
+<BODY><IFRAME width="100%" scrolling="no" frameborder="0" src="fdt_top.html">Broken</IFRAME>
+
+<IMG ALIGN=RIGHT hspace=20 vspace=20 SRC="fdt_images/fdt_bedpostx.gif" ALT="Bedpost GUI view">
+<h3>BEDPOSTX</h3>
+<p>BEDPOSTX stands for Bayesian Estimation of Diffusion Parameters Obtained using Sampling Techniques. The X stands for modelling Crossing Fibres. <b>bedpostx</b> runs Markov Chain Monte Carlo sampling to build up distributions on diffusion parameters at each voxel. It creates all the files necessary for running probabilistic tractography. For an overview of the modelling carried out within <b>bedpostx</b> see the <ahref="http://www.fmrib.ox.ac.uk/analysis/techrep/tr03tb1/tr03tb1/">appendix.</a>
+
+<p><b>bedpostx</b> now allows to model crossing fibres within each voxel on the brain. Crucially, <b>bedpostx</b> allows to automatically determine the number of crossing fibres per voxel. For details on the model used in this case, see Behrens et al, NeuroImage 2007, 34:144-55.
+
+<p><b>bedpostx</b> takes about 24 hours to run but will automatically batch if run on an SGE-capable system..
+
+<p>To call the FDT GUI, either run <b>Fdt</b>, or run <b>fsl</b> and press the <b>FDT</b> button.  Use the top left drop down menu to select <b>BEDPOSTX</b>. 
+
+<p> 
+<b>Input directory:</b> Use the browse button to select an input directory. That directory must contain the following files:
+<ul>
+<li><b>data</b>: A 4D series of data volumes.  This will include diffusion-weighted volumes and volume(s) with no diffusion weighting.</li>
+<li><b>nodif_brain_mask</b>: 3D binary brain mask volume derived from running <a href="../bet2/index.html" target="_top">bet</a> on nodif (i.e. on a volume with no diffusion weighting).</li>
+<li><b>bvecs</b>:  A text file containing a list of gradient directions applied during diffusion weighted volumes. The order of entries in this file must match the order of volumes in <b>data</b>.
+<br>
+The format is<pre>
+x_1 x_2 x_3 ... x_n
+y_1 y_2 y_3 ... y_n
+z_1 z_2 z_3 ... z_n<br></pre> 
+Vectors are normalised to unit length within the <b>bedpostx</b> code. For volumes in which there was no diffusion weighting, the entry should still be present, although the
+direction of the vector does not matter!  </li>
+<li><b>bvals</b>: A text file containing a list of bvalues applied during each volume acquisition. The order of entries in this file must match the
+order of volumes in the input data and entries in the gradient directions text file.
+<br>
+The format is <br><pre>
+b_1 b_2 b_3 ... b_n<br></pre>
+The order of <b>bvals</b> must match the order of <b>data.</b></li>
+</ul>
+<br><br>
+<i>Tip: Run <b>bedpostx_datacheck</b> in command line to check if your input directory contains the correct files required for <b>bedpostx</b>.</i> 
+<br><br>
+
+
+<p><h4>Outputs of BEDPOSTX</h4>
+<b>bedpostx</b> creates a new directory at the same level as the input directory
+called &lt;indir&gt;.bedpostX which contains all the files you need for probabilistic
+tractography.  Highlights are (&#60;i&#62; indicates the i-th fibre. It ranges from 1 to the maximum number of fibres set in the advanced options.):
+
+<ul>
+<li><b>merged_th&#60;i&#62;samples</b> - 4D volume -  Samples from the distribution on theta </li>
+<li><b>merged_ph&#60;i&#62;samples</b> - Samples from the distribution on phi
+</li><ul><li>theta and phi together represent the principal diffusion
+direction in <a href="fdt_images/fdt_spherical_polars.gif">spherical polar co-ordinates</a></li></ul>
+<li><b>merged_f&#60;i&#62;samples</b> - 4D volume - Samples from the distribution
+on anisotropic volume fraction (see <a
+href="http://www.fmrib.ox.ac.uk/analysis/techrep/tr03tb1/tr03tb1/">technical
+report</a>).</li>
+<li><b>mean_th&#60;i&#62;samples</b> - 3D Volume - Mean of distribution on theta  </li>
+<li><b>mean_ph&#60;i&#62;samples</b> - 3D Volume - Mean of distribution on phi  </li>
+<li><b>mean_f&#60;i&#62;samples</b> -  3D Volume - Mean of distribution on <i>f</i>
+anisotropy  </li>
+<ul><li>Note that in each voxel, fibres are ordered according to a decreasing mean f-value</li></ul>
+<li><b>dyads&#60;i&#62;</b> - Mean of PDD distribution in vector form.
+ Note that this file can be loaded into fslview for easy <a href="fdt_display.html">viewing of diffusion directions</a></li>
+<li><b>nodif_brain</b> - brain extracted version of nodif - copied
+from input directory</li>
+<li><b>nodif_brain_mask</b> - binary mask created from nodif_brain -
+copied from input directory
+</li>
+</ul>
+
+<p><h4>Advanced Options</h4>
+You may change some options before running <b>bedpostx</b>, depending on the questions you want to ask or the quality of your diffusion data. The default values of these parameters are the ones used in the corresponding paper (Behrens et al, NeuroImage 2007, 34:144-55).
+<ul>
+<li><b>Fibres</b>: Number of fibres modelled per voxel. 
+<li><b>Weight</b>: Multiplicative factor for the prior on the additional modelled fibres. A smaller factor means more weighting for the additional fibres.
+<li><b>Burnin</b>: Number of iterations before starting the sampling. These might be increased if the data are noisy, and the MCMC needs more iterations to converge.
+</ul>
+
+<p><h4>Command line utility</h4>
+<verb>bedpostx &#60;indir&#62; [-n &#60;nfibres&#62;] [-w &#60;weight&#62;] [-b &#60;niter&#62;]</verb>

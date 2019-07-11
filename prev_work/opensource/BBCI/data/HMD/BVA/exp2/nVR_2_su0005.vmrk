@@ -1,0 +1,29 @@
+Brain Vision Data Exchange Marker File, Version 1.0
+
+[Common Infos]
+DataFile=nVR_2_su0005.eeg
+
+[Marker Infos]
+Mk1=New Segment,S  0,1,1,0,20160407201219845272
+Mk2=Comment,S  0,1,1,0,
+Mk3=Stimulus,S  1,75,1,0,
+Mk4=Stimulus,S  1,4165,1,0,
+Mk5=Stimulus,S  1,14665,1,0,
+Mk6=Stimulus,S  1,19165,1,0,
+Mk7=Stimulus,S  1,24165,1,0,
+Mk8=Stimulus,S  1,32545,1,0,
+Mk9=Stimulus,S  1,44445,1,0,
+Mk10=Stimulus,S  1,49875,1,0,
+Mk11=Stimulus,S  1,62515,1,0,
+Mk12=Stimulus,S  1,64165,1,0,
+Mk13=Stimulus,S  1,99165,1,0,
+Mk14=Stimulus,S  1,105985,1,0,
+Mk15=Stimulus,S  1,109165,1,0,
+Mk16=Stimulus,S  1,117845,1,0,
+Mk17=Stimulus,S  1,122525,1,0,
+Mk18=Stimulus,S  1,124625,1,0,
+Mk19=Stimulus,S  1,129425,1,0,
+Mk20=Stimulus,S  1,159625,1,0,
+Mk21=Stimulus,S  1,172615,1,0,
+Mk22=Stimulus,S  1,174465,1,0,
+Mk23=Stimulus,S  1,189735,1,0,

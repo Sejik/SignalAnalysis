@@ -1,0 +1,534 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Brain connectivity using sLORETA/eLORETA, by R.D. Pascual-Marqui</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Georgia","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Georgia","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Georgia","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Georgia","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:36.0pt;
+	font-size:16.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.Section1
+	{page:Section1;}
+ /* List Definitions */
+ ol
+	{margin-bottom:0cm;}
+ul
+	{margin-bottom:0cm;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h1><b><font size=5 face=Georgia><span style='font-size:16.0pt'>Instantaneous
+and lagged measurements of linear and nonlinear dependence between groups of
+multivariate time series: frequency decomposition</span></font></b></h1>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Roberto
+D. Pascual-Marqui</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+KEY Institute for Brain-Mind Research</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>University
+Hospital of Psychiatry</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Lenggstr.
+31, CH-8032 Zurich, Switzerland</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>pascualm
+at key.uzh.ch</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>www.keyinst.uzh.ch/loreta</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>Abstract</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Measures
+of linear dependence (coherence) and nonlinear dependence (phase
+synchronization) between any number of multivariate time series are defined.
+The measures are expressed as the sum of lagged dependence and instantaneous
+dependence. The measures are non-negative, and take the value zero only when
+there is independence of the pertinent type. These measures are defined in the
+frequency domain and are applicable to stationary and non-stationary time
+series. These new results extend and refine significantly those presented in a
+previous technical report (Pascual-Marqui 2007, arXiv:0706.1776 [stat.ME], <a
+href="http://arxiv.org/abs/0706.1776">http://arxiv.org/abs/0706.1776</a> ), and
+have been largely motivated by the seminal paper on linear feedback by Geweke
+(1982 JASA 77:304-313). One important field of application is neurophysiology,
+where the time series consist of electric neuronal activity at several brain locations.
+Coherence and phase synchronization are interpreted as “connectivity” between
+locations. However, any measure of dependence is highly contaminated with an
+instantaneous, non-physiological contribution due to volume conduction and low
+spatial resolution. The new techniques remove this confounding factor
+considerably. Moreover, the measures of dependence can be applied to any number
+of brain areas jointly, i.e. distributed cortical networks, whose activity can
+be estimated with eLORETA (Pascual-Marqui 2007, arXiv:0710.3341 [math-ph], <a
+href="http://arxiv.org/abs/0710.3341">http://arxiv.org/abs/0710.3341</a> ).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>What this
+program does</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>You
+can compute measures of linear and nonlinear dependence between cortical regions
+of interest, i.e. between virtual electrodes placed on the cortex. A
+requirement is that the regions of interest be already defined, and that the
+corresponding ROI transformation matrix exists.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>These
+measures are computed in the frequency domain. For instance, you can compute
+the connectivity between cortical ROIs for alpha activity.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Use
+the option &quot;Smooth discrete freq range&quot; to guarantee that the
+measures of connectivity be well defined. If the number of ERP files is small,
+or the frequency bands are too narrow, then the measures might be undefined,
+causing a program error. The problem of undefined measures is similar to trying
+to calculate a correlation coefficient with only one or two samples. Smoothing
+tries to avoid this problem.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>If
+there are a total of “NDF” discrete frequencies or frequency bands, and if
+there are a total of “NROI” regions of interest, then the output files produced
+by this program have extensions:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>1. Total linear connectivity: “*-ROIlinTotConn.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>2. Instantaneous linear connectivity: “*-ROIlinInstConn.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>3. Lagged linear connectivity: “*-ROIlinLagConn.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 1, 2, and 3 satisfy the relation: Total =
+Instantaneous + Lagged</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 1, 2, and 3 can be transformed to a
+“squared coherence” type value, taking values in the [0...1] range. See equations
+19, 25, and 31 in the manuscript (<a href="http://arxiv.org/abs/0711.1455">http://arxiv.org/abs/0711.1455</a>):</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>4. Total coherence: “*-ROItotCoh.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>5. Instantaneous coherence: “*-ROIInstCoh.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>6. Lagged coherence: “*-ROILagCoh.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 4, 5, and 6 DO NOT satisfy the relation:
+Total = Instantaneous + Lagged</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>7. Total nonlinear connectivity: “*-ROInonLinTotConn.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>8. Instantaneous nonlinear connectivity: “*-ROInonLinInstConn.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>9. Lagged nonlinear connectivity: “*-ROInonLinLagConn.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 7, 8, and 9 satisfy the relation: Total =
+Instantaneous + Lagged</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 7, 8, and 9 can be transformed to a
+“phase synchronization” type value, taking values in the [0...1] range. See
+equations 50, 51, and 52 in the manuscript (<a
+href="http://arxiv.org/abs/0711.1455">http://arxiv.org/abs/0711.1455</a>):</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>10. Total coherence: “*-ROItotPhase.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>11. Instantaneous coherence: “*-ROIInstPhase.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>12. Lagged coherence: “*-ROILagPhase.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 10, 11, and 12 DO NOT satisfy the
+relation: Total = Instantaneous + Lagged</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>13. Total linear covariance: “*-ROIlinTotCov.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>14. Instantaneous linear covariance: “*-ROIlinInstCov.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>15. Lagged linear covariance: “*-ROIlinLagCov.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 13, 14, and 15, unlike the scaled
+coherences, are non-scaled log transformed squared covariances.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>16. Total nonlinear covariance: “*-ROInonLinTotCov.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>17. Instantaneous nonlinear covariance: “*-ROInonLinInstCov.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>18. Lagged nonlinear covariance: “*-ROInonLinLagCov.txt”</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>The measures 16, 17, and 18, unlike the scaled phase
+synchronizations, are non-scaled log transformed squared covariances based on
+unit modulus Fourier transform coefficients (as explained in the manuscript (<a
+href="http://arxiv.org/abs/0711.1455">http://arxiv.org/abs/0711.1455</a>)).</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>These
+output files are plain text files. Within, there are “NDF” matrices of
+dimension NROI* NROI, containing the connectivity values.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Statistical
+analysis for these connectivity measures are now included in the
+sLORETA/eLORETA SnPM module.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>All
+technical details on connectivity can be found at:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><a href="http://arxiv.org/abs/0711.1455">http://arxiv.org/abs/0711.1455</a></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><a href="eLorCohPhase737/eLorCohPhase737.pdf">View PDF file</a></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><a href="eLorCohPhase737/index.html">View web pages</a></span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>-------------------------------</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>In
+addition, you can choose to produce (output) text files with the electric
+neuronal activity at the ROIs. This is equivalent to the activity recorded by “virtually”
+implanted electrodes in the cortex.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>If
+you choose to produce (output) the “Squared activity values”, then the files
+will have number of columns equal to the number of ROIs, and number of rows
+equal to the number of time frames. The values in these files are non-negative,
+corresponding to “Squared activity values”. The file extension is “-SqrAct@Rois.txt”.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>If
+you choose to produce (output) the “XYZ activity”, then the files will have
+number of columns equal to the number of ROIs, and number of rows equal to three
+times the number of time frames. The values in these files can be positive and
+negative, corresponding to the X, Y, and Z current density vector components at
+each ROI. The file extension in this case is “-XyzAct@Rois.txt”. Note that for
+XYZ activity:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #1 is time frame # 1 for the X-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #2 is time frame # 1 for the Y-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #3 is time frame # 1 for the Z-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #4 is time frame # 2 for the X-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #5 is time frame # 2 for the Y-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #6 is time frame # 2 for the Z-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #7 is time frame # 3 for the X-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #8 is time frame # 3 for the Y-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- row #9 is time frame # 3 for the Z-current density
+vector component.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- and so on...</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>In
+other words, for “XYZ activity” files, the columns correspond to the ROIs, and
+the rows correspond to triplicate time frames, such that the first three rows
+correspond to time frame # 1 (X, Y, and Z components respectively), the second
+three rows correspond to time frame # 2 (X, Y, and Z components respectively),
+and so on.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>EEG outputs:</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>This
+version allows the computation of measures of similarity, NOT TO BE INTERPRETED
+AS CONNECTITY, between EEG signals. The files produced have similar extension
+to those above (measures 1 to 18), but with EEG substituting ROI. These files
+contain matrices of dimension equal to the number of electrodes, not to the
+number of regions of interest.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>Appendix</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>In a previous version of this software, files with
+slightly different extensions were used:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- Linear dependence measure, file extension “-ROIlinDep.txt”.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- Linear instantaneous dependence measure, file
+extension “-ROIlinInstDep.txt”.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- Linear lagged dependence measure, file extension “-ROIlinLaggedDep.txt”.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- Nonlinear dependence measure, file extension “-ROInonLinDep.txt”.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- Nonlinear instantaneous dependence measure, file
+extension “-ROInonLinInstDep.txt”.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>- Nonlinear lagged dependence measure, file extension
+“-ROInonLinLaggedDep.txt”.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>

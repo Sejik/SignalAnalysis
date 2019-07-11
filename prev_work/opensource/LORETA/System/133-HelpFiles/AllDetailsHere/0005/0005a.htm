@@ -1,0 +1,240 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Transformation matrix, sLORETA, R.D. Pascual-Marqui</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Georgia","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Georgia","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Georgia","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Georgia","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:36.0pt;
+	font-size:16.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Computing the transformation matrix</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>sLORETA</h2>
+
+<p class=MsoNormal>The sLORETA transformation matrix (file with extension
+“*.psinv”) is used in the conversion (computation) of scalp electric potential
+differences to standardized current density in the brain. It is also used in
+the conversion (computation) of EEG cross-spectra to the intracranial spectral
+power.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>sLORETA is based on an appropriately standardized version of
+the minimum norm current density. The minimum norm current density is
+demonstrably known to misplace deep sources to the outer cortex. However, when
+this current density is appropriately standardized, exact, zero-error
+localization is achieved.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The technical details are explained in:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>R.D. Pascual-Marqui. Standardized
+low resolution brain electromagnetic tomography (sLORETA): technical details.
+Methods &amp; Findings in Experimental &amp; Clinical Pharmacology 2002,
+24D:5-12.</p>
+
+<p class=MsoNormal style='text-indent:0cm'>View PDF file</p>
+
+<p class=MsoNormal style='text-indent:0cm'>View web pages</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The calculation of the transformation matrix requires
+knowledge of the head model, which in this case is the MNI152 template, as
+explained in the Tutorial. The lead field (the forward operator), which
+contains the head model information, was calculated for a fixed set of 316
+electrodes from the 5% system, as explained in the Tutorial. In order to
+calculate the transformation matrix for any electrode coordinates, the lead
+field is interpolated to the User’s electrode coordinates, which do not have to
+correspond to the 5% positions.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This interpolation step is a bit time consuming.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>eLORETA</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The new exact low resolution brain electromagnetic
+tomography (eLORETA) is an authentic inverse solution with exact, zero-error
+localization. This means that the distributed current density not only
+“explains” the measured scalp electric potentials, but it also has the exact,
+zero-error localization property.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In practice, sLORETA and eLORETA produce very similar
+localization results.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>eLORETA transformation matrix files have extension “-eLORETA.spinv”</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>All technical details on eLORETA can be found at:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>http://arxiv.org/abs/0710.3341</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-indent:0cm'>View PDF file</p>
+
+<p class=MsoNormal style='text-indent:0cm'>View web pages</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

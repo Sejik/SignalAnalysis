@@ -1,0 +1,51 @@
+Brain Vision Data Exchange Header File Version 1.0
+; Created by the BrainAmpControl example
+
+[Common Infos]
+DataFile=$b.eeg
+MarkerFile=$b.vmrk
+DataFormat=BINARY
+DataOrientation=MULTIPLEXED
+NumberOfChannels=32
+SamplingInterval=200
+
+[Binary Infos]
+BinaryFormat=INT_16
+
+[Channel Infos]
+; Each entry: Ch<Channel number>=<Name>,<Reference channel name>, 
+; <Resolution in "Unit">,<Unit>, Future extensions..
+; Fields are delimited by commas, some fields might be omitted (empty).
+; Commas in channel names are coded as "\1". 
+Ch1=1,,0.1
+Ch2=2,,0.1
+Ch3=3,,0.1
+Ch4=4,,0.1
+Ch5=5,,0.1
+Ch6=6,,0.1
+Ch7=7,,0.1
+Ch8=8,,0.1
+Ch9=9,,0.1
+Ch10=10,,0.1
+Ch11=11,,0.1
+Ch12=12,,0.1
+Ch13=13,,0.1
+Ch14=14,,0.1
+Ch15=15,,0.1
+Ch16=16,,0.1
+Ch17=17,,0.1
+Ch18=18,,0.1
+Ch19=19,,0.1
+Ch20=20,,0.1
+Ch21=21,,0.1
+Ch22=22,,0.1
+Ch23=23,,0.1
+Ch24=24,,0.1
+Ch25=25,,0.1
+Ch26=26,,0.1
+Ch27=27,,0.1
+Ch28=28,,0.1
+Ch29=29,,0.1
+Ch30=30,,0.1
+Ch31=31,,0.1
+Ch32=32,,0.1

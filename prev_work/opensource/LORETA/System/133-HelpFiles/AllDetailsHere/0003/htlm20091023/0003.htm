@@ -1,0 +1,710 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Electrode registration, sLORETA, R.D. Pascual-Marqui</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Tahoma;
+	panose-1:2 11 6 4 3 5 4 4 2 4;}
+@font-face
+	{font-family:Georgia;
+	panose-1:2 4 5 2 5 4 5 2 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Georgia","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Georgia","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Georgia","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Georgia","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoTitle, li.MsoTitle, div.MsoTitle
+	{mso-style-link:"Title Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:center;
+	text-indent:36.0pt;
+	font-size:16.0pt;
+	font-family:"Georgia","serif";
+	font-weight:bold;}
+p.MsoAcetate, li.MsoAcetate, div.MsoAcetate
+	{mso-style-link:"Balloon Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:8.0pt;
+	font-family:"Tahoma","sans-serif";}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-weight:bold;}
+span.TitleChar
+	{mso-style-name:"Title Char";
+	mso-style-link:Title;
+	font-family:"Times New Roman","serif";
+	font-weight:bold;}
+span.BalloonTextChar
+	{mso-style-name:"Balloon Text Char";
+	mso-style-link:"Balloon Text";
+	font-family:"Tahoma","sans-serif";}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h1><b><font size=5 face=Georgia><span style='font-size:16.0pt'>Registering
+real electrodes</span></font></b></h1>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+second “tab” in the “sLORETA utilities” program can be used to register any
+electrodes onto the MNI152 scalp. There are two main options.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>Option 1:
+using electrode coordinates from the old LORETA-KEY software</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>If
+you have electrode coordinates produced by any of the programs in the old
+LORETA-KEY software (files with extension *.xyz), then you can register them
+onto the MNI152 scalp. Select the option <font color="#0070c0"><span
+style='color:#0070C0'>A</span></font>:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><img width=801 height=288 src="0003_image001.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>and drag/drop a file with extension “*.xyz” (created
+by one of old LORETA-KEY programs) from <font color="#0070c0"><span
+style='color:#0070C0'>F</span></font> onto <font color="#0070c0"><span
+style='color:#0070C0'>E</span></font>, and click Go (<font color="#0070c0"><span
+style='color:#0070C0'>D</span></font>). Once the program finished, the display
+looks thus:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><img width=802 height=466 src="0003_image002.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>In <font color="#0070c0"><span style='color:#0070C0'>G</span></font>
+appears the file name for the registered electrodes. Note that it is the same
+as the original, but with “-MNI-FinalRegistered.sxyz” appended. In <font
+color="#0070c0"><span style='color:#0070C0'>H</span></font> appears the file
+name with information on the quality of the registration (same as original but
+with “-GoodnessOfRegistrationInfo.txt” appended). The “quality of registration”
+information appears also in <font color="#0070c0"><span style='color:#0070C0'>I</span></font>:
+the mean error, the worst electrode, and the worst electrode’s error.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+registration from old LORETA-KEY electrode coordinates to the MNI152 scalp is
+based on projecting the electrodes onto the scalp, using the minimum possible
+displacement of the original positions (using spherical splines, explained in
+the appendix).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Double-clicking
+on <font color="#0070c0"><span style='color:#0070C0'>G</span></font> will
+display the electrodes in three orthogonal slices in the MNI152 template. It is
+the User’s responsibility to perform this visual inspection in order to check
+the quality of the registration.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>-------------------------------------</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>Option 2:
+using realistic electrode coordinates</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>In
+this case select option <font color="#0070c0"><span style='color:#0070C0'>B</span></font>:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><img width=802 height=392 src="0003_image003.jpg"></span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>It
+will be assumed that there are two text files available, already prepared by
+the User. Both files must have extension “*.sxyz”.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>One
+file must contain the coordinates of 5 landmarks. The second file must contain
+the coordinates of the actual cephalic recording electrodes. Both files must
+use the same Cartesian coordinate system, with units in millimeters. The origin
+and orientation of the orthogonal axes may be arbitrary. It is up to the User
+how to go about and make these realistic measurements.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+first file must contain the coordinates of 5 landmarks used for the first step
+of the registration process. This first step is known as the 12-parameter
+affine transformation (see the appendix below). An example for this file is:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>5</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>1.60 80.00 -41.42 Nz</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-1.68 -120.55 -21.49 Iz</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>76.59 -28.17 -52.31 RPA</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-76.62 -27.39 -53.53 LPA</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>0.23 -11.28 99.81 Cz</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>This file must have 6 lines. The first line must
+contain the number five (which means that five landmarks will follow). The next
+five lines must have 4 items each: three numbers (xyz coordinates in the User’s
+system) and a landmark name, all separated by the “space” character. The
+landmarks must be in the exact order as shown above: Nz (nasion), Iz (inion),
+RPA (right preauricular), LPA (left preauricular), and Cz. Units must be
+millimeters.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+preauricular points (RPA, LPA) are defined as the anterior root of the center
+of the peak region of the tragus (blue dot in the figure):</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><img width=408 height=394 src="0003_image004.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>(Figure copied from Valer Jurcak, Daisuke Tsuzuki and
+Ippeita Dan. 10/20, 10/10, and 10/5 systems revisited: Their validity as
+relative head-surface-based positioning systems. NeuroImage 2007, 34:1600-1611)</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+Cz landmark is defined as the half-way distance point from Nz to Iz along the
+midline.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+second file must contain the recording electrode coordinates in the User’s
+system. If the number of electrodes is <span style='position:relative;
+top:6.0pt'><img width=34 height=30 src="0003_image005.png"></span>, then this
+file must have <span style='position:relative;top:7.0pt'><img width=76
+height=34 src="0003_image006.png"></span> lines. On the first line must appear
+the number of electrodes. The next <span style='position:relative;top:6.0pt'><img
+width=34 height=30 src="0003_image005.png"></span> lines must have 4 items
+each: three numbers (xyz coordinates in the User’s system) and an electrode
+name. Actually, electrode names are optional and can be omitted. Electrode
+names are arbitrary and need not correspond to any naming convention. But if
+electrode names are used, they must be kept short (a maximum of 5 characters). Units
+must be millimeters. An example:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>19</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-26.81 84.06 -10.56 Fp1</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>29.41 83.74 -10.04 Fp2</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-66.99 41.69 -15.96 F7</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-48.05 51.87 39.87 F3</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>0.90 57.01 66.36 Fz</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>50.38 51.84 41.33 F4</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>68.71 41.16 -15.31 F8</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-83.36 -16.52 -12.65 T7</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-65.57 -13.25 64.98 C3</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>0.23 -11.28 99.81 Cz</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>66.50 -12.80 65.11 C4</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>84.44 -16.65 -11.79 T8</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-71.46 -75.17 -3.70 P7</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-55.07 -80.11 59.44 P3</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-0.87 -82.23 82.43 Pz</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>53.51 -80.13 59.40 P4</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>71.10 -75.17 -3.69 P8</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>-28.98 -114.52 9.67 O1</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red
+face="Courier New"><span style='font-size:12.0pt;font-family:"Courier New";
+color:red'>26.89 -114.68 9.45 O2</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Drag/drop
+the corresponding User-made files (with extension “*.sxyz”) from <font
+color="#0070c0"><span style='color:#0070C0'>F</span></font> onto <font
+color="#0070c0"><span style='color:#0070C0'>J</span></font> and <font
+color="#0070c0"><span style='color:#0070C0'>K</span></font>, and click Go (<font
+color="#0070c0"><span style='color:#0070C0'>D</span></font>). Once the program
+finished, the display looks thus:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><img width=804 height=441 src="0003_image007.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>In <font color="#0070c0"><span style='color:#0070C0'>G</span></font>
+appears the file name for the registered electrodes. Note that it is the same
+as the original, but with “-MNI-FinalRegistered.sxyz” appended. In <font
+color="#0070c0"><span style='color:#0070C0'>H</span></font> appears the file
+name with information on the quality of the registration (same as original but
+with “-GoodnessOfRegistrationInfo.txt” appended). The “quality of registration”
+information appears also in <font color="#0070c0"><span style='color:#0070C0'>I</span></font>:
+the mean error, the worst electrode, and the worst electrode’s error.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>In <font
+color="#0070c0"><span style='color:#0070C0'>L</span></font> appears the file
+name for the first-step partially-registered electrodes. Note that it is the
+same as the original, but with -MNI-PartialResult.sxyz” appended. This first
+step corresponds to the 12-parameter affine transform (see appendix below). The
+second step, used to produce the final registration (producing the file in <font
+color="#0070c0"><span style='color:#0070C0'>G</span></font>), employs spherical
+splines to project the electrodes onto the MNI152 scalp (see appendix below).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Double-clicking
+on <font color="#0070c0"><span style='color:#0070C0'>G</span></font> will
+display the electrodes in three orthogonal slices in the MNI152 template. It is
+the User’s responsibility to perform this visual inspection in order to check
+the quality of the registration.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Note
+that double-clicking on <font color="#0070c0"><span style='color:#0070C0'>L</span></font>
+will display the partially-registered electrodes in three orthogonal slices in
+the MNI152 template.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>-------------------------------------</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Georgia><span style='font-size:14.0pt'>Appendix</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h3><b><font size=4 face=Georgia><span style='font-size:13.0pt'>The
+12-parameter affine transformation</span></font></b></h3>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+aim is to convert realistic electrode coordinates measured with some device,
+and fit them onto the MNI152 scalp. The procedure follows.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Let
+the position vectors <span style='position:relative;top:6.0pt'><img width=20
+height=30 src="0003_image008.png"></span>, <span style='position:relative;
+top:3.0pt'><img width=76 height=24 src="0003_image009.png"></span>, denote the
+full set of electrode coordinates in MNI space for all the 5% system
+electrodes. Units are in millimeters throughout.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Let
+the position vectors <span style='position:relative;top:7.0pt'><img width=26
+height=31 src="0003_image010.png"></span>, <span style='position:relative;
+top:5.0pt'><img width=84 height=26 src="0003_image011.png"></span>, denote the
+measured coordinates. Units are in millimeters throughout.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Using
+as landmark positions Nz (nasion), Iz (inion), RPA (right preauricular), LPA
+(left preauricular), and Cz (defined as the half-way distance point from Nz to
+Iz along the midline), the aim is to find the best linear transformation:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:6.0pt'><img
+width=110 height=30 src="0003_image012.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>1</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>for the landmarks <span style='position:relative;
+top:3.0pt'><img width=75 height=24 src="0003_image013.png"></span> (in this
+case <span style='position:relative;top:5.0pt'><img width=50 height=26
+src="0003_image014.png"></span>), where <span style='position:relative;
+top:3.0pt'><img width=70 height=26 src="0003_image015.png"></span> and <span
+style='position:relative;top:2.0pt'><img width=75 height=25
+src="0003_image016.png"></span> are unknown. The least squares estimators are
+obtained by solving:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:14.0pt'><img
+width=320 height=56 src="0003_image017.png"></span></span></font></p>
+
+<p class=MsoCaption><a name="_Ref160437303"><b><font size=1 face=Georgia><span
+style='font-size:8.0pt'>Eq. </span></font></b></a>2</p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+expanded functional in Eq. 2 is:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:14.0pt'><img
+width=525 height=56 src="0003_image018.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>3</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>Setting to zero its partial derivative with respect to
+<span style='position:relative;top:3.0pt'><img width=19 height=19
+src="0003_image019.png"></span> gives:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:5.0pt'><img
+width=96 height=26 src="0003_image020.png"></span></span></font></p>
+
+<p class=MsoCaption><a name="_Ref160514146"><b><font size=1 face=Georgia><span
+style='font-size:8.0pt'>Eq. </span></font></b></a>4</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>where <span style='position:relative;top:2.0pt'><img
+width=16 height=21 src="0003_image021.png"></span> and <span style='position:
+relative;top:5.0pt'><img width=20 height=26 src="0003_image022.png"></span> are
+mean values.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>If
+this result is plugged into the original equations, then the new problem is:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:14.0pt'><img
+width=260 height=56 src="0003_image023.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>5</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>with:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:6.0pt'><img
+width=90 height=30 src="0003_image024.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>6</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>and:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:6.0pt'><img
+width=105 height=30 src="0003_image025.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>7</p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+new expanded functional is:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:14.0pt'><img
+width=316 height=56 src="0003_image026.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>8</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>Setting to zero its partial derivative with respect to
+<span style='position:relative;top:2.0pt'><img width=21 height=21
+src="0003_image027.png"></span> gives:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:15.0pt'><img
+width=230 height=65 src="0003_image028.png"></span></span></font></p>
+
+<p class=MsoCaption><a name="_Ref160514136"><b><font size=1 face=Georgia><span
+style='font-size:8.0pt'>Eq. </span></font></b></a>9</p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>[Note:
+Sadly, there was a bug with this equation, incorrectly written as <span
+style='position:relative;top:15.0pt'><img width=116 height=32
+src="0003_image029.png"></span></span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>and
+this was corrected on 2009-10-23].</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>This
+solves the first part of the problem, where an approximate linear
+transformation is achieved from the real coordinates to the MNI152 scalp and
+system.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h3><b><font size=4 face=Georgia><span style='font-size:13.0pt'>Spherical
+splines</span></font></b></h3>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>The
+last step must force the transformed electrodes onto the scalp.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Let
+the position vectors <span style='position:relative;top:7.0pt'><img width=26
+height=31 src="0003_image030.png"></span>, <span style='position:relative;
+top:5.0pt'><img width=84 height=26 src="0003_image011.png"></span>, denote the
+transformed measured coordinates (already in MNI space):</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:7.0pt'><img
+width=115 height=31 src="0003_image031.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>10</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>with the transformation parameters given by Eq. 9 and Eq.
+4.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Now
+let <span style='position:relative;top:6.0pt'><img width=21 height=30
+src="0003_image032.png"></span> denote the average of <span style='position:
+relative;top:6.0pt'><img width=20 height=30 src="0003_image008.png"></span>, <span
+style='position:relative;top:3.0pt'><img width=76 height=24
+src="0003_image009.png"></span>, over the full set of electrode coordinates in
+MNI space for all the 5% system electrodes. Redefine both sets <span
+style='position:relative;top:7.0pt'><img width=26 height=31
+src="0003_image030.png"></span> and <span style='position:relative;top:6.0pt'><img
+width=20 height=30 src="0003_image008.png"></span> by subtracting <span
+style='position:relative;top:6.0pt'><img width=21 height=30
+src="0003_image032.png"></span> (i.e. origin at <span style='position:relative;
+top:6.0pt'><img width=21 height=30 src="0003_image032.png"></span>).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>On
+the set <span style='position:relative;top:6.0pt'><img width=20 height=30
+src="0003_image008.png"></span> (centered at <span style='position:relative;
+top:6.0pt'><img width=21 height=30 src="0003_image032.png"></span>), transform
+the coordinates to the spherical system, and make the interpolating spherical
+spline fit:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:7.0pt'><img
+width=105 height=34 src="0003_image033.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>11</p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>Transform
+the set <span style='position:relative;top:7.0pt'><img width=26 height=31
+src="0003_image030.png"></span> (centered at <span style='position:relative;
+top:6.0pt'><img width=21 height=30 src="0003_image032.png"></span>) to the
+spherical system <span style='position:relative;top:8.0pt'><img width=90
+height=36 src="0003_image034.png"></span>. Substitute the radius with its
+spline interpolated value:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'><span style='position:relative;top:8.0pt'><img
+width=125 height=36 src="0003_image035.png"></span></span></font></p>
+
+<p class=MsoCaption><b><font size=1 face=Georgia><span style='font-size:8.0pt'>Eq.
+</span></font></b>12</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Georgia><span
+style='font-size:12.0pt'>and retransform back to Cartesian coordinates, and add
+the center <span style='position:relative;top:6.0pt'><img width=21 height=30
+src="0003_image032.png"></span>. This will finally produce coordinates that
+really lie on the MN152 scalp.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Georgia><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>

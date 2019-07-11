@@ -1,0 +1,228 @@
+ERP= FALSE
+sLORETA= TRUE
+sLORETA-XYZ= FALSE
+Cross-spectrum= FALSE
+Measures of dependence= FALSE
+
+Average reference= FALSE
+No re-referencing= FALSE
+Number of electrodes= 
+Number of time frames= 
+
+No normalization= FALSE
+TimeFrame/Frequency-wise normalization= FALSE
+Subject-wise normalization= FALSE
+Electrode/Voxel-wise normalization (relative power type)= TRUE
+Spatial maximum normalization = FALSE
+
+Paired groups, test A=B: FALSE
+Independent groups, test A=B: FALSE
+Single group, zero mean test A=0: FALSE
+Paired groups, test (A-A2)=(B-B2): FALSE
+Independent groups, test (A-A2)=(B-B2) [NOTE: A and A2 are paired; B and B2 are paired; but (A,A2) is independent of (B,B2)]: FALSE
+Regression, single group A vs. external independent variables: TRUE
+Regression, paired contrast (A1-A2) vs. external independent variables: FALSE
+
+No baseline= TRUE
+Use baseline= FALSE
+
+A baseline not needed= FALSE
+A baseline start= 
+A baseline end= 
+B baseline not needed= FALSE
+B baseline start= 
+B baseline end= 
+
+Last folder= C:\NormsAgain\03-ClassicalBands128hz
+Include subfolders= FALSE
+Filter= *.*
+List A number of files= 139
+List A files:
+C:\NormsAgain\03-ClassicalBands128hz\fl1-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\fl4-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge100a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge122a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge133a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge163a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge165a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge187-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge203-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge206-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge228a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge249a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge252a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge257a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge307-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge312al-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge447b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge454b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge465b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge466b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge592a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge67-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge76-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge777-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge8077a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge8091a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge85a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge90a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge92a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\ge99a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\gw23-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\gw24-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\gw25-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\gw27-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\gw29-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\hk401a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\hk408a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn108a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn113a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn131a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn140a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn148a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn153a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn192a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn41a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn73a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn88a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\kn89a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn109-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn119-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn129-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn139-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn169-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn189-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn203-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn206-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn229-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn22-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn237-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn49-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn59-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\mn99-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01461o00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01490b00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01558a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01560a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01561a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01585b00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01589a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01593a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01594a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01595a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01597a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nl-04-01598a00-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nm10-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nm11-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nm1-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nm2-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nm3-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nm5-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu10a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu11a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu12-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu13a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu14a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu15a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu16a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu18a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu19b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu1-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu22b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu25b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu29-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu2-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu33-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu4-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu5a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu6a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu7a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu8a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\nu9a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\te2-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\te3-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1320a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1440a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1441a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1456a-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1467a-dem-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1467a-mol-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1503b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1505b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1506b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1507b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1508b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1509b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1510c-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1511b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1512c-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1513b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1514b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1516c-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1517b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1518b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1519b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1520b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1522b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1525b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1527b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1529b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1530b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1531b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1532b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1533b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1536c-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1539b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1540b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1541b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1543b-flt.slor
+C:\NormsAgain\03-ClassicalBands128hz\uh1546b-flt.slor
+List B number of files= 1
+List B files:
+C:\NormsAgain\!!!PureSortedAge.txt
+
+Last folder= C:\NormsAgain\01-ClassicalBands100hz
+Include subfolders= FALSE
+Filter= *.*
+List A2 number of files= 0
+List A2 files:
+List B2 number of files= 0
+List B2 files:
+
+All tests for all TimeFrames/Frequencies= TRUE
+1 single test for averge in a specified interval= FALSE
+All tests for each TimeFrame/Frequency in a specified interval = FALSE
+
+A start= 
+A end= 
+B start= 
+B end= 
+
+No transform for data= FALSE
+Log transform for data= TRUE
+Sqr transform for data= FALSE
+No transform for Indep.Vars.= FALSE
+Log transform for Indep.Vars.= TRUE
+Sqr transform for Indep.Vars.= FALSE
+Number of Indep.Vars.= 1
+Use all Indep.Vars.= TRUE
+Use single Indep.Var.= FALSE
+Which Indep.Var.= 
+Do NOT perform randomization SnPM, do NOT compute bullet proof, corrected critical thresholds and p values= TRUE
+Perform randomization SnPM, and compute bullet proof, corrected critical thresholds and p values= FALSE
+Number of randomizations= 5000
+Save to= C:\NormsAgain\03-ClassicalBands128hz\RelPow\RelPow
+
+t-statistic= FALSE
+t-statistic on Log transformed data= FALSE
+Log of ratio of averages (similar to log of F-ratio)= FALSE
+t-statistic on ArcSin transform= FALSE
+t-statistic on ArcSinSqrt transform= FALSE
+t-statistic on Folded Power transform= FALSE
+Folded Power exponent= 0.5
+Variance smoothing parameter= 
+Do NOT perform randomization SnPM, do NOT compute bullet proof, corrected critical thresholds and p values= FALSE
+Perform randomization SnPM, and compute bullet proof, corrected critical thresholds and p values= FALSE
+Number of randomizations= 5000
+Save to= 
+

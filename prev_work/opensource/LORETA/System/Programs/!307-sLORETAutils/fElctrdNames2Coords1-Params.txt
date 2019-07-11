@@ -1,0 +1,11 @@
+2
+FNElctrdCoord1
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\sLORETA\channel\List32e.sxyz
+FNElctrdLst
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\sLORETA\channel\List32e.txt
+0
+0
+0
+0
+0
+0

@@ -1,0 +1,29 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css"
+href="../fsl.css"><TITLE>FSL</TITLE></HEAD>
+<BODY><IFRAME width="100%" scrolling="no" frameborder="0" src="fdt_top.html">Broken</IFRAME>
+
+<h3>find_the_biggest</h3>
+<b>find_the_biggest</b> is a command line utility that performs hard
+segmentation of a seed region on the basis of outputs of <a
+href="fdt_probtrackx.html"><b>probtrackx</b></a> when <b>classification targets</b> are being used.
+
+<p>The output of <b>Connectivity-based seed classification</b> is a single volume for
+each target mask, named <b>seeds_to_{target}</b> where {target} is replaced
+by the file name of the relevant target mask. In these output images, the
+value of each voxel within the seed mask is the number of samples seeded
+from that voxel reaching the target mask. <b>find_the_biggest</b> classifies
+seed voxels according to the target mask with which they show the highest
+probability of connection. It is run as follows:
+<p><b>find_the_biggest list_of_volumes outputname</b>
+Where the list of volumes is the outputs of <b>Connectivity-based seed
+classification</b> (i.e., files named seeds_to_target1 etc etc).
+
+<p><IMG ALIGN=RIGHT height=300 SRC="fdt_images/fdt_seeds2targets_thal.gif"
+ALT="connectivity-based classification of thalamus">
+<p>The example on the right uses <a href="fdt_probtrackx.html"><b>probtrackx</b></a> and find_the_biggest to perform hard segmentation
+of the thalamus on the basis of its connections to cortex.
+

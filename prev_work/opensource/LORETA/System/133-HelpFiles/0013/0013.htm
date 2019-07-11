@@ -1,0 +1,177 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Averager</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US>
+
+<div class=Section1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Averager:</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-indent:0cm'><img width=805 height=782
+src="0013_files/image001.jpg"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This module will average groups of files. Files to be
+averaged can be dropped onto the <b>Folders/files</b> pane. Be sure to set
+properly the <b>File mask</b>: only files that match the extension will be
+added to the list. The user must specify the file name for the average (<b>Save
+average file</b>).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Alternatively, folders can be dropped onto the <b>Folders/files</b>
+pane. In this case, all the files within each folder will be averaged, and the
+averages will be saved to files with file names equal to the folder name, but
+with the corresponding extension of the file type. Be sure to set properly the <b>File
+mask</b>: only files that match the extension will be averaged. These files
+will be placed in the same folder that contains the added folders.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that when averaging ERP files, a special option
+appears: <b>Subtract average ERP</b>. This option is intended for use with
+single trial ERPs, but can be used for any ERP-type files. Assuming that the
+input files are single trial ERPs, checking this option does the following: in
+addition to the average of single trials, new files will be created, one for single
+trial, containing the single trial minus the average. The files will have
+extension</p>
+
+<p class=MsoNormal style='text-indent:0cm'><b>*-MinusAve.txt</b></p>
+
+<p class=MsoNormal style='text-indent:0cm'>or</p>
+
+<p class=MsoNormal style='text-indent:0cm'><b>*-MinusAve.asc</b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These files are appropriate for use in time-frequency
+analyses, for the study of induced oscillations. Note that it is incorrect to
+use the single trials without average subtracted for the study of induced
+oscillations, because this mixes induced and evoked oscillations.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

@@ -1,0 +1,555 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Scaling and Baseline-Correction</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:31.2pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h1><b><font size=5 face=Cambria><span style='font-size:16.0pt'>Help on Scaling
+and Baseline-Correction utilities</span></font></b></h1>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>This
+utility allows you to perform transformations on ERP or sLORETA files. The
+transformations are of the scaling (i.e. normalization) or baseline-correction
+types.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>When
+the “Scaling &amp; Baseline” tab is invoked for the first time, you should see
+the following screen:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img width=801 height=626 src="0037_files/image001.jpg"></span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Cambria><span style='font-size:14.0pt'>Performing
+baseline subtraction on ERP files</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>1.
+Select the option “ERP” in the “Baseline SUBTRACTION” box, as shown in the
+figure above.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>2.
+The file mask must have the filename extension corresponding to your ERP files.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>3. ERP
+files must be text files, containing only numbers (microvolt values). No
+header, no footer. The text file must have number of rows equal to the number
+of time frames, i.e. number of discrete time samples. The text file must have
+number of columns equal to the number of electrodes. This means that rows
+correspond to time samples; columns correspond to electrodes. An example
+EEG/ERP text file with five discrete time frames and  three electrodes should
+look thus:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'> -0.162   -0.095   -0.027</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'> -0.041   -0.004    0.049</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'> -0.010    0.042    0.102</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>  0.007    0.021    0.052</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'> -0.056   -0.094   -0.127</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+separators between numbers can be spaces or tabs. Decimal “point” should be
+used, not a decimal “comma”.  Numbers can be represented in exponential
+notation, e.g.:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>-0.162  can equivalently be written as -1.62E-01</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>4.
+From the left panes that display folders/files, drag and drop the ERP files
+onto the “Files” box.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>5.
+Fill out correctly the information on number of electrodes, number of time
+frames, time frame number for the start of the baseline, and time frame number
+for the end of the baseline. Time frames start at value 1, NOT at value zero.
+All selected files must have same values for these four items.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>6.
+Click Go.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>7.
+For each file processed, a new file will be created, with same filename, but
+different extension, containing the base-line corrected data.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.
+Baseline subtraction corresponds to:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.a.
+Make average scalp map in the defined baseline time interval.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.b.
+Subtracting from every scalp map the baseline average scalp map.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Cambria><span style='font-size:14.0pt'>Performing
+baseline subtraction on time domain sLORETA files</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>1.
+Select the option “sLORETA (time domain)” in the “Baseline SUBTRACTION” box.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>2.
+The file mask will reset itself to “*.slor”. Do not change this.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>3.
+From the left panes that display folders/files, drag and drop the sLORETA files
+onto the “Files” box.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>4.
+Fill out correctly the information on time frame number for the start of the
+baseline, and time frame number for the end of the baseline. Time frames start
+at value 1, NOT at value zero. All selected files must have same values for
+these two items.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>6.
+Click Go.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>7.
+For each file processed, a new file will be created, with same filename, but
+different extension, containing the base-line corrected data.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.
+Baseline subtraction corresponds to:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.a.
+Make average sLORETA image in the defined baseline time interval.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.b.
+Subtracting from every sLORETA image the baseline average sLORETA image.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Cambria><span style='font-size:14.0pt'>Performing
+baseline subtraction on frequency domain (corresponding to classical frequency
+bands) sLORETA files</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>1.
+Select the option “sLORETA (classical freq. bands)” in the “Baseline
+SUBTRACTION” box. Note that these files must have originated from EEG
+cross-spectra that were obtained for classical frequency bands (see the “EEGs
+to cross spectrum” tab). There are two possible classical frequency band
+selections:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red face=Cambria><span
+style='font-size:12.0pt;color:red'>8ClassicalBands</span></font>: <font
+face=Symbol><span style='font-family:Symbol'>d</span></font>(1.5-6Hz) , <font
+face=Symbol><span style='font-family:Symbol'>q</span></font>(6.5-8Hz) , <font
+face=Symbol><span style='font-family:Symbol'>a</span></font><sub>1</sub>(8.5-10Hz)
+, <font face=Symbol><span style='font-family:Symbol'>a</span></font><sub>2</sub>(10.5-12Hz)
+, <font face=Symbol><span style='font-family:Symbol'>b</span></font><sub>1</sub>(12.5-18Hz),
+<font face=Symbol><span style='font-family:Symbol'>b</span></font><sub>2</sub>(18.5-21Hz)
+, <font face=Symbol><span style='font-family:Symbol'>b</span></font><sub>3</sub>(21.5-30Hz)
+, <font face=Symbol><span style='font-family:Symbol'>W</span></font>(1.5-30Hz)</p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 color=red face=Cambria><span
+style='font-size:12.0pt;color:red'>7ClassicalBands</span></font>: <font
+face=Symbol><span style='font-family:Symbol'>d</span></font>(1-3Hz) , <font
+face=Symbol><span style='font-family:Symbol'>q</span></font>(4-7Hz) , <font
+face=Symbol><span style='font-family:Symbol'>a</span></font>(8-12Hz) , <font
+face=Symbol><span style='font-family:Symbol'>b</span></font><sub>1</sub>(13-18Hz),
+<font face=Symbol><span style='font-family:Symbol'>b</span></font><sub>2</sub>(19-21Hz)
+, <font face=Symbol><span style='font-family:Symbol'>b</span></font><sub>3</sub>(22-30Hz)
+, <font face=Symbol><span style='font-family:Symbol'>W</span></font>(1-30Hz)</p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>2.
+The file mask will reset itself to “*.slor”. Do not change this.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>3.
+From the left panes that display folders/files, drag and drop the sLORETA files
+onto the “Files” box.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>4.
+Fill out correctly the information on band number for the start of the
+baseline, and band number for the end of the baseline. Band numbers start at
+value 1, NOT at value zero. The maximum value for band number for the end of
+the baseline is 7 for <font color=red><span style='color:red'>8ClassicalBands</span></font>
+or 6 for <font color=red><span style='color:red'>7ClassicalBands</span></font>.
+This is because the last band is the redundant full-total-band (</span></font><font
+face=Symbol><span style='font-family:Symbol'>W</span></font>). All selected
+files must have same values for these two items.</p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>6.
+Click Go.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>7.
+For each file processed, a new file will be created, with same filename, but
+different extension, containing the base-line corrected data (the total band
+will be excluded in the baseline corrected files).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.
+Baseline subtraction corresponds to:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.a.
+Make average sLORETA image in the defined baseline band.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.b.
+Subtracting from every sLORETA image the baseline average sLORETA image.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Cambria><span style='font-size:14.0pt'>Performing
+baseline subtraction on frequency domain (corresponding to discrete
+frequencies, not to classical bands) sLORETA files</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>1.
+Select the option “sLORETA (discrete frequencies)” in the “Baseline
+SUBTRACTION” box. Note that these files must have originated from EEG
+cross-spectra that were obtained for some discrete frequency range (see the
+“EEGs to cross spectrum” tab).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>2.
+The file mask will reset itself to “*.slor”. Do not change this.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>3.
+From the left panes that display folders/files, drag and drop the sLORETA files
+onto the “Files” box.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>4.
+Fill out correctly the information on frequency number for the start of the
+baseline, and frequency number for the end of the baseline. Frequency numbers
+start at value 1, NOT at value zero. The correspondence between discrete
+frequency number and actual Hz depends on the discrete frequency range that was
+used when computing EEG cross-spectra, and on the frequency resolution of your
+analysis. For instance, if your EEG files had 256 time frames sampled at 128
+Hz, then the frequency resolution is 0.5 Hz. If you computed EEH cross-spectra
+starting at 3 Hz and ending at 5 Hz, then your corresponding sLORETA files will
+have 5 discrete frequencies:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Discrete frequency number 1 corresponds to 3 Hz;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Discrete frequency number 2 corresponds to 3.5 Hz;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Discrete frequency number 3 corresponds to 4 Hz;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Discrete frequency number 4 corresponds to 4.5 Hz;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Discrete frequency number 5 corresponds to 5 Hz.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>6.
+Click Go.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>7.
+For each file processed, a new file will be created, with same filename, but
+different extension, containing the base-line corrected data.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.
+Baseline subtraction corresponds to:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.a.
+Make average sLORETA image in the defined baseline band.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.b.
+Subtracting from every sLORETA image the baseline average sLORETA image.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Cambria><span style='font-size:14.0pt'>Performing
+baseline division on sLORETA files</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>These
+options are similar to those described above for baseline subtraction on
+sLORETA files. With these options, instead of subtracting the baseline,
+division is used:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>1.
+Baseline division corresponds to:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>1.a.
+Make average sLORETA image in the defined baseline.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>8.b.
+Make a voxel-by-voxel division of sLORETA image by the baseline average sLORETA
+image.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Cambria><span style='font-size:14.0pt'>Special
+sLORETA transformation</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>When
+the option “Special sLORETA transformation” is selected, new options are
+displayed as shown here:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img width=802 height=524 src="0037_files/image002.jpg"></span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Corresponding
+to each input sLORETA file, the output file will be transformed in the
+following way:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>1. “Subtract/divide time/freq-average”: TimeFrame/Frequency-wise
+normalized (scaled) sLORETA files.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>2. “Subtract/divide cortex-average”: voxel-wise
+normalized (scaled) sLORETA files.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>3. “Subtract/divide t/f and crtx-average”: both
+normalizations (scalings) are applied: TimeFrame/Frequency-wise AND voxel-wise.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>4. “Subject-wise scale (classical frequency bands)”: In
+this case the last sLORETA image is ignored (since it contains the full-band).
+The total activity over all voxels and bands is computed, giving a single
+number, used as divisor for scaling the data (except the last sLORETA image).
+The output file has one sLORETA image less.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>5. “Subject-wise scale (general)”: The total activity
+over all voxels and time-frames or frequencies is computed, giving a single
+number, used as divisor for scaling the data. The output file has the same
+number of sLORETA images (time-frames or frequencies).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Note
+that you can choose to output log-transformed normalized (scaled) values.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Note
+that all these options correspond to a generalization of “baseline division”,
+where the baseline consists of either all time frames or all voxels or both.
+The term “division” applies if no log-transform is used; but if log-transform
+is selected, then the division turns into subtraction (elementary math). This
+explains the basic ideas and terminology.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>

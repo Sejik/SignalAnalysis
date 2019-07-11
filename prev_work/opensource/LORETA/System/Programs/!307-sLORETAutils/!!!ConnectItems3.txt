@@ -1,0 +1,96 @@
+
+Current density power time series
+Current density XYZ time series
+Total linear connectivity
+Instantaneous linear connectivity
+Lagged linear connectivity
+Directed linear connectivity
+Total nonlinear connectivity
+Instantaneous nonlinear connectivity
+Lagged nonlinear connectivity
+Directed nonlinear connectivity
+Total coherence
+Instantaneous coherence
+Lagged coherence
+Directed coherence
+Total phase synchronization
+Instantaneous phase synchronization
+Lagged phase synchronization
+Directed phase synchronization
+
+
+
+-------- START AT ONE: below are the numbered items ------------------
+
+01. Current density power time series
+02. Current density XYZ time series
+03. Total coherence
+04. Instantaneous coherence
+05. Lagged coherence
+06. Total phase synchronization
+07. Instantaneous phase synchronization
+08. Lagged phase synchronization
+09. Total coherence probability
+10. Instantaneous coherence probability
+11. Lagged coherence probability
+12. Total phase synchronization probability
+13. Instantaneous phase synchronization probability
+14. Lagged phase synchronization probability
+15. Total linear connectivity
+16. Instantaneous linear connectivity
+17. Lagged linear connectivity
+18. Total nonlinear connectivity
+19. Instantaneous nonlinear connectivity
+20. Lagged nonlinear connectivity
+21. Directed linear connectivity
+22. Directed nonlinear connectivity
+23. Directed coherence
+24. Directed phase synchronization
+
+
+-------- START AT ZERO: below are the numbered items ------------------
+
+00. Current density power time series
+01. Current density XYZ time series
+02. Total coherence
+03. Instantaneous coherence
+04. Lagged coherence
+05. Total phase synchronization
+06. Instantaneous phase synchronization
+07. Lagged phase synchronization
+08. Total coherence probability
+09. Instantaneous coherence probability
+10. Lagged coherence probability
+11. Total phase synchronization probability
+12. Instantaneous phase synchronization probability
+13. Lagged phase synchronization probability
+14. Total linear connectivity
+15. Instantaneous linear connectivity
+16. Lagged linear connectivity
+17. Total nonlinear connectivity
+18. Instantaneous nonlinear connectivity
+19. Lagged nonlinear connectivity
+20. Directed linear connectivity
+21. Directed nonlinear connectivity
+22. Directed coherence
+23. Directed phase synchronization
+
+
+
+-------- below is the chi^2 distribution ------------------
+
+NR: number of EEG files
+NF: number of discrete frequencies in the frequency band (could be 1)
+F: is the connectivity measure (ln of ratio of determinants of covariances)
+
+Then:
+
+2*NR*NF*F is chi^2(A*B)
+
+where:
+A=2 for total connectivity
+A=1 for instantaneous or lagged connectivity
+B=9 for current density ROIs signals (xyz at each voxel)
+B=1 for EEG signals (1 signal at each electrode)
+
+

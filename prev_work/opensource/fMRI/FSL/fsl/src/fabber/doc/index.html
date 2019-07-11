@@ -1,0 +1,119 @@
+<HTML><HEAD><link REL="stylesheet" TYPE="text/css" href="../fsl.css"><TITLE>FSL</TITLE></HEAD><BODY><hr><TABLE BORDER=0 WIDTH="100%"><TR><TD ALIGN=CENTER><H1>
+FABBER Nonlinear Perfusion Signal Modelling
+</H1>
+FABBER - Fast ASL &amp; BOLD Bayesian Estimation Routine - v1.1
+<TD ALIGN=RIGHT><a href="../index.html"><IMG BORDER=0 SRC="../images/fsl-logo.jpg"></a></TR></TABLE><HR>
+<a name="intro"></a><H2>INTRODUCTION</H2>
+
+<p>Bayesian nonlinear model fitting provides a more flexible alternative to traditional linear analysis of perfusion data.  In multi-echo or multi-inversion-time data, this approach uses all time points to estimate all the parameters of interest simultaneously.  This can be more accurate because it uses a detailed nonlinear model of the pulse sequence, rather than assuming that different parts of the signal are linearly related to each quantity of interest.
+
+<p>To make this analysis technique fast enough for routine use, we have adapted a fast approximate method known as Variational Bayes (VB) to work with non-linear generative models.  Experimentally we have found that these calculations provide nearly identical results to sampling method and require only a fraction of the computation time (around a minute per slice).  
+
+<p>For further information, see 
+
+<cite> Chappell, M.A., Groves, A.R., Woolrich, M.W., "Variational Bayesian inference for a non-linear forward model", IEEE Trans. Sig. Proc., 2008 (in review)</cite>.</p>
+
+<h3>fabber</h3>
+
+<p><i>Warning: This version of <b>fabber</b> is a beta release and has not been extensively tested! </i>
+
+<p><b>fabber</b> is a command-line tool for approximate Bayesian inference using generative signal models. The design is modular and new nonlinear forward models can be incorporated into the source code easily.  Only one dual-echo ASL model is documented here, but we hope to add more models as they are implemented and tested.
+
+<br>
+<a name="dualecho"></a><p><hr><H2>Simultaneous Inference of BOLD and CBF from Dual-echo ASL Data</H2>
+
+<p>Dual-echo Arterial Spin Labelling is a pulse sequence used to acquire BOLD and Cerebral Blood Flow (CBF) information simultaneously.  The standard analysis methods involve performing separate analyses on the data from each echo time to obtain separate BOLD and CBF estimates.  A more flexible approach is to use a nonlinear forward model to determine all the physical parameters of interest simultaneously, using data from both echo times.  This models blood flow and inversion recovery explicitly and is built into a Bayesian framework to provide estimates of uncertainty.
+
+<p>For more details of this approach and the nonlinear QUIPSS II model we used, please refer to 
+<p><cite> Woolrich, M., Chiarelli, P., Gallichan, D., Perthen, J., Liu, T. "Bayesian Inference of Haemodynamic Changes in Functional ASL Data", Magnetic Resonance in Medicine, 56:891-906, 2006</i>.
+
+<h3>Using <b>fabber</b> on dual-echo ASL data</h3>
+
+<p>To run FABBER on a dual-echo ASL data set, you will need the following:
+<ul>
+<li>Data sets for both echo times
+<li>Stimulus information, preconvolved with the appropriate Haemodynamic Response Functions
+<li>Details of the pulse sequence used (e.g. echo times, inversion times).  Currently only the QUIPSS II model is supported.
+</ul>
+
+<h3>Preprocessing</h3>
+
+<p>We assume that the high- and low-TE data sets are stored as two separate files, which should be converted into NIFTI format (<samp>.nii.gz</samp> files) and should have the first few volumes discarded.  You can remove very low frequency noise using <samp>fslmaths</samp>, for example
+
+<pre>fslmaths raw_highte.nii.gz -bptf 50 -1 filtered_highte.nii.gz
+fslmaths raw_lowte.nii.gz -bptf 50 -1 filtered_lowte.nii.gz</pre>
+
+will remove low-frequency noise using sigma = 50 volumes.  Other types of preprocessing may be used (e.g. using Matlab) but don't rescale the data sets, since it's important to preserve the relative signal magnitude between the two echo times.
+
+<p>A mask image is also required, showing which voxels to perform the inference on.  This can be produced manually (in <samp>fslview</samp>) or automatically (using <a href=../bet/index.html>bet</a>).
+
+<p>For the nonlinear QUIPSS II model, three design matrices are required: BOLD, CBF, and Static Magnetization are all time-varying.  FEAT can be used to prepare these three design-matrix files; they should simply be the stimulus convolved with a suitable Haemodynamic Response Function.  A standard HRF can be used for the BOLD design matrix and a quicker-responding HRF should be used for the CBF and Static Magnetization design matrices.  It's possible to use multiple regressors in any of these files (for example, a derivative term) if desired.  A set of nuisance regressors (e.g., motion) may also be provided as an additional input.
+
+<h3>Command-line syntax</h3>
+
+The typical syntax for analysing a QUIPSS II data set is:
+
+<p><samp>
+fabber --method=vb --model=quipss2 --noise=ar --num-echoes=2
+--output=&lt;output_directory&gt; 
+--data1=&lt;low_te_data&gt; --data2=&lt;high_te_data&gt; 
+--mask=&lt;mask_image&gt;
+--bold-basis=&lt;bold_design&gt; --cbf-basis=&lt;cbf_design&gt; 
+--statmag-basis=&lt;statmag_design&gt;
+</samp>
+
+<p>There are a number of additional numerical parameters that can be added to adjust the forward model to fit the details of your particular scan.  For QUIPSS II, these parameters are
+
+<ul>
+<li>Inversion times in seconds (defaults: <b>--ti1=0.6</b>,<b> --ti2=1.5</b>)
+<li>Echo times in milliseconds (defaults: <b>--te1=9.1</b>,<b> --te2=30</b>)
+<li>Tag/control order: (default: <b>--tag-pattern=TC</b>).  The pattern of Cs and Ts will be repeated as necessary to fill the entire scan length.
+</ul>
+
+In addition, the T1 of blood and the inversion efficiency are normally treated as constants (defaults: <b>--t1b=1.66</b>,<b> --inv-eff=1.0</b>).  These can be given uncertainties (and inferred upon) by providing nonzero standard deviations for the <b>--t1b-stdev=</b> and <b>--inv-eff-stdev=</b> options.
+
+<p> For a complete list of general command-line options, type </p>
+<pre> fabber --help </pre>
+<p> For parameters specific to the QUIPSS II model, type: </p>
+<pre> fabber --help --model=quipss2 </pre>
+
+<h3>Output files</h3>
+
+After FABBER finishes, the output folder will contain point estimate and pseudo-Z-statistic images for each of the forward model parameters, stored in <b>mean_&lt;parameter_name&gt;.nii.gz</b> and <b>zstat_&lt;parameter_name&gt;.nii.gz</b> respectively.  To find significant stimulus-correlated changes in the BOLD effect, CBF, and Static Magnetization, look at <b>zstat_BOLD_abschg_1.nii.gz</b>, <b>zstat_Q_abschg_1.nii.gz</b>, and <b>zstat_M_abschg_1.nii.gz</b>.  For quantitative parameter estimates, use the various <b>mean_*.nii.gz</b> files (e.g. % CBF change is simply <samp>100 * mean_Q_abschg_1 / mean_Q0</samp>).
+
+<p>For more detailed analysis of the Bayesian results (e.g. looking for covariance in parameter uncertainties), use <b>finalMeans.nii.gz</b> and <b>finalCovariance.nii.gz</b>.  These completely describe the multivariate normal distribution on the forward model parameters (in the NIFTI formats for vectors and symmetric matrices).  Some noise parameter distributions are also appended to this distribution.  The parameter names corresponding to the vector elements are saved (one per line) in <b>paramnames.txt</b>.  
+
+<p>If you encounter problems, start by reading the output carefully and looking at the <b>logfile</b> &mdash; there may be some useful warning messages there.
+
+<h3>Other options</h3>
+
+<p><b>--nuisance-basis=&lt;noise_regressors&gt;</b>: include additional regressors in the QUIPSS II model that act directly on the signal (not echo-time-weighted).  Separate regression parameters are used for each echo time.
+
+<p><b>--noise=white</b> (instead of --noise=ar): Use a white noise model instead of AR(1).  By default this will use the same noise variance for all data points.  Add <b>--noise-pattern=12</b> to use different variances for odd and even (i.e. TE1 and TE2) data points.
+
+<p><b>--fwd-initial-prior=&lt;prior_vest_file&gt;</b>: Use an informative prior, specified by a symmetric matrix in a VEST-format file.  For an N-parameter model, the matrix should be N+1 by N+1: an N-by-N prior covariance matrix in the top left (must be positive definite), supplemented by an extra column and row vector giving the prior mean of each parameter (must give the same values in both locations).  The bottom-right corner must be the number one.
+
+<p><b>--allow-bad-voxels</b>: By default <samp>fabber</samp> will halt if a numerical error arises during the calculation of any voxel.  Using this option, it will simply issue a warning and skip to the next voxel; this should be used with caution.  Each time a voxel is skipped you'll get a "Going on to the next voxel" message in the logfile &mdash; if you have more than a few of these then it's likely that other voxels are also experiencing convergence problems.  If you are using your own forward model you may be able to correct this by changing the parameterization to make the signal more linear with respect to the parameters.
+
+<p><b>--save-residuals</b> and <b>--save-model-fit</b>: produce 4D data sets for the residuals and the model fit.  The sum of these two files should equal the original data (with the mask applied and the echo times interleaved).
+<br>
+
+<p> <b>-@ &lt;options_file&gt;</b>: Read a list of options from a text file, as if they were typed at the command line.</p>
+
+<p>There are two additional features included in this beta release of <samp>fabber</samp>, which are both still under development:
+
+<p><b>--method=spatialvb</b>:  This instructs fabber to use spatial priors, i.e. to take spatial homogeneity between neighbouring voxels into account. This produces smoother resulting parameter images, but in a more principled manner than simply smoothing data or results.  The implementation is based on the approach described in <cite>Penny, W.D., Trujillo-Barreto, N.J., Friston K.J., "Bayesian fMRI time series analysis with spatial priors", NeuroImage 24:2, pp.350&ndash;362, 2005</cite>, with some minor modifications.
+
+<p><b>--param-spatial-priors=&lt;choice_of_prior_forms&gt;</b>: Use only with --method=spatialvb.  This makes it possible to choose different priors for each parameter.  This should be a string with one letter per forward-model parameter.  <b>S</b> is the spatial prior as above (default), <b>N</b> is a nonspatial prior, and <b>D</b> is a Gaussian-process based prior for combined spatial and non-spatial prior inference.  A single <b>+</b> sign may be used to repeat the preceding letter zero or more times in order to reach the correct length.  For example, <b>--param-spatial-priors=SN+D</b> would use a spatial prior on the first parameter, combination prior on the last, and nonspatial priors on all others.  Note that the <b>D</b> option only make sense when an informative non-spatial prior is specified by --fwd-initial-prior; for parameters without informative nonspatial priors, use <b>S</b>.  More details of the <b>D</b> prior (combined spatial and nonspatial prior) should appear soon in a forthcoming paper.
+
+
+<p><b>--ar1-cross-terms=dual</b>, <b>same</b>, or <b>none</b>: By default, an independent autoregressive noise model is used for each echo time (<b>none</b>).  However, the noise between the two echo times is no independent, so this default tends to overestimate the amount of information in the data.  By selecting <b>same</b> or <b>dual</b>, you can introduce one or two cross-terms into the AR(1) noise models which partially model this correlation.  <b>dual</b> is recommended for dual-echo ASL data.
+
+<p><HR><FONT SIZE=1>
+Copyright &copy; 2007-2008, University of Oxford. Written by
+<A HREF="http://www.fmrib.ox.ac.uk/~adriang/index.html">A. Groves</A> and
+<A HREF="http://www.fmrib.ox.ac.uk/~woolrich/index.html">M. Woolrich</A>.
+</FONT>
+
+</body>
+</html>

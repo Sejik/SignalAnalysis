@@ -1,0 +1,8 @@
+Only in eConnectome/: eConnectome.zip
+Only in eConnectome/functions/connectivities: pop_cortex_Min.m
+diff -r eCon_New/eConnectome/functions/readers/pop_txtreader.m eConnectome/functions/readers/pop_txtreader.m
+83c83,84
+< [pathstr, name, ext, versn] = fileparts(Fullfilename);
+---
+> %[pathstr, name, ext, versn] = fileparts(Fullfilename);
+> [pathstr, name, ext] = fileparts(Fullfilename);

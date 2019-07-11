@@ -1,0 +1,37 @@
+3
+BadElectrodeFN
+
+FNtm2
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\sLORETA\channel\List32e.spinv
+FNElctrdCoord2
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\sLORETA\channel\List32e.sxyz
+0
+0
+10
+NoInterpol
+-1
+YesInterpol
+0
+eLorButt
+0
+sLorButt
+-1
+RegEig
+0
+RegTr
+-1
+AutoRegChk
+0
+RelRegChk
+0
+SNRRegChk
+0
+NoRegChk
+-1
+0
+2
+SNRtxt
+1.0e30
+RegTxt
+0
+0

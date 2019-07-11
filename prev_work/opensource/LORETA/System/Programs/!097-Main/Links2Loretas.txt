@@ -1,0 +1,23 @@
+10
+
+LORETA 1994
+sLORETA 2002
+eLORETA 2007
+Generalized Brain Connectivity 2007
+eLORETA and Generalized Brain Connectivity 2011
+Senders, Hubs, Receivers 2010
+Generalized Cortical Networks 2011
+Partial Coherence Fields 2011
+Isolated effective coherence 2014 (iCoh) [technical details ARXIV]
+Isolated effective coherence 2014 (iCoh) [Frontiers in Neuroscience]
+
+http://www.uzh.ch/keyinst/NewLORETA/BriefHistory/LORETA-paper02.pdf
+http://www.uzh.ch/keyinst/NewLORETA/sLORETA/sLORETA-Math01.pdf
+http://arxiv.org/abs/0710.3341
+http://arxiv.org/abs/0711.1455
+http://rsta.royalsocietypublishing.org/content/369/1952/3768.abstract
+http://arxiv.org/abs/1009.0796
+http://arxiv.org/abs/1103.2852
+http://arxiv.org/abs/1108.0251
+http://arxiv.org/abs/1402.4887
+http://journal.frontiersin.org/Journal/10.3389/fnhum.2014.00448/abstract

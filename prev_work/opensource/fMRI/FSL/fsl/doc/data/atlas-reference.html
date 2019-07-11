@@ -1,0 +1,93 @@
+<html>
+  <head>
+    <link rel="stylesheet" title="normal" type="text/css" href="../fsl.css">
+    <title>Atlas Reference</title>
+  </head>
+  <body>
+<br><br><p>
+    <h3>The atlas tool data and file format reference</h3>
+
+    <h4>Introduction</h4>
+
+    <p>
+      The atlas data is represented by a set of image files (e.g. 3/4D
+      NIFTI files) along with an atlas description file in XML. The
+      image files contain voxel classification values while the XML
+      file caries the associated label and summary image information.
+    </p>
+
+    <p>Atlases come in two flavours:
+
+      <ul>
+	<li>Probabilistic - a 4D image where each volume contains voxel
+	  values [0:100] indicating the probability that a given voxel
+	  is classified as belonging to the structure represented by
+	  that volume.</li>
+	<li>Label or "hard" segmentation - a 3D image where each voxel
+	  contains the value corresponding to that voxel's
+	  classification label.</li>
+      </ul>
+    </p>
+
+    <h4>XML Specification</h4>
+
+    <table>
+      <tr><th>Tag name</th><th>Description</th><th>Attributes</th></tr>
+      <tr><th colspan="3">Tags in header section</th></tr>
+      <tr><td>name</td>
+	<td>A text sting to be displayed in any tools when refering to this atlas.</td>
+	<td></td></tr>
+      <tr><td>type</td>
+	<td>Probabilistic, Label.</td>
+	<td></td></tr>
+      <tr><td>imagefile</td>
+	<td>Relative path to the location of the atlas image</td>
+	<td></td></tr>
+      <tr><td>summaryimagefile</td>
+	<td>Relative path to the location of the atlas summary image</td>
+	<td></td></tr>
+      <tr><th colspan="3">Tags in data section</th></tr>
+      <tr><td>label</td>
+	<td>Text corresponding to this volume's label</td>
+	<td>
+	  <dl>
+	    <dt>index</dt><dd></dd>
+	    <dt>x</dt><dd></dd>
+	    <dt>y</dt><dd></dd>
+	    <dt>z</dt><dd></dd>
+	  </dl>
+	</td>
+    </table>
+
+    <h5>Example</h5>
+
+<pre>
+&lt;?xml version="1.0" encoding="ISO-8859-1"?&gt;
+&lt;atlas version="1.0"&gt;
+  &lt;header&gt;
+    &lt;name&gt;MNI Structural Probability Atlas&lt;/name&gt;
+    &lt;type&gt;Probabalistic&lt;/type&gt;
+    &lt;imagefile&gt;/MNI/MNI-prob-2mm&lt;/imagefile&gt;
+    &lt;summaryimagefile&gt;/MNI/MNI-maxprob-thr25-2mm&lt;/summaryimagefile&gt;
+  &lt;/header&gt;
+  &lt;data&gt;
+    &lt;label index="0" x="39" y="73" z="35"&gt;Caudate&lt;/label&gt;
+    &lt;label index="1" x="34" y="32" z="15"&gt;Cerebellum&lt;/label&gt;
+    &lt;label index="2" x="45" y="90" z="29"&gt;Frontal Lobe&lt;/label&gt;
+    &lt;label index="3" x="27" y="73" z="30"&gt;Insula&lt;/label&gt;
+    &lt;label index="4" x="50" y="20" z="37"&gt;Occipital Lobe&lt;/label&gt;
+    &lt;label index="5" x="45" y="33" z="61"&gt;Parietal Lobe&lt;/label&gt;
+    &lt;label index="6" x="56" y="69" z="34"&gt;Putamen&lt;/label&gt;
+    &lt;label index="7" x="16" y="53" z="35"&gt;Temporal Lobe&lt;/label&gt;
+    &lt;label index="8" x="48" y="55" z="38"&gt;Thalamus&lt;/label&gt;
+  &lt;/data&gt;
+&lt;/atlas&gt;
+</pre>
+
+
+    <h4>Hints and tips for atlas developers</h4>
+
+
+
+  </body>
+</html>

@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+
+<title>eLORETA, by R.D. Pascual-Marqui</title>
+
+<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
+<style type="text/css">
+<!--
+.style4 {font-size: 20px}
+.style5 {font-family: Georgia, "Times New Roman", Times, serif}
+body,td,th {
+	font-family: Georgia, Times New Roman, Times, serif;
+}
+-->
+</style>
+</head>
+<body>
+<table width="90%" border="0" cellspacing="4" cellpadding="4" style="text-align: center">
+  <tr>
+    <td>
+      <table width="100%" border="0" cellspacing="0" cellpadding="4">
+        <tr>
+          <td>            <h1 align="center" class="TitleColor">eLORETA: <span class="style4">exact low resolution brain electromagnetic tomography</span></h1>          </td>
+        </tr>
+      </table>    </td>
+  </tr>
+  <tr>
+    <td width="99%" style="vertical-align: top">
+      <h4 class="TitleColor style5">As of 2005-August-05, to the best of my (R.D. Pascual-Marqui) knowledge, this is the first ever 3D, discrete, distributed, linear solution to the inverse problem of EEG/MEG with exact localization (zero localization error). Previous best attempts were not solutions to the inverse problem (e.g. sLORETA), or were non-linear methods that were not solutions to the inverse problem (e.g. beamformers).</h4> 
+      <hr />
+      <p align="left" class="StoryContentColor style5">With respect  to 3D distributed, discrete, linear inverse solutions, we assert that:<br /> 
+      1. All previous solutions have the disadvantage of non-zero localization errors, even under ideal conditions of no-noise and large number of electrodes/sensors.<br /> 
+      2. Zero localization error was first achieved with sLORETA (Pascual-Marqui 2002). However, this is not a formal solution. Rather, it is a method where localization inference is based on images of appropriately standardized current density.<br /> 
+      3. We have now reached the goal of finding a 3D distributed, linear solution with exact localization to test point sources: eLORETA.</p>
+      <p align="left" class="StoryContentColor style5">        These  assertions hold for as few as 19 electrodes/sensors, and with high SNR. Under realistic, non-ideal conditions (MNI152 template, 7002 voxels, 21 electrodes/sensors, with high noise, i.e. low SNR=10), the Tables summarize several measures of reconstruction error and performance based on ROC curves, for different tomographies: for &quot;Dale W&quot; see (Dale et al. 2000) and (Lin et al. 2006); for &quot;Min.Norm&quot; and &quot;Min.Norm W&quot; see (Lin et al. 2006); for sLORETA see (Pascual-Marqui 2002). In one group of experiments, 7002 test point sources were used; and in the other, 7002 randomly selected pairs. In general, sLORETA and eLORETA have similar performances, while they outperform all others. We emphasize that eLORETA has the advantage over sLORETA of being an authentic inverse solution.</p>
+      <p align="left" class="StoryContentColor style5"><img src="tables.jpg" alt="tables" width="590" height="524" /></p>
+      <p align="left" class="StoryContentColor style5">For realistic, non-ideal conditions, Figures 1 and 2 show in red those cortical areas where localization error is larger than 50mm, for eLORETA and the Dale method.</p>
+      <p align="left" class="StoryContentColor style5"><img src="figs.jpg" alt="figures" width="719" height="984" /></p>
+      <p align="left" class="StoryContentColor style5">References<br /> 
+      A.M. Dale et al. Neuron 2000, 26:55&ndash; 67.<br /> 
+      F-H. Lin et al. Human Brain Mapping 2006, 27:1-13.<br /> 
+      R.D. Pascual-Marqui. Methods &amp; Findings in Experimental &amp; Clinical Pharmacology 2002, 24D:5-12.<br />
+      </p>
+    </td>
+  </tr>
+</table>
+</body>
+</html>

@@ -1,0 +1,50 @@
+Brain Vision Data Exchange Header File Version 1.0
+; Data exported from BBCI Matlab Toolbox
+
+[Common Infos]
+DataFile=nVR_1_su0011.eeg
+MarkerFile=nVR_1_su0011.vmrk
+DataFormat=BINARY
+DataOrientation=MULTIPLEXED
+NumberOfChannels=32
+DataPoints=214660
+SamplingInterval=1000
+
+[Binary Infos]
+BinaryFormat=INT_16
+UseBigEndianOrder=NO
+
+[Channel Infos]
+Ch1=Fp1,,0.0195898,µV
+Ch2=Fp2,,0.0147527,µV
+Ch3=F7,,0.00506913,µV
+Ch4=F3,,0.00416883,µV
+Ch5=Fz,,0.00207526,µV
+Ch6=F4,,0.00520341,µV
+Ch7=F8,,0.00622578,µV
+Ch8=FC5,,0.00784021,µV
+Ch9=FC1,,0.00161748,µV
+Ch10=FC2,,0.00192267,µV
+Ch11=FC6,,0.00368054,µV
+Ch12=T7,,0.00577411,µV
+Ch13=C3,,0.00259713,µV
+Ch14=Cz,,0.00200202,µV
+Ch15=C4,,0.00256966,µV
+Ch16=T8,,0.004532,µV
+Ch17=EOG,,0.0083163,µV
+Ch18=CP5,,0.00573138,µV
+Ch19=CP1,,0.00272225,µV
+Ch20=CP2,,0.00349742,µV
+Ch21=CP6,,0.00513932,µV
+Ch22=Null,,0.000418107,µV
+Ch23=P7,,0.004944,µV
+Ch24=P3,,0.00376904,µV
+Ch25=Pz,,0.00255745,µV
+Ch26=P4,,0.00364391,µV
+Ch27=P8,,0.00620442,µV
+Ch28=PO9,,0.00455031,µV
+Ch29=O1,,0.00276498,µV
+Ch30=Oz,,0.00294809,µV
+Ch31=O2,,0.00307627,µV
+Ch32=PO10,,0.00406202,µV
+

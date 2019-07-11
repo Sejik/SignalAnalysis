@@ -1,0 +1,202 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Functional independent components</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:31.2pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+@page WordSection1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Functional independent component analysis</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The method of analysis used here goes under the name of
+“functional data analysis”. This is a relatively recent development in the
+field of statistics. A textbook reference is:</p>
+
+<p class=MsoNormal>Ramsay, J. O. and Silverman, B. W. (2002). Applied
+Functional Data Analysis. New York: Springer-Verlag</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The main idea is explained with an example.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Consider the case where for each subject, eyes closed EEG is
+recorded. From here, compute LORETA in the frequency domain. The basic data for
+analysis now is spectral power <sub><img width=94 height=31
+src="0054_files/image001.gif"></sub>, for <i>i</i>=1…<i>NS</i>, where <i>NS</i>
+is number of subjects, <i>N</i><i><span style='font-family:Symbol'>W</span></i>
+is number of frequencies, <i>NV</i> is number of voxels.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The idea of functional data analysis is to treat the data as
+a function, and to study the statistical properties of the function (e.g. mean
+and variance). In this sense, <b>J</b> is a function of frequency and space
+(cortical grey matter). Let <sub><img width=65 height=31
+src="0054_files/image002.gif"></sub>, which simply strings in one vector the
+whole function (frequency and space). Then the data matrix is:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><sub><img width=289 height=36
+src="0054_files/image003.gif"></sub></p>
+
+<p class=MsoNormal style='text-indent:0cm'>Note that each subject consists of a
+column, with the column vector being a function of frequency and space.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Of interest are:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>- The mean function</p>
+
+<p class=MsoNormal style='text-indent:0cm'>- The variability around the mean</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The mean function is the vector given by the mean of the
+column vectors.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The mean is then subtracted from each column. In addition,
+one may optionally standardize each variable (each row), in such a way that the
+elements of the row have zero mean and unit variance.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Once the data matrix is mean-corrected and optionally
+standardized, the modes of functional variability are given by the left
+eigenvectors. The eigenvectors can be rotated to an independent component
+basis.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

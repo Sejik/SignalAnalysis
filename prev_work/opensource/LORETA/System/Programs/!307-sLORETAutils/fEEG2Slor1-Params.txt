@@ -1,0 +1,30 @@
+3
+FNtm3
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN\sLORETA\channel\List64e.spinv
+NFtxt
+1
+FileMaskTxt
+*.txt
+0
+1
+EEGlst
+1
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN\sLORETA\RAW\Average_S11.txt
+4
+CompSlorXYZ
+0
+CompSlor
+-1
+SpecifyTFs
+0
+ConvertAllTFs
+-1
+1
+IncldSubFlderChk
+0
+2
+TF1stuff
+
+TF2stuff
+
+0

@@ -1,0 +1,1 @@
+VEP-Standard-Locations.txt is the head file, VEP-Standard-Locations.dat is the data file.

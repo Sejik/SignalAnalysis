@@ -1,0 +1,741 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 15 (filtered)">
+<title>loreta statistics</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+@font-face
+	{font-family:Consolas;
+	panose-1:2 11 6 9 2 2 4 3 2 4;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria",serif;}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Constantia",serif;}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Constantia",serif;
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Constantia",serif;}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Constantia",serif;
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Constantia",serif;
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria",serif;
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:#954F72;
+	text-decoration:underline;}
+p.MsoPlainText, li.MsoPlainText, div.MsoPlainText
+	{mso-style-link:"Plain Text Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:19.85pt;
+	font-size:10.5pt;
+	font-family:Consolas;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia",serif;
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia",serif;
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Constantia",serif;
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia",serif;
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia",serif;
+	font-weight:bold;}
+span.PlainTextChar
+	{mso-style-name:"Plain Text Char";
+	mso-style-link:"Plain Text";
+	font-family:Consolas;}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Calibri",sans-serif;}
+@page WordSection1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink="#954F72">
+
+<div class=WordSection1>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h1><b><font size=5 face=Constantia><span style='font-size:16.0pt'>Statistical
+testing implemented in the KEY-LORETA software: Non-parametric randomization
+tests, aka Statistical non-Parametric Mapping (SnPM) methodology</span></font></b></h1>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Constantia><span style='font-size:14.0pt'>Introduction</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+core idea upon which this methodology is based can be attributed to Fisher’s permutation
+test (R. A. Fisher, The Design of Experiment, New York: Hafner, 1935.). Some general
+information and references can be found at:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><a
+href="http://en.wikipedia.org/wiki/Resampling_(statistics)">http://en.wikipedia.org/wiki/Resampling_(statistics)</a></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>(link alive 2015-06-15).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>An
+additional excellent modern reference to this methodology is:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>B.F.J. Manly: Randomization, Bootstrap and Monte Carlo
+Methods in Biology, Third Edition, Chapman &amp; Hall, Boca Raton, 2007.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>An
+excellent manuscript specifically for non-parametric randomization statistics
+in neuroimaging (SnPM) is:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Nichols, T.E., Holmes, A.P., 2002. Nonparametric
+permutation tests for functional neuroimaging: a primer with examples. Hum
+Brain Map 15, 1-25.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+core idea, which constitutes a cornerstone in statistics, that solved the
+problem of correction for multiple testing via non-parametric randomization, by
+making use of the max-statistic in the multivariate case, is in:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Westfall, PH.; Young, SS: Resampling-Based Multiple
+Testing: Examples and Methods for p-Value Adjustment. Wiley; New York: 1993</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Constantia><span style='font-size:14.0pt'>The
+program</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>In
+the following, some pages might not appear during your analysis session,
+depending on the data type, type of test, etc.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+page 1, Data type [1/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=336 height=183 id="Picture 1"
+src="0031_files/image001.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>select the basic data type that you want to analyze.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Page
+2, Data info [2/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=377 height=263 id="Picture 2"
+src="0031_files/image002.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>This appears only for ERP data. Specify number of
+electrodes and time frames. It is recommended to select average reference. Two letters
+explaining why the average reference should be used are:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Pascual-Marqui RD, Lehmann D.  Topographic maps,
+source localization inference, and the reference electrode: comments on a paper
+by Desmedt et al. Electroencephalogr Clin Neurophysiol. 1993 Nov-Dec;88(6):532-6.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Pascual-Marqui RD, Lehmann D.  Comparison of
+topographic maps and the reference electrode: comments on two papers by Desmedt
+and collaborators. Electroencephalogr Clin Neurophysiol. 1993
+Nov-Dec;88(6):530-1, 534-6.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+page 3, Data normalization [3/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=319 height=197 id="Picture 3"
+src="0031_files/image003.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>select the type of normalization or scaling for the
+data. The option <b><span style='font-weight:bold'>None</span></b> corresponds
+to no scaling prior to statistics. Scaling is explained in the following
+references:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+concept of scaling/normalization of neuroimages can be found in:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>S.J. Kiebel, A.P. Holmes. The general linear model.
+(2004) In: K.J. Friston, J. Ashburner, W.D. Penny (editors). Human Brain
+Function, 2nd edition, Part II – Imaging Neuroscience – Theory and Analysis,
+Elsevier science.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>A draft version of this chapter was available at the
+SPM website:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><a
+href="http://www.fil.ion.ucl.ac.uk/spm/doc/books/hbf2/pdfs/Ch7.pdf">http://www.fil.ion.ucl.ac.uk/spm/doc/books/hbf2/pdfs/Ch7.pdf</a></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>(link alive 2015-06-15).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Consider
+the case of sLORETA/eLORETA images. The option <b><span style='font-weight:
+bold'>(TimeFrame/Frequency)-wise</span></b> corresponds to image-wise scaling,
+i.e., each image is normalized (total average power equal to unity) prior to
+statistics. The option <b><span style='font-weight:bold'>Subject-wise</span></b>
+corresponds to normalizing the total power (over all images) of each subject.
+The option <b><span style='font-weight:bold'>(Electrode/Voxel)-wise (relative
+power type)</span></b> corresponds to normalizing the time signal (if time
+domain data) or the spectra (if frequency domain data) at each voxel.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+page 4, Test type [4/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=542 height=201 id="Picture 4"
+src="0031_files/image004.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>select the type of test to perform.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Note
+that there are a very limited number of possibilities. This package is intended
+for the simplest of all possible tests.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+page 5, Test details I [5/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=348 height=212 id="Picture 5"
+src="0031_files/image005.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>The user can choose to perform baseline correction.
+There is nothing illegal about performing a baseline correction, since it can
+be viewed nothing more than a legitimate contrast in the design. Note that the <b><span
+style='font-weight:bold'>Default</span></b> (preferred) option is <b><span
+style='font-weight:bold'>None</span></b> (no baseline correction).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+page 6, Data details I [6/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=626 height=203 id="Picture 6"
+src="0031_files/image006.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>set the baseline (if it was previously selected).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+page 7, Select files (Groups A &amp; B) [7/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=644 height=266 id="Picture 7"
+src="0031_files/image007.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>select the files for analysis (groups A and B). In a
+paired design, the number of files must be equal, and their order is essential.
+The lists must be perfectly paired. This can be achieved by naming the files in
+such a way that when order alphabetically, they are paired. Otherwise, the test
+is incorrect.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>In
+the special case when a regression analysis has been selected, the list B will
+accept only one file, which should be a text file prepared by the User,
+containing the independent variables. This text file with the independent
+variables must have <b><span style='font-weight:bold'>NS</span></b> rows and <b><span
+style='font-weight:bold'>NIV</span></b> columns. <b><span style='font-weight:
+bold'>NS</span></b> is the number of subjects, i.e. the number of files in list
+A. <b><span style='font-weight:bold'>NIV</span></b> is the number of
+independent variables. This program will perform regressions against each
+independent variable, one at a time. It does not perform multiple regressions
+against all independent variables.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Page
+8, Select files (Groups A2 &amp; B2) [8/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=644 height=214 id="Picture 8"
+src="0031_files/image008.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>appears only if a contrast of the type (A-A2)=(B-B2)
+was selected as test. Care must be taken to ensure that files of group A and
+group A2 be paired; and that files of group B and group B2 be paired.
+Otherwise, the test is incorrect.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>One
+page 9, Test details II [9/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=364 height=137 id="Picture 9"
+src="0031_files/image009.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>select how the tests should be performed.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Page
+10, Data details II [10/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=611 height=164 id="Picture 10"
+src="0031_files/image010.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>appears only if an interval was selected in the
+previous page.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Page
+11, Regression info [11/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=642 height=590 id="Picture 11"
+src="0031_files/image011.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>appears only if a regression analysis was selected. </span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Recall
+from <b><span style='font-weight:bold'>Page 7</span></b> above, that when a
+regression analysis has been selected, the list B of files will accept only one
+file, which should be a text file prepared by the User, containing the
+independent variables. This text file with the independent variables must have <b><span
+style='font-weight:bold'>NS</span></b> rows and <b><span style='font-weight:
+bold'>NIV</span></b> columns. <b><span style='font-weight:bold'>NS</span></b>
+is the number of subjects, i.e. the number of files in list A. <b><span
+style='font-weight:bold'>NIV</span></b> is the number of independent variables.
+This program will perform regressions against each independent variable, one at
+a time. It does not perform multiple regressions against all independent
+variables.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On Page
+12, Statistic [12/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=645 height=385 id="Picture 12"
+src="0031_files/image012.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>select the actual statistic to be used, the <b><span
+style='font-weight:bold'>variance smoothing parameter</span></b>,
+randomizations, and a filename for output.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Variance
+smoothing is explained in:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Nichols, T.E., Holmes, A.P., 2002. Nonparametric
+permutation tests for functional neuroimaging: a primer with examples. Hum
+Brain Map 15, 1-25.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>On
+Page 13, Perform tests [13/13]:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'><img border=0 width=320 height=188 id="Picture 13"
+src="0031_files/image013.jpg"></span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>click the large <b><span style='font-weight:bold'>Perform
+tests</span></b> button.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Several
+files will be produced.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><b><font size=3 face=Cambria><span
+style='font-size:12.0pt;font-weight:bold'>&nbsp;</span></font></b></p>
+
+<p class=MsoNormal style='text-indent:0cm'><b><font size=3 face=Cambria><span
+style='font-size:12.0pt;font-weight:bold'>*.TestSetup</span></font></b>: this
+contains information about all the test parameters. It can be read into the
+program with the <b><span style='font-weight:bold'>Open</span></b> option. In
+this way one does not have to go though all pages if one wants to repeat the
+test with other parameters.</p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><b><font size=3 face=Cambria><span
+style='font-size:12.0pt;font-weight:bold'>*-TestSetup.txt</span></font></b>:
+This is a text file, useful to the User, containing all the test parameters
+used. One can check exactly which type of test was performed by looking at the
+contents in any text editor.</p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><b><font size=3 face=Cambria><span
+style='font-size:12.0pt;font-weight:bold'>*.xxx</span></font></b>: The
+extension xxx can be <b><span style='font-weight:bold'>slor</span></b> or <b><span
+style='font-weight:bold'>txt</span></b>, depending on the data type analyzed.
+This file contains the test statistics (either t-values, or log-F-ratios, or
+correlation coefficients, etc.)</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><b><font size=3 face=Cambria><span
+style='font-size:12.0pt;font-weight:bold'>z-Thresholds&amp;ExtremePs.txt</span></font></b>:
+This text file is produced only if randomization was carried out. The first
+part contains the thresholds for one and two tail tests, at p=0.01, 0.05, and
+0.1. The last part contains information on the <b><span style='font-weight:
+bold'>Exceedence proportion tests</span></b>. Information on this test can be
+found in:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Friston KJ, Frith CD, Liddle PF, Dolan RJ, Lammertsma
+AA, Frackowiak RS.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>The relationship between global and local changes in
+PET scans.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>J Cereb Blood Flow Metab. 1990 Jul;10(4):458–466.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Friston K. J., Frith, C. D., Liddle, P. F., and
+Frackowiak, R. S. J. 1991.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>Comparing functional (PET) images: The assessment of
+significant change.</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>J. Cereb. Blood Flow Metab. 11,690–699.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+exceedence proportion test reports a collection of threshold values and the corresponding
+probabilities that the number of suprathreshold voxels is significant. See the
+references quoted above.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>In
+the exceedence proportion test, it may happen that a threshold needs not be
+high to be significant, e.g. a t-threshold as low as 1.5 might correspond to a significant
+number of voxels. This test is not always well defined, and the results may be
+trivial. For instance, consider two conditions such as slow wave sleep and
+awake, resting, eyes closed. The spectral power of the generators is overwhelmingly
+larger during sleep over the whole head. In this case the exceedence proportion
+test will report that the set of all voxels is significant.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+exceedence proportion test might find significant activation for a group of
+voxels, even when the voxel-by-voxel test finds no single significant voxel. This
+is because the significant event here corresponds to the simultaneous
+activation (even if low) of many voxels.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Constantia><span style='font-size:14.0pt'>An
+example “Thresholds” file</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Consider
+the following thresholds results, obtained when using randomization:</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>                      
+t(0.01)    t(0.05)    t(0.10)   ExtremeP</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>One-Tailed  (A&gt;B):      
+5.050      4.313      3.994    0.13380</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>One-Tailed  (A&lt;B):     
+-4.913     -4.255     -3.944    0.79000</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>Two-Tailed
+(A&lt;&gt;B):       5.228      4.574      4.272    0.24580</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>-------------------</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>Exceedence proportion tests:</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>&nbsp;</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>    Thrsh(1Tailed&gt;0)    
+Prob(1Tailed&gt;0)    Thrsh(1Tailed&lt;0)     Prob(1Tailed&lt;0)     
+Thrsh(2Tailed)       Prob(2Tailed)</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+0.383396            0.501000           -0.272538            0.696600           
+0.383396            0.732400</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+0.766792            0.358000           -0.545077            0.660400           
+0.766792            0.577000</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>            1.150187           
+0.267000           -0.817615            0.821400            1.150187           
+0.695800</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+1.533583            0.154600           -1.090153            0.942600           
+1.533583            0.507600</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>            1.916979            0.086600          
+-1.362692            0.938000            1.916979            0.280200</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+2.300375            0.011000           -1.635230            0.901400           
+2.300375            0.056000</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+2.683771            0.002800           -1.907768            0.780000           
+2.683771            0.026200</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+3.067167            0.017000           -2.180307            0.739400           
+<font color=red><span style='color:red;background:yellow'>3.067167           
+0.052400</span></font></span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+3.450562            0.026200           -2.452845            0.735800           
+3.450562            0.061600</span></font></p>
+
+<p class=MsoPlainText style='text-indent:0cm'><font size=1 face="Courier New"><span
+style='font-size:6.0pt;font-family:"Courier New"'>           
+3.833958            0.133600           -2.725384            0.790000           
+3.833958            0.245600</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>In
+this example, there are two conclusions:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>1. No single voxel is significant, since the most
+extreme voxels have p-values &gt;0.05 (first four lines).</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>2. The set of all voxels with absolute t-values
+greater than 3 are jointly significant, according to the exceedance proportion
+results.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<h2><b><i><font size=4 face=Constantia><span style='font-size:14.0pt'>Some
+additional notes:</span></font></i></b></h2>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>Non-parametric
+randomization makes use the t-statistic or the “t-statistic on log transformed
+values” or the log-F-ratio statistic. These are good measures of “statistical
+distance” between groups or conditions. However, inference does not rely on
+these measures having an actual t- or F-distribution. The actual distributions
+are estimated, and thus the tests are in a way “bullet proof”, in that they
+work regardless of the distribution of the original data (Gaussian or not), and
+the inference corrects for multiple testing exactly.</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+t-test for two independent samples is described at:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>https://en.wikipedia.org/wiki/Student's_t-test</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>(link alive 2015-06-15).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>The
+log-F-ratio statistic is based on the F-test for equality of variances (which
+is equivalent to equality of spectral power), described at:</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>https://en.wikipedia.org/wiki/F-test_of_equality_of_variances</span></font></p>
+
+<p class=MsoNormal style='text-indent:0cm'><font size=3 face=Cambria><span
+style='font-size:12.0pt'>(link alive 2015-06-15).</span></font></p>
+
+<p class=MsoNormal><font size=3 face=Cambria><span style='font-size:12.0pt'>&nbsp;</span></font></p>
+
+</div>
+
+</body>
+
+</html>

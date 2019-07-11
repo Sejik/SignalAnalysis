@@ -1,0 +1,49 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css" href="../fsl.css"><TITLE>FSL</TITLE></HEAD>
+<BODY><IFRAME width="100%" scrolling="no" frameborder="0" src="fdt_top.html">Broken</IFRAME>
+
+<IMG ALIGN=RIGHT hspace=20 vspace=20 SRC="fdt_images/fdt_gui.gif" ALT="Example GUI view">
+<h3>Introduction</h3>
+For other information on FDT and updated journal references, see the <a
+href="http://www.fmrib.ox.ac.uk/analysis/research/fdt/" target="_top">FDT web
+page</a>.  If you use FDT in your research, please quote the journal
+references listed there.
+
+<p>FDT (FMRIB's Diffusion Toolbox) is a software tool for analysis of diffusion weighted images.  FDT is part
+of <a href="http://www.fmrib.ox.ac.uk/fsl" target="_top">FSL</a> (FMRIB's Software Library)
+.  FDT has an easy-to-use graphical user interface (GUI) and its component
+programmes can also be run from the command line. FDT includes tools for
+data preprocessing, local diffusion modelling and tractography. Each stage in FDT is run
+separately.   
+
+The main FDT programmes, which are accesible from the GUI are:
+
+<ul><li><a href="fdt_eddy.html">eddycorrect</a> - for correction of eddy current distortion</li>
+<li><a href="fdt_bedpostx.html">bedpostx</a> - for local modelling of diffusion parameters.</li>
+<li><a href="fdt_probtrackx.html">probtrackx</a> - for tractography and connectivity-based segmentation</li> 
+<li><a href="fdt_dtifit.html">dtifit</a> - for local fitting of diffusion tensors</li></ul>
+
+<br>The FDT GUI also includes a <a
+href="fdt_reg.html">registration</a> option that registers images
+using <a href="http://www.fmrib.ox.ac.uk/fsl/flirt/index.html" target="_top">FLIRT</a>.
+
+<p>Additional FDT programmes, that can be run only from the command line, are:
+<ul><li><a href="fdt_thresh.html">proj_thresh</a> - for thresholding some outputs
+of probtrack</li>
+<li><A href="fdt_biggest.html">find_the_biggest</a> - for performing hard
+segmentation on the outputs of connectivity-based thresholding in probtrack</li>
+<li><A href="fdt_vecreg.html">vecreg</a> - for registering vector data</li></ul>
+
+<p>The probabilistic tractography tools within FDT are very flexible and allow
+the user to generate connectivity distributions from single or multiple
+voxels; to limit these distributions based on anatomical criteria and to
+perform segmentation based on the probability of connection to user-defined
+target regions.
+
+<p>To call the FDT GUI, either run <b>Fdt</b> (<b>Fdt_gui</b> on Mac
+or Windows), or run <b>fsl</b> and press the <b>FDT</b> button.
+
+<p>For an overview of the local diffusion modelling and tractography used
+within FDT see the <a href="http://www.fmrib.ox.ac.uk/analysis/techrep/tr03tb1/tr03tb1/">appendix</a>.
+

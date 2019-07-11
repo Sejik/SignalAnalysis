@@ -1,0 +1,445 @@
+function varargout = pop_filter(varargin)
+% pop_filter - the GUI for band-pass filtering and 60/50 Hz notch filtering
+%
+% Usage: 
+%            1. type 
+%               >> outdata = pop_filter(indata, srate)
+%               or call outdata = pop_filter(indata, srate) to start the popup GUI 
+%               with time series and sampling rate. 
+%               Input: indata - is a 2D array (M * N) for the time series data, 
+%                         where M equals the number of channels and N equals the 
+%                         number of sampling points.
+%                         srate - is the sampling rate
+%               Output: outdata - is a 2D array (M * N) for the filtered time series data.
+%           
+%            2. call outdata = pop_filter(indata, srate) from the eegfc GUI ('Menu bar -> 
+%                Preprocessing -> Filtering') to filter the current EEG data. 
+% 
+%            3. call outdata = pop_filter(indata, srate) from the ecogfc GUI ('Menu bar -> 
+%                Preprocessing -> Filtering') to filter the imported ECoG data. 
+%
+% Program Author: Yakang Dai, University of Minnesota, USA
+%
+% User feedback welcome: e-mail: econnect@umn.edu
+%
+
+% License
+% ==============================================================
+% This program is part of the eConnectome.
+% 
+% Copyright (C) 2010 Regents of the University of Minnesota. All rights reserved.
+% Correspondence: binhe@umn.edu
+% Web: econnectome.umn.edu
+%
+% This program is free software for academic research: you can redistribute it and/or modify
+% it for non-commercial uses, under the terms of the GNU General Public License as published by
+% the Free Software Foundation, either version 3 of the License, or
+% (at your option) any later version.
+% 
+% This program is distributed in the hope that it will be useful,
+% but WITHOUT ANY WARRANTY; without even the implied warranty of
+% MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+% GNU General Public License for more details.
+% 
+% You should have received a copy of the GNU General Public License
+% along with this program. If not, see http://www.gnu.org/copyleft/gpl.html.
+%
+% This program is for research purposes only. This program
+% CAN NOT be used for commercial purposes. This program 
+% SHOULD NOT be used for medical purposes. The authors 
+% WILL NOT be responsible for using the program in medical
+% conditions.
+% ==========================================
+
+% Revision Logs
+% ==========================================
+%
+% Yakang Dai, 01-Mar-2010 15:20:30
+% Release Version 1.0 beta 
+%
+% ==========================================
+
+% Begin initialization code - DO NOT EDIT
+gui_Singleton = 0;
+gui_State = struct('gui_Name',       mfilename, ...
+                   'gui_Singleton',  gui_Singleton, ...
+                   'gui_OpeningFcn', @pop_filter_OpeningFcn, ...
+                   'gui_OutputFcn',  @pop_filter_OutputFcn, ...
+                   'gui_LayoutFcn',  [] , ...
+                   'gui_Callback',   []);
+if nargin && ischar(varargin{1})
+    gui_State.gui_Callback = str2func(varargin{1});
+end
+
+if nargout
+    [varargout{1:nargout}] = gui_mainfcn(gui_State, varargin{:});
+else
+    gui_mainfcn(gui_State, varargin{:});
+end
+% End initialization code - DO NOT EDIT
+
+
+% --- Executes just before pop_filter is made visible.
+function pop_filter_OpeningFcn(hObject, eventdata, handles, varargin)
+% This function has no output args, see OutputFcn.
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+% varargin   command line arguments to pop_filter (see VARARGIN)
+
+% Choose default command line output for pop_filter
+% handles.output = hObject;
+
+% Update handles structure
+guidata(hObject, handles);
+
+if length(varargin) ~= 2
+    errordlg('Input arguments mismatch!','Input error','modal');
+    return;
+end
+
+TS.data = varargin{1};
+TS.srate = varargin{2};
+
+if isempty(TS.data)
+    helpdlg('Input time series data is empty!');
+    return;
+end
+
+if isempty(TS.srate) | TS.srate <= 0
+    helpdlg('Please input sampling rate (points/second)!');
+    return;
+end
+
+[TS.nbchan, TS.points] = size(TS.data);
+
+highlimit = num2str(TS.srate/2);
+set(handles.highcutofftext, 'string', ['High cutoff frequency (<= ' highlimit ' Hz):']);
+
+setappdata(hObject,'TS',TS);
+set(hObject, 'userdata', []);
+
+% UIWAIT makes pop_filter wait for user response (see UIRESUME)
+uiwait(handles.filterIIRmaingui);% To block OutputFcn so that let other callbacks to generate values.
+
+% --- Outputs from this function are returned to the command line.
+% Executed after the OpeningFcn is finished.
+function varargout = pop_filter_OutputFcn(hObject, eventdata, handles) 
+% varargout  cell array for returning output args (see VARARGOUT);
+% hObject    handle to figure
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Output values generated by callbacks
+filterhandle = findobj('tag','filterIIRmaingui');
+varargout{1} = get(filterhandle, 'userdata');
+delete(filterhandle);
+
+
+% --- Executes when uipanel1 is resized.
+function uipanel1_ResizeFcn(hObject, eventdata, handles)
+% hObject    handle to uipanel1 (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+
+
+function lowcutoffedit_Callback(hObject, eventdata, handles)
+% hObject    handle to lowcutoffedit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of lowcutoffedit as text
+%        str2double(get(hObject,'String')) returns contents of lowcutoffedit as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function lowcutoffedit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to lowcutoffedit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+
+function highcutoffedit_Callback(hObject, eventdata, handles)
+% hObject    handle to highcutoffedit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hints: get(hObject,'String') returns contents of highcutoffedit as text
+%        str2double(get(hObject,'String')) returns contents of highcutoffedit as a double
+
+
+% --- Executes during object creation, after setting all properties.
+function highcutoffedit_CreateFcn(hObject, eventdata, handles)
+% hObject    handle to highcutoffedit (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    empty - handles not created until after all CreateFcns called
+
+% Hint: edit controls usually have a white background on Windows.
+%       See ISPC and COMPUTER.
+if ispc && isequal(get(hObject,'BackgroundColor'), get(0,'defaultUicontrolBackgroundColor'))
+    set(hObject,'BackgroundColor','white');
+end
+
+
+% --- Executes on button press in tofilter.
+function tofilter_Callback(hObject, eventdata, handles)
+% hObject    handle to tofilter (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+filterhandle = findobj('tag','filterIIRmaingui');
+TS = getappdata(filterhandle,'TS');
+setappdata(filterhandle,'TS',[]);
+uiresume(filterhandle); % Resume the execution that uiwait suspended.
+
+passnone = get(handles.passnone,'value');
+stopnone = get(handles.stopnone,'value');
+if passnone && stopnone
+    return;
+end
+
+% The Nyquist frequency
+nyquistfrequency = TS.srate / 2;
+% data = (TS.data)';
+
+if ~passnone
+    
+    % The order of the butterworth is 2*FILT_ORDER
+    % High order may result in NaN values.
+    % FILT_ORDER 1 for Delta. 2 for Theta, Alpha, Beta, Gamma.
+    % 3 for Alpha, Beta, Gamma. 4 for Beta, Gamma. 5 for Gamma.
+
+    % Judge the validity of the input values.
+    [lowcutoff status1] = str2num(get(handles.lowcutoffedit, 'string'));
+    [highcutoff status2] = str2num(get(handles.highcutoffedit, 'string'));
+    if status1 == 0 | status2==0
+        errordlg('Input number is invalid, please Do Not input letters!', 'Input error', 'modal');
+        return;
+    end
+
+    if lowcutoff < 0
+        lowcutoff = 0;
+    else if lowcutoff > nyquistfrequency
+            lowcutoff = nyquistfrequency;
+        end
+    end
+
+    if highcutoff < 0
+        highcutoff = 0;
+    else if highcutoff > nyquistfrequency
+            highcutoff = nyquistfrequency;
+        end
+    end
+
+    if lowcutoff > highcutoff
+        tmpcutoff = lowcutoff;
+        lowcutoff = highcutoff;
+        highcutoff = tmpcutoff;
+    end
+
+    %% Adaptive Filter Order to ensure all filtered channels are good.
+    % Delta 
+    if lowcutoff >= 0 && lowcutoff <= 4
+        FILT_ORDER = 1;
+    end
+
+    % Theta
+    if lowcutoff > 4 && lowcutoff <= 7
+        FILT_ORDER = 2;
+    end
+
+    % Alpha
+    if lowcutoff > 7 && lowcutoff <= 12
+        FILT_ORDER = 3;
+    end
+
+    % Beta
+    if lowcutoff > 12 && lowcutoff <= 30
+        FILT_ORDER = 4;
+    end
+
+    % Gamma
+    if lowcutoff > 30 && lowcutoff <= nyquistfrequency
+        FILT_ORDER = 5;
+    end
+    %%
+
+    if lowcutoff <= 0.0
+        lowcutoff = 1e-6;
+    end
+    if highcutoff >= nyquistfrequency
+        highcutoff = nyquistfrequency - 1e-6;
+    end
+    
+    % The clamped cutoffs
+    Wn = [lowcutoff highcutoff];
+    Wn = Wn / nyquistfrequency;
+
+    % Forward and reverse butterworth filtering
+    % Filter every column of the ts, and Wn must be 0~1, where 1 means srate/2
+    % The length of ts must be more than 3*(2*FILT_ORDER)
+    if TS.points <= 3 * 2 * FILT_ORDER 
+        errordlg('Time series is too short!');
+        return;
+    end
+
+    [b,a] = butter(FILT_ORDER,Wn);
+    
+    h = waitbar(0,'Band Passing, please wait...');
+    ct = 0;
+    for i = 1:TS.nbchan
+        TS.data(i,:) = filtfilt(b,a,TS.data(i,:));
+        ct = ct + 1;
+        if ~mod(ct, 5)
+            waitbar(ct/TS.nbchan);
+        end
+    end
+    waitbar(1);
+    close(h);
+    % data = filtfilt(b,a,data);
+end
+
+if ~stopnone
+    radiobutton60 = get(handles.radiobutton60,'value');
+    if radiobutton60 
+        if ~passnone
+            if highcutoff < 60
+                set(filterhandle, 'userdata', TS.data);
+                return;
+            end
+        end
+        Wn = [59 61];
+    else
+        if ~passnone
+            if highcutoff < 50
+                set(filterhandle, 'userdata', TS.data);
+                return;
+            end
+        end
+        Wn = [49 51];
+    end
+    Wn = Wn / nyquistfrequency;
+    FILT_ORDER = 5;
+    
+    if TS.points <= 3 * 2 * FILT_ORDER 
+        errordlg('Time series is too short!');
+        return;
+    end
+    
+    [b,a] = butter(FILT_ORDER,Wn,'stop');
+    ct = 0;
+    h = waitbar(0,'Band Stoping, please wait...');
+    for i = 1:TS.nbchan
+        TS.data(i,:) = filtfilt(b,a,TS.data(i,:));
+        ct = ct + 1;
+        if ~mod(ct, 5)
+            waitbar(ct/TS.nbchan);
+        end
+    end
+    waitbar(1);
+    close(h);
+    % data = filtfilt(b,a,data);
+end
+
+set(filterhandle, 'userdata', TS.data);
+clear TS;
+
+% --- Executes on button press in cancelfilter.
+function cancelfilter_Callback(hObject, eventdata, handles)
+% hObject    handle to cancelfilter (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+filterhandle = findobj('tag','filterIIRmaingui');
+set(filterhandle, 'userdata', []);
+uiresume(filterhandle);
+
+% --- Executes when user attempts to close filterIIRmaingui.
+function filterIIRmaingui_CloseRequestFcn(hObject, eventdata, handles)
+% hObject    handle to filterIIRmaingui (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+filterhandle = findobj('tag','filterIIRmaingui');
+set(filterhandle, 'userdata', []);
+uiresume(filterhandle);
+% Hint: delete(hObject) closes the figure
+
+
+% --- Executes on button press in thetawave.
+function thetawave_Callback(hObject, eventdata, handles)
+% hObject    handle to thetawave (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of thetawave
+
+set(handles.lowcutoffedit, 'string', '4');
+set(handles.highcutoffedit, 'string', '7');
+
+
+% --- Executes on button press in deltawave.
+function deltawave_Callback(hObject, eventdata, handles)
+% hObject    handle to deltawave (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of deltawave
+
+set(handles.lowcutoffedit, 'string', '0.1');
+set(handles.highcutoffedit, 'string', '4');
+
+
+% --- Executes on button press in alphawave.
+function alphawave_Callback(hObject, eventdata, handles)
+% hObject    handle to alphawave (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of alphawave
+
+set(handles.lowcutoffedit, 'string', '8');
+set(handles.highcutoffedit, 'string', '12');
+
+
+% --- Executes on button press in betawave.
+function betawave_Callback(hObject, eventdata, handles)
+% hObject    handle to betawave (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of betawave
+
+set(handles.lowcutoffedit, 'string', '12');
+set(handles.highcutoffedit, 'string', '30');
+
+
+% --- Executes on button press in gammawave.
+function gammawave_Callback(hObject, eventdata, handles)
+% hObject    handle to gammawave (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of gammawave
+
+set(handles.lowcutoffedit, 'string', '30');
+set(handles.highcutoffedit, 'string', '100');
+
+
+% --- Executes on button press in passnone.
+function passnone_Callback(hObject, eventdata, handles)
+% hObject    handle to passnone (see GCBO)
+% eventdata  reserved - to be defined in a future version of MATLAB
+% handles    structure with handles and user data (see GUIDATA)
+
+% Hint: get(hObject,'Value') returns toggle state of passnone
+
+

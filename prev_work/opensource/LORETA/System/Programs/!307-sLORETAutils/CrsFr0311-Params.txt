@@ -1,0 +1,59 @@
+3
+UserDefBands
+
+NFtxt4
+4
+FileMaskTxt4
+*.txt
+0
+2
+EEGlst4a
+2
+EEGlst4a:
+Invisible & temp
+EEGlst4
+4
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\RAW\TIN_su0002_Average_BN_Raw Data.txt
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\RAW\TIN_su0002_Average_BT_Raw Data.txt
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\RAW\TIN_su0002_Average_TN_Raw Data.txt
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\RAW\TIN_su0002_Average_TT_Raw Data.txt
+10
+AllDiscrFreq
+0
+HomeMadeBands
+0
+ClassicalB2
+0
+ClassicalB1
+-1
+DiscrFreq
+0
+EachBigFileToManyCrs
+0
+EachBigFileTo1Crs
+0
+EachFileTo1Crs
+0
+AllFilesTo1Crs
+-1
+EachFolderTo1Crs
+0
+2
+ForceAveRef
+-1
+IncldSubFlderChk4
+0
+5
+F2x
+
+F1x
+
+SampRateTxt
+1000
+NEtxt4
+63
+NTFsTxt
+2000
+1
+SaveF4
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\CrossSpectrum\GlobalConnectivity.crss

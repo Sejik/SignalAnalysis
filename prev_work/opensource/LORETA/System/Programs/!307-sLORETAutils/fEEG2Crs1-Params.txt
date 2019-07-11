@@ -1,0 +1,69 @@
+3
+UserDefBands
+
+NFtxt4
+8
+FileMaskTxt4
+*.txt
+0
+2
+EEGlst4a
+0
+EEGlst4
+8
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_22.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_11.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_12.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_21.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_22.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_11.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_12.txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_21.txt
+10
+AllDiscrFreq
+0
+HomeMadeBands
+0
+ClassicalB2
+-1
+ClassicalB1
+0
+DiscrFreq
+0
+EachBigFileToManyCrs
+0
+EachBigFileTo1Crs
+0
+EachFileTo1Crs
+-1
+AllFilesTo1Crs
+0
+EachFolderTo1Crs
+0
+6
+OutSpectrogram
+0
+OutPartCoh2
+0
+OutCoh2
+0
+OutGFP
+0
+ForceAveRef
+-1
+IncldSubFlderChk4
+0
+5
+F2x
+
+F1x
+
+SampRateTxt
+1000
+NEtxt4
+32
+NTFsTxt
+2000
+1
+SaveF4
+

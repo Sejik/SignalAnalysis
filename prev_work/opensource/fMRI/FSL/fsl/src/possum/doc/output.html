@@ -1,0 +1,102 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css" href="../fsl.css">
+<TITLE>POSSUM</TITLE></HEAD><BODY><IFRAME width="100%" scrolling="no"
+frameborder="0" src="top.html">Broken</IFRAME>
+
+<H2>POSSUM Output</H2>
+
+<p>POSSUM creates the directory you have specified as your output directory. If you 
+have not specified the name, POSSUM will create a directory called "simdir" in your
+ current directory. If the directory with the name you have specified already exists
+, a "-" is added after the name of the old directory. Of course, all the above 
+gets ignored if you explicitly set the output directory name.
+
+<p> There are two main outputs of POSSUM in the POSSUM directory: 
+<br><LI><b>image_abs.nii.gz</b>: Output image (magnitude). The image can be seen in the fslview. It is obtained from the <I>signal</I> (see below) after reordering it into the k-space and then reconstructing using the Discrete Fourier Transform (which can be done using a command-line program <b>signal2image</b>). This is already done for you within the GUI so there is no need to do it again. However, you can use <b>signal2image</b> yourself if you would like to get your image in a complex form, or would like to get the k-space.
+
+<br><br><LI><b>signal</b>: Binary 2-row matrix. The most important output of POSSUM. It takes the longest to generate. It represents a raw signal (k-space data) in a similar form as the MRI scanner ouput. The first row is the data from the real channel and the second row is the data from the imaginary channel. This matrix can be seen using a MATLAB command <b>read_pulse.m</b>. 
+
+<pre>
+signal2image
+
+signal2image [options] -i <I>signal</I> -p <I>pulse</I> -o <I>image</I> 
+signal2image -p <I>pulse</I> -c <I>kcoord</I>
+
+Compulsory arguments (You MUST set one or more of):
+        -p,--pulse      pulse_sequence matrix (generated with the GUI)
+
+Optional arguments (You may optionally specify one or more of):
+        -i,--in         input signal (default name= <I>signal</I>)
+        -o,--out        outputs image (default name = <I>image</I>)
+        -c, --kcoord    kspace coordinates (default name = <I>kcoord</I>)
+        -k,--kout       outputs k-space (default name = <I>kspace</I>)
+        -a,--abs        save absolute magnitude and phase
+        -v,--verbose    switch on diagnostic messages
+        -h,--help       display this message
+
+</pre>
+
+<p>The other outputs saved in the POSSUM directory are:
+
+<br><LI><b>signal_nonoise</b> the same as <b>signal</b> just without any white (thermal) noise.
+
+<br><br><LI><b>image_phase.nii.gz</b> output image (phase). 
+
+<br><br><LI><b>image_real.nii.gz</b> output image (real part). Can be obtained with <b>signal2image</b>.
+
+<br><br><LI><b>image_imag.nii.gz</b> output image (imaginary part). Can be obtained with <b>signal2image</b>.
+
+<br><br><LI><b>kspace_abs.nii.gz</b> output kspace (magnitude). Can be obtained with <b>signal2image</b>.
+
+<br><br><LI><b>kspace_phase.nii.gz</b> output kspace (phase). Can be obtained with <b>signal2image</b>.
+
+<br><br><LI><b>kspace_real.nii.gz</b> output kspace (real part). Can be obtained with <b>signal2image</b>.
+
+<br><br><LI><b>kspace_imag.nii.gz</b> output kspace (imaginary part). Can be obtained with <b>signal2image</b>.
+
+<br><br><LI><b>brain.nii.gz</b> input object.
+
+<br><br><LI><b>T2.nii.gz</b> input 3D activation image.
+
+<br><br><LI><b>T2timecourse</b> input activation modulation file (in time).
+
+<br><br><LI><b>b0A_dA.nii.gz</b> input 3D B0 inhomogeneity basis set (A=x,y,z).
+
+<br><br><LI><b>pulse</b> pulse sequence matrix (binary).
+
+<br><br><LI><b>pulse.info</b> file with parameters of the pulse sequence (used by POSSUM programs).
+
+<br><br><LI><b>pulse.readme</b> file with parameters of the pulse sequence (user friendly).
+
+<br><br><LI><b>pulse.posx</b> coordinate system of the input object (x-coordinate).
+
+<br><br><LI><b>pulse.posy</b> coordinate system of the input object (y-coordinate).
+
+<br><br><LI><b>pulse.posz</b>  coordinate system of the input object (z-coordinate).
+
+<br><br><LI><b>pulse.com</b>  command used to generate the pulse sequence.
+
+<br><br><LI><b>noise</b> file describing the white (thermal) noise parameters with values of SNR and sigma used in the simulation (madde by the POSSUM GUI).
+
+<br><br><LI><b>motion</b> input motion file.
+
+<br><br><LI><b>slcprof</b> input slice profile.
+
+<br><br><LI><b>MRpar</b> input MR parameters.
+
+<br><br><LI><b>possum.com</b> commands used when running POSSUM (to generate <b>signal</b>).
+
+<br><br><LI><b>possum.fsf</b> POSSUM setup file, describing everything about the POSSUM setup. This can be loaded into the POSSUM GUI using the command "Load". 
+
+<br><br><LI><b>possum.log</b> log file for everything that happened when you ran POSSUM GUI (except the generation of the <b>signal</b> which is in the <b>logs</b> directory).
+
+<br><br><LI><b>logs</b> log directory which contains log files from each of the processors that generates the <b>signal</b>. The commands used for this are in possum.com. Files with the extension ".o" are the log files showing the process, and the files with the extension ".e" are the log files showing if there are any errors. Note that this directory is empty when there is no SGE enviroment.
+
+
+<HR><FONT SIZE=1>Copyright &copy; 2007, University of Oxford. <A
+HREF="http://www.fmrib.ox.ac.uk/~ivana">Ivana Drobnjak</A> and <A
+HREF="http://www.fmrib.ox.ac.uk/~mark">Mark Jenkinson</A>.</FONT>
+ 

@@ -1,0 +1,546 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 14 (filtered)">
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	font-size:11.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:31.2pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+.MsoChpDefault
+	{font-size:10.0pt;
+	font-family:"Calibri","sans-serif";}
+@page WordSection1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These utilities convert coordinates from MNI to Talairach
+space, and vice versa, from Talairach to MNI space.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The user must create a plain text file.</p>
+
+<p class=MsoNormal>First line must declare the number of points (N).</p>
+
+<p class=MsoNormal>The following N lines must have three numbers and an
+optional label separated by space or tab characters. An example without label
+for the second line in a file is:</p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -47 19</span></b></p>
+
+<p class=MsoNormal>An example with label for the second line in a file is:</p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -47 19 Posterior cingulate</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The contents of an example file with Talairach coordinates
+is:</p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>58</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -47 19 Posterior cingulate</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 52 23</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-49 -56 24</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>49 -57 25</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-18 30 48</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>22 26 49</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-60 -14 -3</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>59 -14 -6</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>4 -7 7</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-14 -26 10</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-40 8 3</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>42 8 1</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-42 38 23</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>40 40 16</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-54 12 8</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>55 14 8</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 4 42</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-59 -21 26</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>58 -23 28</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-22 -65 44</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>19 -67 46</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-35 -39 42</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>35 -39 43</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-7 -49 2</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>5 -49 6</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-1 52 12</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-40 -59 44</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>45 -48 46</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-42 27 33</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>45 29 33</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-3 -67 36</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-40 51 5</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>42 50 8</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-33 21 5</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>34 20 5</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -18 11</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-20 -68 -14</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>23 -68 -13</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>2 -64 -4</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-46 23 12</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>12 -81 27</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-42 -67 4</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>42 -68 -4</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>10 -13 9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-52 -21 18</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>51 -25 19</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-55 0 7</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>58 0 5</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>45 39 12</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>0 -14 10</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-1 -15 52</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-20 -15 53</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>21 -15 54</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-29 -36 52</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>29 -34 52</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>5 45 11</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -2 -9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>2 -71 -21</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In this example, the second line has a label, while the
+other lines do not. The labels are optional.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These example coordinates, allegedly corresponding to the
+Talairach space, are taken from the paper (supplementary information):</p>
+
+<p class=MsoNormal>Mantini D, Perrucci MG, Del Gratta C, Romani GL, Corbetta M
+(2007) Electrophysiological signatures of resting state networks in the human
+brain. Proc Natl Acad Sci U S A 104:13170–13175.</p>
+
+<p class=MsoNormal>[http://www.pnas.org/content/104/32/13170.full]</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The converted coordinates will be saved to a text file, with
+identical structure as the input file contents, in the same folder as the input
+file, but with extension:</p>
+
+<p class=MsoNormal>“-MNI.txt” when converting to MNI</p>
+
+<p class=MsoNormal>“-Talairach.txt” when converting Talairach</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Using the example above, upon conversion from Talairach to
+MNI, the MNI coordinates file produced has extension “-MNI.txt”:</p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>58</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -49 18 Posterior cingulate</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 52 28</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-49 -59 23</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>49 -60 24</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-18 28 54</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>22 24 55</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-61 -14 -4</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>60 -14 -8</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>4 -8 7</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-14 -27 9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-40 8 4</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>42 8 2</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-42 38 27</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>40 40 20</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-55 12 9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>56 14 9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 2 46</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-60 -23 27</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>59 -25 29</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-22 -69 44</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>19 -71 46</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-35 -42 43</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>35 -42 45</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-7 -51 -1</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>5 -51 4</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-1 53 16</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-40 -63 45</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>45 -52 47</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-42 26 37</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>45 28 37</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-3 -71 35</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-40 52 8</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>42 51 11</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-33 21 7</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>34 20 7</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -19 11</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-20 -69 -21</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>23 -69 -20</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>2 -66 -9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-46 23 14</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>12 -85 25</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-42 -69 1</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>42 -70 -9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>10 -14 9</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-53 -23 18</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>52 -27 19</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-56 0 8</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>59 0 5</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>45 40 15</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>0 -15 10</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-1 -18 56</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-20 -18 57</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>21 -18 58</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>-29 -40 54</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>29 -38 55</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>5 46 14</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>1 -2 -11</span></b></p>
+
+<p class=MsoNormal><b><span style='font-size:8.0pt;font-family:"Courier New";
+color:blue'>2 -72 -29</span></b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

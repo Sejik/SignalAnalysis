@@ -1,0 +1,233 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Sparse SVD LORETA</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:31.2pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+@page WordSection1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Sparse SVD</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The main idea is explained with an example.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Consider the case where for each subject, eyes closed EEG is
+recorded. From here, compute LORETA in the frequency domain. The basic data for
+analysis now is spectral power <sub><img width=94 height=31
+src="0055_files/image001.gif"></sub>, for <i>i</i>=1…<i>NS</i>, where <i>NS</i>
+is number of subjects, <i>N</i><i><span style='font-family:Symbol'>W</span></i>
+is number of frequencies, <i>NV</i> is number of voxels.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Define:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><sub><img width=65 height=31
+src="0055_files/image002.gif"></sub></p>
+
+<p class=MsoNormal style='text-indent:0cm'>which simply strings in one vector
+the whole function (frequency and space). Now define the data matrix is:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><sub><img width=289 height=36
+src="0055_files/image003.gif"></sub></p>
+
+<p class=MsoNormal style='text-indent:0cm'>Note that each subject consists of a
+column, with the column vector being a function of frequency and space.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Take each row of the data matrix <sub><img width=16
+height=21 src="0055_files/image004.gif"></sub>, and standardize it to zero mean
+and unit variance. This then means that <sub><img width=54 height=36
+src="0055_files/image005.gif"></sub> is the correlation matrix between all pairs
+of points on the 4D hyperspace (cortical location X frequency).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Consider the singular value decomposition of the data matrix:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><sub><img width=81 height=25
+src="0055_files/image006.gif"></sub></p>
+
+<p class=MsoNormal style='text-indent:0cm'>with <sub><img width=114 height=29
+src="0055_files/image007.gif"></sub> containing the left eigenvectors, <sub><img
+width=84 height=25 src="0055_files/image008.gif"></sub> containing the right
+eigenvectors, <sub><img width=79 height=25 src="0055_files/image009.gif"></sub> is
+diagonal and contains the eigenvalues in descending order, and <sub><img
+width=219 height=36 src="0055_files/image010.gif"></sub>. Both <sub><img
+width=16 height=21 src="0055_files/image011.gif"></sub> and <sub><img width=20
+height=21 src="0055_files/image012.gif"></sub> are orthonormal, i.e. <sub><img
+width=59 height=25 src="0055_files/image013.gif"></sub> and <sub><img width=66
+height=25 src="0055_files/image014.gif"></sub>.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This program will output the left eigenvectors with files
+named “-PC-”. These eigenvectors will optionally be made sparse (via varimax
+rotation), and will output files named “-SparseC-“.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>All these components (left eigenvectors and their rotated versions)
+are “components”, as legitimate as those of ICA, and might be interpretable as
+spatio-frequency (or spatio-temporal) brain modes. They should allow the
+discovery of cortico-cortical, cross-frequency interactions.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These ideas are applications of the SVD method advocated by
+Worsley:</p>
+
+<p class=MsoNormal>Worsley KJ, Chen JI, Lerch J, Evans AC. Comparing functional
+connectivity via thresholding correlations and singular value decomposition.
+Phil. Trans. R. Soc. B, 2005; 360: 913-920.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In addition, these ideas are also related to “functional
+data analysis”:</p>
+
+<p class=MsoNormal>Ramsay, J. O. and Silverman, B. W. (2002). Applied
+Functional Data Analysis. New York: Springer-Verlag</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that this idea differs from functional independent
+component analysis (fICA). In fICA, super-independence was forced only on the
+right matrix factor from <sub><img width=81 height=25
+src="0055_files/image006.gif">. In the SVD and its rotated versions,
+independence is forced on both left and right matrix factors, and rotation is
+used to sparsify and make interpretable the left (space-frequency-time) factor.</sub></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

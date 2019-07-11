@@ -1,0 +1,1 @@
+VEP-Customized-Locations.txt is the head file, VEP-Customized-Locations.dat is the data file.

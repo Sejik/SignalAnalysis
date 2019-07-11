@@ -1,0 +1,138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css" href="../fsl.css">
+<TITLE>POSSUM</TITLE></HEAD><BODY><IFRAME width="100%" scrolling="no" frameborder="0" src="top.html">Broken</IFRAME>
+
+
+<H2>Running POSSUM</H2>
+
+<DT><I>Call POSSUM GUI</I></DT>
+<DD>
+<p>To call the POSSUM GUI, type <b>Possum</b> in a terminal  
+(type <b>Possum_gui</b> on Mac), or run <b>fsl</b> and press the POSSUM button.
+</DD>
+<DT><I>Tab: Object</I></DT>
+<DD>
+<p>Now set the filename of the 4D input image
+(example in the GUI is <tt>$FSLDIR/data/possum/brain.nii.gz</tt>). 
+You can view the image by pressing the <b>Preview image</b> tab (you will see an  image of only one tissue type, e.g. grey in the case
+ of the example given in the GUI).
+</DD> 
+<DT><I>Tab: Pulse sequence</I></DT>
+<DD>
+<p> Now choose the tab <b>Pulse sequence</b>. Default values are set already.
+<b>TE</b> is the echo time (in seconds), <b>TR</b> is the repetition time 
+between the RF pulses (in seconds) and <b>TRslice</b> is the time it takes to 
+generate a single slice (in seconds). TRslice is set with the <b>Autoset</b>
+to be TR divided with the number of slices (<b>Number of Voxels: Z</b>). 
+You can choose to unset the <b>Autoset</b> and to specify your own TRslice.
+
+<p> You can then choose the number of your in-plane image voxels by setting X and 
+Y values in <b>Number of Voxels</b>. The number of slices in your simulation 
+is chosen by setting Z. By changing these values 
+you will notice that the <b> Approximate run time</b> of POSSUM changes. This 
+is because as you are increasing the number of points in your image matrix or 
+increasing the number of slices the number of calculations the program needs 
+to do increases, so the run time increases (or the other way around). 
+
+<p> You can also change the size of your in-plane image voxels by setting the 
+X and Y values in <b>Voxel Size</b>. The slice thickness is chosen by setting 
+ Z. As you are changing this you will notice that the 
+values in the <b>Field of View</b> are changing. This is because the field of 
+view is equal to the product of the number of voxels and the voxel size. Both 
+voxel sizes and the field of view are in millimetres.
+
+<p> Now specify the <b>Number of Volumes</b>, the size of the <b>Gap</b> 
+(in millimetres) between the slices and the read-out bandwidth <b>BW</b>. 
+<b>Echo spacing</b> is showing the time it takes between the centres of two 
+neighbouring k-space lines. 
+
+<p> Now specify gradient directions for the <b>Read gradient</b>, 
+<b>Phase encode gradient</b>, and the <b>Slice select gradient</b>. Direction 
+of the acquisition 
+during the slice selection is set by choosing an appropriate option from the 
+<b>Slice select direction</b>. For scanning from the top to the bottom of the
+ head choose "-" and for the scanning from the bottom to the top of the head 
+choose "+" (this is when the slice selection gradient is Z). The images in both cases will be the same. The differences can 
+occur in case the subject moves. The motion effects (including the spin 
+history effects) if the subject is moving "along" the slice 
+acquisition will be different from when the subject is moving "against" the slice 
+acquisition.  
+
+<p>Now specify which area of the brain you want to image by setting the 
+<b>Starting slice position</b>. You can click on the <b>Preview slice 
+prescription</b> in order to see the extent of your chosen field of view (FOV).
+
+<p>Finally, when you finish all of the pulse sequence specifications, you can 
+check if everything is consistent within the pulse sequence by using the button
+ <b>Consistency check</b>.
+</DD>
+<DT><I>Tab: Bo field</I></DT>
+<DD>
+<p>Now choose the tab <b>B0 field</b>. You can choose between the 1.5T and
+3T <b>Field strength</b>. Then you can choose the input file for the MR 
+parameters (default examples are <tt>$FSLDIR/data/possum/MRpar_1.5T</tt> and 
+<tt>$FSLDIR/data/possum/MRpar_3T</tt>). 
+
+<p>Now choose if you want to have susceptibility induced <b>B0 field inhomogeneities</b> by selecting either "None" or "Custom file". If you choose the "Custom file", specify the base name for your B0 field inhomogeneities basis set (e.g.
+<tt>$FSLDIR/data/possum/b0_ppm_</tt>), and 
+choose the appropriate <b>Units</b> for your files.
+</DD>
+<DT><I>Tab: Motion</I></DT>
+<DD>
+<p>Now choose the tab <b>Motion</b>. Press button where it says <b>None</b> and
+ choose if you want to have no motion or to specify a custom file (e.g. <tt>$FSLDIR/
+data/possum/motionRzLarge_0.12s</tt>). 
+</DD>
+<DT><I>Tab: Activation</I></DT>
+<DD>
+<p>Now choose the tab <b>Activation</b>. Press button where it says <b>None</b>
+ and choose if you want to have no activation or to specify a custom file. When
+ specifying the custom file, there are two files that need to be specified:
+T2* time course (e.g. <tt>$FSLDIR/data/possum/activation3Dtimecourse</tt>) and T2* 
+spatial modulation (e.g. <tt>$FSLDIR/data/possum/activation3D.nii.gz</tt>). The second 
+one can be viewed with the <b>Preview image</b>. 
+</DD>
+<DT><I>Tab: Noise</I></DT>
+<DD>
+<p>Now choose the tab <b>Noise</b>. Press button where it says <b>None</b>
+ and choose if you want to have no noise or to have Thermal (white) noise. When
+ specifying the white noise you can do so by either specifying the SNR or 
+the absolute intensity of the noise (standard deviation).
+</DD>
+<DT><I>Tab: Output</I></DT>
+<DD>
+<p>Now choose the tab <b>Output</b> and specify the name of the simulation 
+directory. This directory will contain all of the input, log and output files.
+
+<p>If you have the SGE environment on your cluster (ask the IT officer
+ about this) you can specify a number of processors POSSUM can run on. This 
+will significantly reduce the time of running. If you do not have the SGE 
+environment, the number of processors should be 1.
+</DD>
+<DT><I>Run POSSUM Run</I></DT>
+<DD>
+<p>When POSSUM setup is complete press the <b>Go</b> button. The setup gets 
+saved in a temporary POSSUM setup file. Then a script
+(called <b>possumX</b>) is run which uses the setup
+file and carries out all the simulation steps asked for, starting
+by creating a POSSUM results directory, and copying the setup file into
+here, named <b>design.fsf</b> (this setup file can be later loaded
+back into POSSUM using the <b>Load</b> button). You can create this file also
+by using the <b>Save</b> option.
+
+<p>Once the script has started running you can <b>Exit</b> the POSSUM
+GUI. The analysis will continue until completion. Your result at the end is 
+called image_abs.nii.gz and you can see it by opening it in the fslview. 
+
+<p>If you need to see these documentation files press the <b>Help</b> button.
+</DD>
+
+</BODY></HTML>
+
+<HR><FONT SIZE=1>Copyright &copy; 2007, University of Oxford. <A
+HREF="http://www.fmrib.ox.ac.uk/~ivana">Ivana Drobnjak</A> and <A
+HREF="http://www.fmrib.ox.ac.uk/~mark">Mark Jenkinson</A>.</FONT>
+ 

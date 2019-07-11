@@ -1,0 +1,25 @@
+3
+FNtm5
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\sLORETA\channel\List32e.spinv
+NumLines5
+8
+FileMask5
+*.crss
+0
+1
+CrsLst5
+8
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_11.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_12.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_21.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\p_GRD_22.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_11.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_12.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_21.crss
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN_whole\LORETA\LORETA\GRD_22.crss
+0
+1
+IncldSubFlder5Chk
+0
+0
+0

@@ -1,0 +1,39 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css" href="../fsl.css">
+<TITLE>POSSUM</TITLE></HEAD><BODY><IFRAME width="100%" scrolling="no"
+frameborder="0" src="top.html">Broken</IFRAME>
+
+<H2>Introduction</H2>
+<IMG ALIGN=RIGHT hspace=10 SRC="gui.png"
+ 
+<P>POSSUM (Physics-Oriented Simulated Scanner for Understanding MRI) is a software tool for generating simulated MRI and FMRI images. POSSUM is part of <a href="http://www.fmrib.ox.ac.uk/fsl" target="_top">FSL</a> (FMRIB's Software Library). POSSUM has an easy-to-use graphical user interface (GUI) and its component programs can also be run from the command line. POSSUM includes tools for the pulse sequence generation, signal generation, noise addition and image reconstruction. 
+
+<p>Running POSSUM is done in four main steps:
+
+<P>1.<a href="input.html">Input:</a>  It is first necessary to create the input files. These files are: object, MR parameters, 
+pulse sequence, slice profile, motion sequence, B0 field inhomogeneities, 
+activation and noise. There is an example for each of these 
+files in the folder <tt>$FSLDIR/data/possum</tt>. Note that the pulse sequence and the noise file are created within the POSSUM GUI. There is no need to create those in advance.
+
+<P>2.<a href="run.html">Run POSSUM:</a> To run POSSUM, call the POSSUM GUI. 
+This is done with a command <b>Possum</b> (or <b>Possum_gui</b> on a MAC), or run <b>fsl</b> and press the POSSUM button. After you have specified all of the input files in the GUI, press "GO". POSSUM GUI will create a POSSUM directory and save all the ouput there.
+
+<P>3. <a href="output.html">Output:</a> You can, in addition to the main outputs in the POSSUM directory (MRI signal - raw data, not yet processed into a k-space or an image; and MRI image - magnitude and phase), generate a k-space or a complex version of the image. You can do this by the use of a command-line program <b>signal2image</b>. 
+
+<P>4. <a href="noise.html">Thermal noise:</a> You can also add various levels of white (thermal) noise to the output (next to the one you already specified in the GUI). To do this use a command-line <b>systemnoise</b>. 
+
+<P> For other information on POSSUM and updated journal references, see the <A
+HREF="http://www.fmrib.ox.ac.uk/analysis/research/possum/">POSSUM research
+web page</A>. If you use POSSUM in your research, please quote the
+journal references listed there.
+
+
+
+
+<HR><FONT SIZE=1>Copyright &copy; 2007, University of Oxford. <A
+HREF="http://www.fmrib.ox.ac.uk/~ivana">Ivana Drobnjak</A> and <A
+HREF="http://www.fmrib.ox.ac.uk/~mark">Mark Jenkinson</A>.</FONT>
+ 

@@ -1,0 +1,57 @@
+// Header lines start with "//". As many lines as you like. No comments allowed after header.
+// First line contains N: the number of palettes
+// then there N pairs of lines, i.e. a total of 2*n lines.
+// The first line in the pair is the menu item name, describing the palette
+// The second line in the pair is the palette's file name
+24
+Black and White
+BlackAndWhite.ColScale
+Blue-Black-Red
+BlueBlackRed.ColScale
+Blue-White-Red
+BlueWhiteRed.ColScale
+Cyan-Blue-Black-Red-Yellow
+CyanBlueBlackRedYellow.ColScale
+Magenta-Cyan-Blue-Black-Red-Yellow-Green
+MagentaCyanBlueBlackRedYellowGreen.ColScale
+Black Body MRIcro
+BLACKBDY-MRIcro.ColScale
+Bone MRIcro
+bone-MRIcro.ColScale
+Cardiac MRIcro
+CARDIAC-MRIcro.ColScale
+Cortex MRIcro
+cortex-MRIcro.ColScale
+Flow MRIcro
+FLOW-MRIcro.ColScale
+French MRIcro
+French-MRIcro.ColScale
+GE color MRIcro
+GE_color-MRIcro.ColScale
+Gold MRIcro
+Gold-MRIcro.ColScale
+Gooch MRIcro
+gooch-MRIcro.ColScale
+Hot Iron MRIcro
+HOTIRON-MRIcro.ColScale
+NIH MRIcro
+NIH-MRIcro.ColScale
+NIH fire MRIcro
+NIH_fire-MRIcro.ColScale
+NIH ice MRIcro
+NIH_ice-MRIcro.ColScale
+Pink MRIcro
+pink-MRIcro.ColScale
+Rain RampMRIcro
+Rainramp-MRIcro.ColScale
+Spectrum MRIcro
+SPECTRUM-MRIcro.ColScale
+Surface MRIcro
+surface-MRIcro.ColScale
+X-hot MRIcro
+X_hot-MRIcro.ColScale
+X-rain MRIcro
+X_rain-MRIcro.ColScale
+
+
+

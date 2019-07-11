@@ -1,0 +1,189 @@
+#!/bin/sh
+Usage() {
+    echo "possum_input"
+    echo ""
+    echo "Protocol for preparing <subjdir>"
+    echo "1.brain"
+    echo "2.MRpar"
+    echo "3.motion "
+    echo "4.slcprof"
+    echo "5.pulse,pulse.info"
+    echo "optional"
+    echo "6.RFtrans,RFrec"
+    echo "7.T2"
+    echo "8.T2timecourse"
+    echo "9.b0"
+    echo "10.b0timecourse"
+    echo ""
+    echo "it is just for reading NOT for running"
+    echo ""
+    emacs ~ivana/fsldev/${FSLMACHTYPE}/bin/possum_input &
+exit
+}
+[ "$1" = "" ] && Usage
+
+
+echo "1.brain"
+
+1. Option1: "brain" derived from the structural image of the real brain - doing segmentation
+
+struct=T1weighted structural image
+
+#run bet on $struct in order to remove the skull and stuff.
+bet ${struct} ${struct}_brain -f 0.5 -g 0 
+
+#running fast in order to obtain all of the segmented partial volumes. For this case we only use one chanel input T1-weighted image. The output of this is $struct_brain_seg_0-2 for thre different tissue types,$struct_seg is all of them in one image, $struct_bias is the estimates biased field (1/bias). In order to calculate the restore image you just need to multiply this field with the $struct.
+
+fast -t1 -c 3 -os -ob -od ${struct}_brain ${struct}_brain
+avwmerge -t brain ${struct}_brain_seg_1  ${struct}_brain_seg_2 ${struct}_brain_seg_0 
+
+***NOTE: in case you need change in voxel dimensions BUT preservation of the size do:
+
+A) avwcreatehd Nx Ny Nz Nt dx dy dz dt x0 y0 z0 datatype ref_highres
+   flirt -in brain.nii.gz -ref ref_highres.nii.gz -out brain_highres -applyxfm
+
+B) flirt -in brain.nii.gz -ref brain.nii.gz -out brain_highres -applyisoxfm 0.1
+  (It will set them all to size 0.1 and will maintain the FOV size)
+
+echo "2.MRpar"
+t1t2=fids you get from the scanner
+#CONSTRUCTING THE MRpar MATRIX
+#run stuarts script in order to estimate T1 and T2
+#this can only work on phal so either run the whole script there or do this step seperatly. No need to use load_varian first. It will do all automaticaly from fids. The output for this step should be T1.nii.gz and T2.nii.gz. From here I choose either average value of the non-zero voxels or the highest value from the histogram (more commonly). 
+if [ ${t1t2} != mj ] && [ ${t1t2} != def ]; then 
+
+~stuart/perl/scripts/autot1t2 ${t1t2}
+
+#do on tuesday
+
+avwmaths ${t1}_reg -mas ${struct}_brain_seg_0 -Xmean -Ymean -Zmean t1c
+avwmaths ${t1}_reg -mas ${struct}_brain_seg_1 -Xmean -Ymean -Zmean t1g
+avwmaths ${t1}_reg -mas ${struct}_brain_seg_2 -Xmean -Ymean -Zmean t1w
+
+avwmaths ${t2}_reg -mas ${struct}_brain_seg_0 -Xmean -Ymean -Zmean t2c
+avwmaths ${t2}_reg -mas ${struct}_brain_seg_1 -Xmean -Ymean -Zmean t2g
+avwmaths ${t2}_reg -mas ${struct}_brain_seg_2 -Xmean -Ymean -Zmean t2w
+
+fi
+
+if [ ${t1t2} == mj ]; then
+
+t1g=833e-03
+t1w=500e-03
+t1c=2569e-03
+
+t2g=83e-03
+t2w=70e-03
+t2c=329e-03
+
+fi
+
+#spin density we can not estimate so use values: PDgray=0.86, PDwhite=0.77, PDcsf=1, ( brainwebvalues )
+#The matrix structure is: T1 | T2 | PD | chemical_shift for columns and gray | white | CSF for the rows
+
+if [ ${t1t2} == def ]; then
+
+t1g=833e-03
+t1w=500e-03
+t1c=2569e-03
+
+t2g=83e-03
+t2w=70e-03
+t2c=329e-03
+
+fi
+
+echo $t1g  $t2g  0.86 0 > MRpar
+echo $t1w  $t2w  0.77 0 >>MRpar
+echo $t1c  $t2c  1    0 >>MRpar
+
+echo "3.motion"
+
+#if zero motion happened
+cp ~ivana/possum_data/input/motion/zeromotion $subjdir/motion
+
+#if needed to estimate from mcflirt
+ mcflirt -in $motiondata -plots -sinc_final -refvol $num
+#the output file is a .par file: rx ry rz tx ty tz. Rearrange this in matlab into tx ty tz rx ry rz
+
+#if we need to create it our selves
+echo 0 0 0 0 0 0 0 > motion
+echo 3 0 0 0 0 0 0 >> motion
+echo 6 0 0 0.003 0 0 0 >> motion
+
+echo "4.slcprof"
+cp ~/ivana/possum_data/input/rf/slcprof_msinc3 $subjdir/slcprof
+
+echo "5.pulse, pulse.info"
+#the best way is to copy script generate_pulse into your working directory, make it executable 
+cp  ~/fslsrc/possum/generate_pulse .
+chmod +x generate_pulse
+emacs generate_pulse &
+
+and then use the script as a gui. just change what you want to change
+This script HAS to be run as its outputs are neccessary for possum:
+pulse -- the actual binary
+pulse.readme -- the info about the seq for you
+pulse.info -- the info about the seq for possum
+posx -- coordinate system coord x
+posy -- coordiante system coord y
+posz -- coordiante system coord z.
+
+In the case you have your own pulse sequence, run the script in the same form and instead of epi or ge for the type of sequence just put none.
+
+echo "6.RFtrans, RFrec"
+#it is optional. can be estimated with fast with a set option for the output of the bias field
+
+echo "7.T2*"
+
+There are two ways of inputting T2*. One is with mask and a timecourse which has info on time (col1), AND multiplicative factor (col2). For this version the input is already dT2*
+
+The other was is to input 4D version of T2* and a timecourse which only has one col (time). In this set up T2* input is THE ACTUAL T2* so it gets substracted in the code to get dT2*. 
+
+I you want to calculate the 4D T2* map from your subject, use the script fmri2t2.
+
+echo "8.T2timecourse"
+see 7.
+
+echo "9.b0"
+
+TEdiff=0.0025
+gamma=2.675e+8
+avwcomplex -realabs $fmap ${fmap}abs 0 1
+avwcomplex -realphase ${fmap} ${fmap}phase1 0 0
+avwcomplex -realphase ${fmap} ${fmap}phase2 1 1
+
+avwmaths_32R ${fmap}phase1 -sub ${fmap}phase2 ${fmap}phasediff
+
+avwcomplex -complexpolar ${fmap}abs ${fmap}phasediff ${fmap}complex 0 0 
+avwcomplex -realphase ${fmap}complex ${fmap}phase 0 0
+
+prelude -a ${fmap}abs -p ${fmap}phase -o ${fmap}uphase -v
+avwmaths_32R ${fmap}uphase -mul 1000 -div 2.5  b0_radps
+avwmaths_32R b0_radps -div ${gamma} b0_tesla
+
+#register b0 (which is now in tesla) to the structural image
+bet ${fmap}abs ${fmap}abs_brain -f 0.5 -g 0
+
+flirt -in ${fmap}abs_brain -ref ${struct}_brain -omat regmatrix.mat  -bins 256 -cost corratio -searchrx -90 90 -searchry -90 90 -searchrz -90 90 -dof 7
+
+flirt -in b0_tesla -ref ${struct}_brain -out b0 -applyxfm -init regmatrix.mat -interp trilinear
+
+avwmaths_32R b0 -mul -1 
+
+cp b0.nii.gz $subjdir/b0z_dz.nii.gz
+
+#---------------------------------------------------
+#if running b0calc
+
+#CHI=${INPUT}/b0inh/colin_best_chi_smooth
+#BRAINMASK=${INPUT}/b0inh/brain_mask
+#time ${CODE}/b0calc -i ${CHI} -o ${b0}x --xyz --b0x=1 --b0y=0 --b0=0
+#time ${CODE}/b0calc -i ${CHI} -o ${b0}y --xyz --b0x=0 --b0y=1 --b0=0 
+#time ${CODE}/b0calc -i ${CHI} -o ${b0}z --xyz --b0x=0 --b0y=0 --b0=1
+#time ${CODE}/spharm_rm ${b0}x ${BRAINMASK} ${b0} 
+#avwmaths ${b0}x -mul -1 ${b0}x
+
+echo "10.b0timecourse"
+
+echo "THE END"

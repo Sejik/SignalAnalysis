@@ -1,0 +1,15 @@
+2
+FnRoiOut3Txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN\sLORETA\channel\List64e-eLORETA.
+FnTMroi3Txt
+C:\Users\win\Desktop\Research\3. Analyze\Data\TIN\TIN\sLORETA\channel\List64e-eLORETA.spinv
+0
+0
+2
+AllButt3
+-1
+SingleButt3
+0
+0
+0
+0

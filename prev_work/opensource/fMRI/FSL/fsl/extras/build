@@ -1,0 +1,110 @@
+#!/bin/sh
+
+if [ X${FSLDIR}X = XX ] ; then
+    echo "Please set FSLDIR first"
+    exit 1
+fi
+
+clean=$1;
+
+if [ ! -d ${FSLDIR} ] ; then
+    echo "Please set FSLDIR first"
+    exit 1
+fi
+
+echo "using FSLDIR as $FSLDIR"
+
+FSLESRCDIR=`pwd`/src
+FSLDEVDIR=`pwd`
+FSLCONFDIR=${FSLDIR}/config
+if [ -z "$FSLMACHTYPE" ]; then
+  FSLMACHTYPE=`${FSLDIR}/etc/fslconf/fslmachtype.sh`
+fi
+FSLEXTLIB=${FSLDEVDIR}/lib
+FSLEXTINC=${FSLDEVDIR}/include
+FSLEXTBIN=${FSLDEVDIR}/bin
+export FSLDIR FSLDEVDIR FSLCONFDIR FSLMACHTYPE FSLEXTLIB FSLEXTINC FSLEXTBIN
+
+MAKE=none
+if [ X"`make --version 2>&1 | grep -i gnu`"X != XX ] ; then
+   MAKE=make;
+else if [ X"`gmake --version 2>&1 | grep -i gnu`"X != XX ] ; then
+   MAKE=gmake;
+fi; fi
+if [ ${MAKE} = none ] ; then
+   echo "Could not find the gnu make utility in path" ;
+   exit 1 ;
+fi
+
+
+MAKEOPTIONS="${MAKEOPTIONS} FSLEXTLIB=${FSLEXTLIB} FSLEXTINC=${FSLEXTINC} FSLEXTBIN=${FSLEXTBIN}"
+
+errorprojs="" ; export errorprojs ;
+
+PROJECTS="tcl tk zlib libpng libiconv libgd libgdc libprob libcprob newmat cprob newran cephes fftw irtk"
+
+for projname in $PROJECTS; do
+
+    if [ -d $FSLESRCDIR/$projname ] ; then
+
+	echo " " ;
+	echo " " ;
+	echo "Making project $projname" ;
+	echo " " ;
+	cd $FSLESRCDIR/$projname ;
+	if [ X"$projname" = "Xtcl" -o X"$projname" = "Xtk" ] ; then
+	    cd unix ;
+	fi
+        ${MAKE} distclean ;
+	
+	if [ -x fslconfigure ] ; then
+	  echo "Running configure with FSL options" ;
+	  ./fslconfigure ;
+	fi
+	if ${MAKE} ${MAKEOPTIONS} ; then 
+	    if ${MAKE} install ; then
+		${MAKE} distclean ;
+	    else
+		errorinstall="$errorinstall $projname" ; export errorinstall ;
+	    fi
+	    if [ X"$projname" = "Xtcl" -o X"$projname" = "Xtk" ] ; then
+		cd $FSLESRCDIR/$projname ;
+		${MAKE} install
+	    fi	    
+	    
+	    echo " "
+	    echo " ------------------------- "
+	    echo "Successfully made $projname";
+	else
+	    echo " "
+	    echo " ========================= "
+	    echo "ERROR::Could not make $projname successfully" ;
+	    echo " "
+	    echo " "
+	    errorprojs="$errorprojs $projname" ; export errorprojs ;
+	fi
+    fi
+done
+
+echo " ";
+echo " ";
+echo " ";
+if [ "X${errorprojs}X" != XX ] ; then
+  echo "!!ERROR in BUILD!!" ;
+  echo "  Could not make the following projects successfully:" ;
+  echo "   $errorprojs" ;
+else
+  echo "BUILD successfully made all projects" ;
+fi
+if [ "X${errorinstall}X" != XX ] ; then
+  echo "!!ERROR in INSTALL!!" ;
+  echo "  Could not fully install the following projects successfully:" ;
+  echo "   $errorinstall" ;
+else
+  echo " ";
+fi
+echo " ";
+
+if [ "X${errorprojs}X" != XX -o "X${errorinstall}X" != XX ] ; then
+    exit 1
+fi

@@ -1,0 +1,39 @@
+#!/bin/sh
+
+if [ $# -lt 1 ]; then
+echo "Usage: facalc basename"
+echo "e.g. facalc dti"
+echo "This will use dti_L1 dti_L2 and dti_L3 to compute dti_FA"
+echo ""
+echo "Usage: facalc basename outbase"
+echo "e.g. facalc dti test"
+echo "will write test_FA instead of dti_FA"
+exit
+fi
+
+bn=$1
+if [ $# -lt 2 ];then 
+ob=$bn
+else
+ob=$2
+fi
+
+if [ `${FSLDIR}/bin/imtest ${bn}_L1` -eq 0 -o  `${FSLDIR}/bin/imtest ${bn}_L2` -eq 0 -o `${FSLDIR}/bin/imtest ${bn}_L3` -eq 0 ];
+then echo "Not all eigenvalue images exist"
+echo "stopping"
+exit
+fi
+
+
+${FSLDIR}/bin/fslmaths ${bn}_L1 -add ${bn}_L2 -add ${bn}_L3 -div 3 tmpMD
+${FSLDIR}/bin/fslmaths ${bn}_L1 -sqr tmpL1sq
+${FSLDIR}/bin/fslmaths ${bn}_L2 -sqr tmpL2sq
+${FSLDIR}/bin/fslmaths ${bn}_L3 -sqr tmpL3sq
+${FSLDIR}/bin/fslmaths ${bn}_L1 -sub tmpMD -sqr tmpl1subsq
+${FSLDIR}/bin/fslmaths ${bn}_L2 -sub tmpMD -sqr tmpl2subsq
+${FSLDIR}/bin/fslmaths ${bn}_L3 -sub tmpMD -sqr tmpl3subsq
+${FSLDIR}/bin/fslmaths tmpL1sq -add tmpL2sq -add tmpL3sq denom
+${FSLDIR}/bin/fslmaths tmpl1subsq -add tmpl2subsq -add tmpl3subsq -mul 1.5 numer
+${FSLDIR}/bin/fslmaths numer -div denom -sqrt ${ob}_FA
+${FSLDIR}/bin/imrm tmpMD tmpL1sq tmpL2sq tmpL3sq tmpl1subsq tmpl2subsq tmpl3subsq numer denom
+

@@ -1,0 +1,6 @@
+00-Gaussian:Continuous
+01-Gaussian:Truncated
+02-Hann
+03-Blackman
+04-Bartlett-Hann
+05-Hamming

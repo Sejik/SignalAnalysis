@@ -1,0 +1,43 @@
+% main.m
+ % prml2016w matlab demo ÀÚ·á
+
+ 
+
+clear all; close all; clc;
+
+ 
+
+m1=[0 0]; S1=eye(2); N1=50; X1=randn(N1,2)*sqrtm(S1)+repmat(m1,N1,1);
+ m2=[3 3]; S2=[1 1.6;1.6 4]; N2=50; X2=randn(N2,2)*sqrtm(S2)+repmat(m2,N2,1);
+ m3=[0 3.5]; S3=[2 0;0 1]; N3=100; X3=randn(N3,2)*sqrtm(S3)+repmat(m3,N3,1);
+
+ 
+
+Npts=20;
+ x_pts=linspace(-2.5,5.5,Npts);
+ y_pts=linspace(-2.5,5.5,Npts);
+ [X,Y]=meshgrid(x_pts,y_pts);
+ xy_pts=[X(:),Y(:)];
+ axis([-2.5,5.5,-2.5,5.5]); hold on
+ z1_pts=mvnpdf(xy_pts,m1,S1);Z1=reshape(z1_pts,Npts,Npts);contour(X,Y,Z1);
+ z2_pts=mvnpdf(xy_pts,m2,S2);Z2=reshape(z2_pts,Npts,Npts);contour(X,Y,Z2);
+ z3_pts=mvnpdf(xy_pts,m3,S3);Z3=reshape(z3_pts,Npts,Npts);contour(X,Y,Z3);
+
+ 
+
+plot(X1(:,1),X1(:,2),'+');
+ plot(X2(:,1),X2(:,2),'+');
+ plot(X3(:,1),X3(:,2),'o');
+ pause
+ %%%%%%%%%%%
+ trX=[X1;X2;X3]; trY=[ones(N1+N2,1);-1*ones(N3,1)];
+ svmmodel=fitcsvm(trX,trY,'kernelfunction','polynomial','polynomialorder',2);
+ %svmmodel=fitcsvm(trX,trY,'kernelfunction','rbf');
+ sv=svmmodel.SupportVectors;
+ figure
+ gscatter(trX(:,1),trX(:,2),trY); axis([-2.5,5.5,-2.5,5.5])
+ hold on
+ plot(sv(:,1),sv(:,2),'ko','markersize',10)
+ z_pts=svmmodel.predict(xy_pts);
+ Z=reshape(z_pts,Npts,Npts);
+ contour(X,Y,Z);

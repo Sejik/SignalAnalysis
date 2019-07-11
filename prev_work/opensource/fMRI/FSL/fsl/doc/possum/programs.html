@@ -1,0 +1,48 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<HTML><HEAD><meta http-equiv="Content-Type"
+content="text/html;charset=utf-8">
+<link REL="stylesheet" TYPE="text/css" href="../fsl.css">
+<TITLE>POSSUM</TITLE></HEAD><BODY><IFRAME width="100%" scrolling="no"
+frameborder="0" src="top.html">Broken</IFRAME>
+
+<H2>POSSUM Programs</H2>
+
+<UL>
+
+<LI><b>Possum</b> - the POSSUM GUI.
+
+<br><br><LI><b>pulse</b> -  the POSSUM command-line program which the GUI calls when the
+setup has been completed and <b>GO</b> is pressed. It generates the pulse 
+sequence.
+
+<br><br><LI><b>possumX</b> - the POSSUM script which the GUI calls when the
+setup has been completed and <b>GO</b> is pressed. It generates the image after the pulse sequence is generated.
+
+
+<br><br><LI><b>generate_brain</b> - the POSSUM script which can be used to generate the input object.
+
+
+<br><br><LI><b>generate_b0</b> - the POSSUM script which can be used to generate the b0 inhomogeneity volume.
+
+
+<br><br><LI><b>possum</b>  - the POSSUM command-line program which possumX calls to generate the signal (k-space data, see <a href="output.html">Possum Output</a>).
+
+<br><br><LI><b>systemnoise</b>  - the POSSUM command-line program which possumX calls to add the noise to the signal (see <a href="noise.html">Adding noise</a>).
+
+<br><br><LI><b>signal2image</b>  - the POSSUM command-line program which possumX calls to convert the signal to the image (i.e. re-orders the signal into the k-space and then does the reconstruction). It can also just convert the signal into the k-space (i.e. just does the reordering without the reconstruction). See <a href="output.html">Possum Output</a>.
+
+<br><br><LI><b>b0calc</b>  - the POSSUM command-line program which you can use to generate the B0 inhomogeneity basis set. See  <a href="input.html">Input files</a>.
+
+<br><br><LI><b>read_pulse.m</b>  - the POSSUM MATLAB program which you can use to view binary files in MATLAB.
+
+<br><br><LI><b>write_pulse.m</b>  - the POSSUM  MATLAB program which you can use to save files you made in MATLAB into the binary form needed sometimes for POSSUM.
+
+</UL>
+
+
+
+<HR><FONT SIZE=1>Copyright &copy; 2007, University of Oxford. <A
+HREF="http://www.fmrib.ox.ac.uk/~ivana">Ivana Drobnjak</A> and <A
+HREF="http://www.fmrib.ox.ac.uk/~mark">Mark Jenkinson</A>.</FONT>
+ 

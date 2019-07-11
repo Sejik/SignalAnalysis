@@ -1,0 +1,59 @@
+%% EMD2ArtifactRejection
+% designed by Sejik Park
+
+% EMD according to the parper
+% Rato, R. T., Ortigueira, M. D., & Batista, A. G. (2008).
+% On the HHT, its problems, and some solutions. Mechanical Systems and Signal Processing, 22(6), 1374-1394.
+
+% 1. trigger point
+% 2. preprocessing with brain vision analyzer
+% time delay matching, topographic interpolation, band filter
+% ocular correction
+% 3. EMD and pearson correlation to reject noise
+% 4. average with brain vision analyzer
+
+%% clear before data
+clear;
+clc;
+
+%% download bbci
+% go into folder where there is startup_bbci_toolbox
+cd 'C:/Users/win/Desktop/Research/3. Analyze/Tool/bbci_public-master/bbci_public-master';
+% set directory
+MyDataDir = 'C:/Users/win/Desktop/Research/3. Analyze/Tool/bbci_public-master/data';
+MyTempDir = 'C:/Users/win/Desktop/Research/3. Analyze/Tool/bbci_public-master/tmp';
+% download toolbox (setting toolbox)
+startup_bbci_toolbox('DataDir', MyDataDir, 'TmpDir', MyTempDir);
+
+%% set parameters
+rawDir = 'VR_trigger'; % read input directory (.eeg)
+resultDir = 'VR_trigger_AR'; % save output directory (.eeg)
+
+epochSize = 500;
+% basic function
+cellfind = @(string)(@(cell_contents)(strcmp(string,cell_contents)));
+
+%% Main
+% read file name
+cd(fullfile(MyDataDir, rawDir));
+
+% initialize
+eeg_files = dir('*.eeg'); % read all eeg file in raw directory (preprocessing in Brain Analzer)
+for eegFileNum = 1:length(eeg_files)
+    eeg_info{eegFileNum, 1} = eeg_files(eegFileNum).name; % eeg
+    eeg_info{eegFileNum, 2} = strrep(eeg_info(eegFileNum,1),'.eeg', ''); % file name
+end
+eeg_name = eeg_info(1:end, 2);
+clear eegFileNum eeg_files eeg_info;
+
+% trigger the data
+for eegFileNum = 1:length(eeg_name)
+    
+    file = fullfile(rawDir, eeg_name{eegFileNum}(1));
+    resultFile = fullfile(resultDir, eeg_name{eegFileNum}(1));
+    [cnt, vmrk, hdr] = file_readBV(file);
+    
+    
+    
+    file_writeBV(char(resultFile), cnt, vmrk);
+end

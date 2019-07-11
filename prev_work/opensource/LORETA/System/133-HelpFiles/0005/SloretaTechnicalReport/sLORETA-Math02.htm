@@ -1,0 +1,755 @@
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=windows-1252"><title>sLORETA, by R.D. Pascual-Marqui, original paper3</title>
+
+<style><!--
+.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	font-size:12.0pt;
+	font-family:"Century Schoolbook";}
+-->
+</style></head><body class="Normal" background="sLORETA-Math02_files/bg3.jpg" bgcolor="#ffffff" lang="EN-US" link="blue" vlink="purple">
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h1 style="text-align: left;" align="left"><b><font face="Arial" size="5"><span style="font-size: 16pt;">Standardized low resolution brain electromagnetic tomography 
+  (<i><span style="font-style: italic;">s</span></i>LORETA): technical details</span></font></b></h1>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">R.D. Pascual-Marqui</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The KEY Institute for 
+  Brain-Mind Research, </span></font>University Hospital of Psychiatry</p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;" lang="DE">Lenggstr. 31, 
+  CH-8029 Zurich, Switzerland</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;" lang="DE">Tel.:+41-1-3884934 
+  ; Fax:+41-1-3803043</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;" lang="DE">pascualm@key.unizh.ch</span></font><span lang="DE"> ; http://www.keyinst.unizh.ch/loreta.htm</span></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;" lang="DE">&nbsp;</span></font></p>
+<h2><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Running title: 
+  s</span></font></i></b><span style="font-style: normal;">LORETA</span></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Key words: s</span></font></i></b><span style="font-style: normal;">LORETA, LORETA, EEG, MEG, source localization, functional 
+  imaging.</span></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Abstract</span></font></i></b></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Scalp electric potentials 
+  (EEG) and extracranial magnetic fields (MEG) are due to the primary (impressed) 
+  current density distribution that arises from neuronal post-synaptic processes. 
+  A solution to the inverse problem, i.e. the computation of images of electric 
+  neuronal activity based on extracranial measurements, would provide important 
+  information on the time course and localization of brain function. In general, 
+  there is no unique solution to this problem. In particular, an instantaneous, 
+  distributed, discrete, linear solution capable of exact localization of point 
+  sources is of great interest, since the principles of linearity and superposition 
+  would guarantee its trustworthiness as a functional imaging method, given that 
+  brain activity occurs in the form of a finite number of distributed “hot spots”. 
+  Despite all previous efforts, linear solutions at best produced images with 
+  systematic non-zero localization errors. A solution is reported here, which 
+  yields images of standardized current density with zero localization error. 
+  The purpose of this paper is to present the technical details of the method, 
+  allowing researchers to test, check, reproduce, and validate the new method 
+  (<i><span style="font-style: italic;">s</span></i>LORETA).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Introduction</span></font></i></b></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">This study is strictly 
+  limited to EEG/MEG inverse solutions of the type: instantaneous, distributed, 
+  discrete, and linear. The generic form of the inverse problem follows. There 
+  are <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image002.gif" height="30" width="33"></sub>&nbsp;instantaneous 
+  extracranial measurements. There are <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image003.gif" height="30" width="33"></sub>&nbsp;voxels in the brain. Typically, the voxels 
+  are determined by subdividing uniformly the solution space, which is usually 
+  taken as the cortical grey matter volume or surface. At each voxel there is 
+  a point source, which may be a vector with three unknown components (i.e., the 
+  three dipole moments), or a scalar (unknown dipole amplitude, known orientation). 
+  The cases considered here correspond to <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image004.gif" height="30" width="90"></sub>.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In 1984, Hämäläinen and 
+  Ilmoniemi (1) were the first to report an instantaneous, distributed, discrete, 
+  linear solution to the EEG/MEG inverse problem: the well known minimum norm 
+  solution. However, the minimum norm solution is notorious for totally misplacing 
+  actual deep sources onto the outermost cortex, as demonstrated in (3), (2), 
+  and (8).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The problem of excessively 
+  large errors of localization remained unsolved until the introduction of the 
+  method known as LORETA (low resolution brain electromagnetic tomography) in 
+  1994 (18). LORETA has fairly good accuracy in localizing test sources even when 
+  they are deep. The overall average localization error is smaller than one grid 
+  unit (see e.g. (3), (2), and (8)).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">A series of papers published 
+  in 1998 and 1999 (see (19)-(23)) introduced for the first time the method of 
+  high time resolution statistical parametric mapping for tomographic images of 
+  electric neuronal activity. The idea was to adopt the methods of statistical 
+  inference for the localization of brain function as used in PET and fMRI studies. 
+  This methodology was applied to high time resolution, time varying LORETA images.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the present study 
+  a new tomographic method for electric neuronal activity is introduced, where 
+  localization inference is based on images of standardized current density. The 
+  method is denoted as standardized low resolution brain electromagnetic tomography 
+  (<i><span style="font-style: italic;">s</span></i>LORETA). Unlike the method recently 
+  introduced by Dale et al. (6), which has systematic non-zero localization error, 
+  <i><span style="font-style: italic;">s</span></i>LORETA has zero localization 
+  error.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Method</span></font></i></b></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Case 1: EEG with unknown current density vector</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The equation of interest 
+  takes the form:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image005.gif" height="23" width="110"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 1</font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In Eq. 1, <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image006.gif" height="25" width="87"></sub>&nbsp;is a vector containing 
+  scalp electric potentials measured at <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image002.gif" height="30" width="33"></sub>&nbsp;cephalic electrodes, with respect to 
+  a common, arbitrary reference electrode located anywhere on the body.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The primary (impressed) 
+  current density <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image007.gif" height="30" width="98"></sub>&nbsp;is defined as:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image008.gif" height="43" width="210"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 2</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image009.gif" height="32" width="77"></sub>&nbsp;for <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image010.gif" height="30" width="85"></sub>. At the <i><span style="font-style: italic;">l</span></i><sup>th</sup> voxel, <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image011.gif" height="37" width="150"></sub>&nbsp;contains the three unknown 
+  dipole moments.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The superscript “<i><span style="font-style: italic;">T</span></i>” denotes transpose.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The lead field <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image012.gif" height="28" width="117"></sub>&nbsp;has the following 
+  structure:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image013.gif" height="133" width="275"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 3</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">with <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image014.gif" height="33" width="85"></sub>, for <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image015.gif" height="30" width="87"></sub>, and for <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image010.gif" height="30" width="85"></sub>. Note that <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image016.gif" height="37" width="152"></sub>, where <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image017.gif" height="33" width="28"></sub>&nbsp;is the scalp electric 
+  potential at the <i><span style="font-style: italic;">i</span></i><sup>th</sup> 
+  electrode, due to a unit strength <i><span style="font-style: italic;">X</span></i>-oriented 
+  dipole at the <i><span style="font-style: italic;">l</span></i><sup>th</sup> voxel; 
+  <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image018.gif" height="33" width="28"></sub>&nbsp;is the 
+  scalp electric potential at the <i><span style="font-style: italic;">i</span></i><sup>th</sup> 
+  electrode, due to a unit strength <i><span style="font-style: italic;">Y</span></i>- 
+  oriented dipole at the <i><span style="font-style: italic;">l</span></i><sup>th</sup> 
+  voxel; and <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image019.gif" height="33" width="28"></sub>&nbsp;is 
+  the scalp electric potential at the <i><span style="font-style: italic;">i</span></i><sup>th</sup> 
+  electrode, due to a unit strength <i><span style="font-style: italic;">Z</span></i>- 
+  oriented dipole at the <i><span style="font-style: italic;">l</span></i><sup>th</sup> 
+  voxel.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In Eq. 1, <i><span style="font-style: italic;">c</span></i> is an arbitrary constant which embodies 
+  the fact that the electric potential is determined up to an arbitrary constant; 
+  and <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image020.gif" height="25" width="80"></sub>&nbsp;is 
+  a vector of ones. The parameter <i><span style="font-style: italic;">c</span></i> 
+  allows the use of any reference for the lead field and the measurements.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Hämäläinen, M.S., and 
+  Ilmoniemi (1) were the first to publish a particular solution to the instantaneous, 
+  distributed, discrete, linear EEG/MEG inverse problem. Their solution is known 
+  as the minimum norm inverse solution. However, the minimum norm solution is 
+  notorious for totally misplacing actual deep sources onto the outermost cortex 
+  (2).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Dale et al. (6) proposed 
+  a method in which localization inference is based on a standardization of the 
+  current density estimates. In particular, they employed the current density 
+  estimate given by the minimum norm solution, and they standardized it by using 
+  its expected standard deviation, which is hypothesized to be originated exclusively 
+  by measurement noise. The method of Dale et al. (6) produces systematic non-zero 
+  localization errors (8), even in the presence of negligible noise. This fact 
+  was not evaluated nor admitted in their original paper.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><i><font face="Century Schoolbook" size="3"><span style="font-size: 12pt; font-style: italic;">s</span></font></i>LORETA 
+  is similar to the Dale et al. (6) method: it employs the current density estimate 
+  given by the minimum norm solution, and localization inference is based on standardized 
+  values of the current density estimates. However, standardization in <i><span style="font-style: italic;">s</span></i>LORETA 
+  takes a completely different route (explained below). The consequence is that, 
+  unlike the Dale et al. (6) method, <i><span style="font-style: italic;">s</span></i>LORETA 
+  is capable of exact (zero-error) localization.</p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The minimum norm inverse 
+  solution is harmonic (2), which means that the Laplacian of the current density 
+  is zero, i.e., <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image021.gif" height="33" width="100"></sub>, where <b><span style="font-weight: bold;">r</span></b> denotes volume coordinates in the brain. Therefore, the minimum 
+  norm inverse solution is very smooth. The concept of smoothness employed here 
+  is discussed in greater detail in (8), with special emphasis on its electrophysiological 
+  interpretation. However, as previously mentioned, the minimum norm inverse solution 
+  is notorious for its incapability of correct localization of deep point sources 
+  (2).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">This problem is solved 
+  by standardization of the minimum norm inverse solution, and basing localization 
+  inference on these standardized estimates.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The functional of interest 
+  here is:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image022.gif" height="37" width="232"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 4</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image023.gif" height="23" width="52"></sub>&nbsp;is a regularization 
+  parameter. This functional is to be minimized with respect to <b><span style="font-weight: bold;">J</span></b> and <i><span style="font-style: italic;">c</span></i>, 
+  for given <b><span style="font-weight: bold;">K</span></b>, </span></font><b><font face="Symbol"><span style="font-family: Symbol; font-weight: bold;">F</span></font></b>, 
+  and <i><font face="Symbol"><span style="font-family: Symbol; font-style: italic;">a</span></font></i>. 
+  The explicit solution to this minimization problem is (see e.g. (3)):</p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image024.gif" height="30" width="70"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 5</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image025.gif" height="42" width="240"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 6</font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image026.gif" height="30" width="142"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 7</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">with <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image027.gif" height="25" width="102"></sub>&nbsp;denoting the centering 
+  matrix; <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image028.gif" height="25" width="93"></sub>&nbsp;the 
+  identity matrix; and <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image020.gif" height="25" width="80"></sub>&nbsp;is a vector of ones.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">For any matrix <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image029.gif" height="22" width="27"></sub>, <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image030.gif" height="25" width="33"></sub>&nbsp;denotes its Moore-Penrose 
+  pseudoinverse (see e.g. (9)).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The centering matrix 
+  <b><span style="font-weight: bold;">H</span></b> in Eq. 7 is the average reference operator.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In what follows, for 
+  all EEG cases, the symbols </span></font><b><font face="Symbol"><span style="font-family: Symbol; font-weight: bold;">F</span></font></b> and <b><span style="font-weight: bold;">K</span></b> will denote the average reference transforms 
+  of the EEG measurements and the lead field, respectively. This simplifies the 
+  notation. But most important of all, the correct solution to EEG problems is 
+  based on these average reference transforms.</p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Therefore, when using 
+  average reference transforms of </span></font><b><font face="Symbol"><span style="font-family: Symbol; font-weight: bold;">F</span></font></b> and <b><span style="font-weight: bold;">K</span></b>, Eq. 1 becomes:</p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image031.gif" height="23" width="73"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 8</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">and the functional 
+  in Eq. 4 becomes:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image032.gif" height="37" width="195"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 9</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">with minimum:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image024.gif" height="30" width="70"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 10</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image033.gif" height="42" width="192"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 11</font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Standardization of the 
+  estimate <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image034.gif" height="30" width="18"></sub>&nbsp;requires 
+  an estimate of its variance.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that Eq. 9 can be 
+  derived from a Bayesian formulation of the inverse problem (see e.g. (5), Eq. 
+  1.88 therein). In this view, the <i><span style="font-style: italic;">actual</span></i> 
+  source variance (<i><span style="font-style: italic;">prior</span></i>) <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image035.gif" height="35" width="138"></sub>&nbsp;is equal to the identity 
+  matrix, i.e.:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image036.gif" height="35" width="190"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 12</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In addition, from 
+  the Bayesian point of view, the electric potential variance is due to noisy 
+  measurements:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image037.gif" height="32" width="100"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 13</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that in Eq. 
+  13, the average reference operator <b><span style="font-weight: bold;">H</span></b> 
+  plays the role of the identity matrix in the subspace spanned by the measurement 
+  space.</span></font></p>
+
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">It is usually assumed 
+  that activity of the actual sources and the noise in the measurements are uncorrelated.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Based on the linear relation 
+  in Eq. 8, making use of Eqs. 12 and 13, and taking into account the independence 
+  of actual source activity and measurement noise, the electric potential variance 
+  <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image038.gif" height="32" width="108"></sub>&nbsp;then is:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image039.gif" height="32" width="293"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 14</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">See e.g. (10), 
+  Eqs. 1.5.1-1.5.6 therein.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Due to the linear relation 
+  in Eq. 10, and making use of Eq. 14, the variance of the <i><span style="font-style: italic;">estimated</span></i> current density is:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image040.gif" height="42" width="478"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 15</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">See e.g. (10), 
+  Eqs. 1.5.1-1.5.6 therein, and (9).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the variance 
+  of the <i><span style="font-style: italic;">estimated</span></i> current density 
+  is equivalent to the Backus and Gilbert (4) resolution matrix, which is obtained 
+  by plugging Eqs. 8 and 11 into 10:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image041.gif" height="42" width="392"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 16</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">with:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image042.gif" height="42" width="257"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 17</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where <b><span style="font-weight: bold;">R</span></b> is the resolution matrix.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the variance 
+  of the <i><span style="font-style: italic;">estimated</span></i> current density 
+  in Eqs. 15 and 17 is <u>not</u> the <i><span style="font-style: italic;">posterior</span></i> 
+  variance in the Bayesian formulation (see e.g. (5), Eq. 1.94).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In contrast, according 
+  to Dale et al. (6), the variance of the <i><span style="font-style: italic;">estimated</span></i> 
+  current density is based on the assumption that the only source of variation 
+  is measurement noise. This means that Eq. 14 now is:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image043.gif" height="32" width="108"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 18</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">and Eq. 15 now 
+  is:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image044.gif" height="33" width="248"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 19</font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that unlike the 
+  approach of Dale et al. (6), <i><span style="font-style: italic;">s</span></i>LORETA 
+  takes into account two sources of variation: mainly the variation of the actual 
+  sources, and then finally, if any, the variation due to noisy measurements.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Finally, <i><span style="font-style: italic;">s</span></i>LORETA corresponds to the following estimates 
+  of standardized current density power:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image045.gif" height="47" width="130"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 20</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image046.gif" height="35" width="77"></sub>&nbsp;is the current density 
+  estimate at the <i><span style="font-style: italic;">l</span></i><sup>th</sup> 
+  voxel given by Eqs. 10 and 11 (for average reference transforms); and <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image047.gif" height="38" width="110"></sub>&nbsp;is the <i><span style="font-style: italic;">l</span></i><sup>th</sup> diagonal block of matrix <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image048.gif" height="32" width="27"></sub>&nbsp;in Eqs. 15 or 17.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the pseudo-statistic 
+  in Eq. 20 has the form of an “<i><span style="font-style: italic;">F</span></i>” 
+  statistic.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that Eq. 20 is different 
+  in form from the Dale et al. (6) standardization (see (6), Eq. 7 therein). The 
+  Dale et al. (6) standardized estimates are:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image049.gif" height="50" width="215"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 21</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image050.gif" height="38" width="128"></sub>&nbsp;is the <i><span style="font-style: italic;">l</span></i><sup>th</sup> diagonal block of matrix <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image051.gif" height="33" width="45"></sub>&nbsp;in Eq. 19; and for 
+  any symmetric matrix <b><span style="font-weight: bold;">M</span></b>, <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image052.gif" height="33" width="90"></sub>&nbsp;is the diagonal matrix 
+  formed by the diagonal elements of <b><span style="font-weight: bold;">M</span></b>.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Case 2: EEG with known current density vector orientation, 
+  unknown amplitude</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">This case usually corresponds 
+  to the inverse problem when the cortical surface is completely known. Voxels 
+  are now distributed along the cortical surface, and the dipoles at each voxel 
+  have known orientation (perpendicular to the cortical surface). The unknowns 
+  correspond to the amplitudes, which may take positive, zero, or negative values. 
+  The dipole orientations (<i><span style="font-style: italic;">defined as unit 
+  length vectors with three components</span></i>) can be incorporated into the 
+  lead field <b><span style="font-weight: bold;">K</span></b> in Eq. 8. Details 
+  can be found in (3).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In this case Eq. 8 has 
+  the same form, but now <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image053.gif" height="28" width="83"></sub>&nbsp;since it only contains one unknown scalar 
+  per voxel, and <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image054.gif" height="27" width="102"></sub>&nbsp;since it includes the dipole orientation 
+  at each voxel. Details can be found in (3). All the derivations employed in 
+  Eqs. 8-17 remain formally identical.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">However, <i><span style="font-style: italic;">s</span></i>LORETA now corresponds to the following 
+  estimates of standardized current density power:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image055.gif" height="80" width="58"></sub>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 22</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where the scalar 
+  <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image056.gif" height="35" width="23"></sub>&nbsp;is the 
+  current density amplitude estimate at the <i><span style="font-style: italic;">l</span></i><sup>th</sup> 
+  voxel; and the scalar <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image057.gif" height="38" width="55"></sub>&nbsp;is the <i><span style="font-style: italic;">l</span></i><sup>th</sup> diagonal element of matrix <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image058.gif" height="35" width="107"></sub>.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the pseudo-statistic 
+  in Eq. 22 has the form of an “<i><span style="font-style: italic;">F</span></i>” 
+  statistic.</span></font></p>
+<font face="Century Schoolbook" size="3"><br style="page-break-before: always;" clear="all">
+</font> 
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Case 3: MEG</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The equations for the 
+  MEG case have identical form to Eqs. 8-17, 20, and 22, depending on the case 
+  of unknown dipole moments, or only unknown amplitudes.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the average 
+  reference does not apply to MEG.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The only change corresponds 
+  to the equations for the MEG lead field, which are different to those for the 
+  EEG.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Head models</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Simulations were carried 
+  out in a three-shell spherical head model registered to the Talairach human 
+  brain atlas (11), available as a digitized MRI from the Brain Imaging Centre, 
+  Montreal Neurological Institute. Registration between spherical and realistic 
+  head geometry used EEG electrode coordinates reported by Towle et al. (12).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In one set of practical, 
+  realistic, simulations, the solution space was restricted to cortical gray matter 
+  and hippocampus, as determined by the corresponding digitized Probability Atlas 
+  also available from the Brain Imaging Centre, Montreal Neurological Institute. 
+  A voxel was labeled as gray matter if it met the following three conditions: 
+  its probability of being gray matter was higher than that of being white matter, 
+  its probability of being gray matter was higher than that of being cerebrospinal 
+  fluid, and its probability of being gray matter was higher than 33%. Only gray 
+  matter voxels that belonged to cortical and hippocampal regions were used for 
+  the analysis. A total of 6430 voxels at 5mm spatial resolution were produced 
+  under these neuroanatomical constraints. At each voxel, three unknown values 
+  (the three dipole moments) were estimated, making a total of 6430x3=19290 unknowns. 
+  25 electrodes (in EEG experiments), or 25 magnetometer sensors (in MEG experiments) 
+  were used. In both cases, sensors and electrodes were placed in the same locations.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the second set of 
+  practical, realistic, simulations, the solution space was restricted to the 
+  cortical surface, represented as 12980 triangles (voxels) (13). This case corresponded 
+  to unknown current density amplitude (but with known orientation), making a 
+  total of 12980 unknowns. 101 electrodes (in EEG experiments), or 101 magnetometer 
+  sensors (in MEG experiments) were used. In both cases, sensors and electrodes 
+  were placed in the same locations.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Comparison of imaging methods</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The minimum norm solution, 
+  the method of Dale et al. (6), and <i><span style="font-style: italic;">s</span></i>LORETA 
+  were compared in terms of localization errors and spatial spread. The methods 
+  were tested with point sources located at the voxels. For the case corresponding 
+  to 3 unknowns per voxel, an arbitrary (random) orientation of the test source 
+  was employed. The test sources were used to generate the measurements (forward 
+  equation (Eq. 8)), which were then given to the imaging methods. Simulations 
+  included “noise free” and “noisy” measurements.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the minimum norm solution 
+  case, the imaging method is based on Eqs. 20 and 22, but without standardization, 
+  which is achieved by setting the variance to the identity matrix, i.e., <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image059.gif" height="32" width="58"></sub>.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the minimum norm solution 
+  and in <i><span style="font-style: italic;">s</span></i>LORETA, the regularization 
+  parameter </span></font><i><font face="Symbol"><span style="font-family: Symbol; font-style: italic;">a</span></font></i> in the previous equations was estimated 
+  by cross-validation. Exact details and equations for a practical implementation 
+  of the cross-validation method can be found in (14).</p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the Dale et al. (6) 
+  method, the parameter </span></font><i><font face="Symbol"><span style="font-family: Symbol; font-style: italic;">a</span></font></i> is interpreted 
+  as the variance of the noise in the measurements, and this value was determined 
+  by the simulation design. In the “noise free” case, a very small value of <i><font face="Symbol"><span style="font-family: Symbol; font-style: italic;">a</span></font></i> 
+  was used, typically in the order of 10<sup>-10</sup> times the power of the 
+  scalp field produced by the test source with lowest scalp field power.</p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Localization error was 
+  defined as the distance between the actual test source and the location of the 
+  maximum in the imaging method. The spatial spread was defined identically as 
+  in (3), which corresponds to a measure of spatial standard deviation of the 
+  imaging method centered at the actual test source, and not at the imaging method’s 
+  own maximum, since this would unjustifiably favor the method’s performance.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Results</span></font></i></b></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Figures 1a-1h summarize 
+  localization error, spatial spread, and estimated activity values for the three 
+  imaging methods (minimum norm, Dale, and <i><span style="font-style: italic;">s</span></i>LORETA).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the estimated 
+  activity values at test source locations cannot be compared among the different 
+  imaging methods, since these values are in different units for the different 
+  imaging methods. However, this feature is very informative for comparing the 
+  quality of the different methods. For example, from Fig 1a, the ratios of estimated 
+  source activity (maximum to minimum) were 850, 103, and, 30, for minimum norm, 
+  Dale, and <i><span style="font-style: italic;">s</span></i>LORETA, respectively. 
+  This means that with <i><span style="font-style: italic;">s</span></i>LORETA, 
+  some sources (especially deep ones) will be underestimated. However, <i><span style="font-style: italic;">s</span></i>LORETA out-performs tremendously the minimum 
+  norm and the Dale methods in this aspect.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In all noise free simulations, 
+  only <i><span style="font-style: italic;">s</span></i>LORETA has exact, zero error 
+  localization. In all noisy simulations, <i><span style="font-style: italic;">s</span></i>LORETA has by far the lowest localization 
+  errors. In most cases, the spatial spread (i.e. “blurring”) of <i><span style="font-style: italic;">s</span></i>LORETA is smaller than that of the Dale 
+  method.</span></font></p>
+<font face="Century Schoolbook" size="3"><br style="page-break-before: always;" clear="all">
+</font> 
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;"><img src="sLORETA-Math02_files/sLORETA-Math02_image060.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image061.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image062.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image063.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image064.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image065.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image066.jpg" height="261" width="803"><img src="sLORETA-Math02_files/sLORETA-Math02_image067.jpg" height="261" width="803"></span></font></p>
+<font face="Century Schoolbook" size="3"><br style="page-break-before: always;" clear="all">
+</font> 
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Figure 1: “a-h” summarize 
+  in tabular form localization error, spatial spread, and estimated activity values 
+  for the three imaging methods (minimum norm, Dale, and <i><span style="font-style: italic;">s</span></i>LORETA). (a) EEG, 6430 voxels, 3 unknowns 
+  per voxel, 25 electrodes, 6430 test sources with random orientation, no noise. 
+  (b) Same as (a), but with additive random noise (noise scalp field standard 
+  deviation equal to 0.12 times the test source with lowest scalp field standard 
+  deviation). (c) MEG, 6430 voxels, 3 unknowns per voxel, 25 sensors, 6430 test 
+  sources with random orientation, no noise. (d) Same as (c), but with additive 
+  random noise (noise scalp field standard deviation equal to 7.21 times the test 
+  source with lowest scalp field standard deviation). (e) EEG, 12980 voxels, 1 
+  unknown per voxel, 101 electrodes, 100 randomly selected test sources, no noise. 
+  (f) Same as (e), but with additive random noise (noise scalp field standard 
+  deviation equal to 0.082 times the test source with lowest scalp field standard 
+  deviation). (g) MEG, 12980 voxels, 1 unknown per voxel, 101 sensors, 100 randomly 
+  selected test sources, no noise. (h) Same as (g), but with additive random noise 
+  (noise scalp field standard deviation equal to 8.49 times the test source with 
+  lowest scalp field standard deviation). MNE: minimum norm localization error 
+  (mm); MNSSD: minimum norm spatial standard deviation (mm); MNMaxAbs: estimated 
+  minimum norm activity value at test source location (arbitrary units); DaleE: 
+  Dale localization error (mm); DaleSSD: Dale spatial standard deviation (mm); 
+  DMaxAbs: estimated Dale activity value at test source location (arbitrary units); 
+  LORE: <i><span style="font-style: italic;">s</span></i>LORETA localization error 
+  (mm); LORSSD: <i><span style="font-style: italic;">s</span></i>LORETA spatial 
+  standard deviation (mm); LORMaxAbs: estimated <i><span style="font-style: italic;">s</span></i>LORETA activity value at test source location 
+  (arbitrary units). Note that the estimated activity values at test source locations 
+  cannot be compared among the different imaging methods (see text for explanation).</span></font></p>
+<font face="Century Schoolbook" size="3"><br style="page-break-before: always;" clear="all">
+</font> 
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Discussion</span></font></i></b></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Properties of <i><span style="font-style: italic;">s</span></i>LORETA 
+  for EEG and MEG with unknown current density vector</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The main properties of 
+  <i><span style="font-style: italic;">s</span></i>LORETA, for both EEG and MEG, 
+  based on estimates of activity given by Eq. 20 are:</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">1. Exact, zero 
+  error, localization for test dipoles located at voxel positions, in the absence 
+  of noisy measurements.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">2. Exact, zero 
+  error, localization of test dipoles <i><span style="font-style: italic;">with 
+  arbitrary orientation</span></i>, located at voxel positions, in the absence 
+  of noisy measurements.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">3. Exact, zero 
+  error, localization of test dipoles <i><span style="font-style: italic;">with 
+  arbitrary orientation</span></i>, located at voxel positions, in the absence 
+  of noisy measurements, even under regularization <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image068.gif" height="33" width="67"></sub>.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">4. Exact, zero 
+  error, localization even for dipoles corresponding to a non-connected grid. 
+  For example, <i><span style="font-style: italic;">cortical and non-connected subcortical 
+  grey matter can now be modeled as the solution space</span></i>. The error remains 
+  zero.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Properties of <i><span style="font-style: italic;">s</span></i>LORETA 
+  for EEG and MEG with known current density vector orientation, unknown amplitude</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The main properties of 
+  <i><span style="font-style: italic;">s</span></i>LORETA based on estimates of 
+  activity given by Eq. 22 are:</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">1. Exact, zero 
+  error, localization of test dipoles located at voxel positions, in the absence 
+  of noisy measurements.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">3. Exact, zero 
+  error, localization of test dipoles located at voxel positions, in the absence 
+  of noisy measurements, even under regularization <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image068.gif" height="33" width="67"></sub>.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">4. Exact, zero 
+  error, localization even for dipoles corresponding to non-connected grids. For 
+  example, <i><span style="font-style: italic;">cortical and non-connected subcortical 
+  grey matter can now be modeled as the solution space</span></i>. The error remains 
+  zero.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">5. These results 
+  mean that the distribution of voxels can be quite arbitrary. For example, voxels 
+  do not have to be uniformly distributed from the geometrical point of view, 
+  although they should be uniformly distributed from the “<i><span style="font-style: italic;">grey matter density</span></i>” point of view. Furthermore, 
+  different types of voxels may exist, some with unknown current density vector, 
+  and some with known current density orientation but unknown amplitude.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">A Generalization</span></font></b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Suppose there exist reasons 
+  to <i><span style="font-style: italic;">believe</span></i> that the <i><span style="font-style: italic;">actual</span></i> (<i><span style="font-style: italic;">prior</span></i>) 
+  current density variance is the diagonal, positive definite matrix <b><span style="font-weight: bold;">W</span></b>. This situation arises for example, in some 
+  approaches that force fMRI hot spot locations onto the EEG/MEG inverse solution 
+  (see for example (6)). In this case, Eq. 8 can be rewritten as:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image069.gif" height="37" width="190"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 23</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">where the new 
+  unknown variable <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image070.gif" height="37" width="80"></sub>&nbsp;has 
+  been “pre-standardized” to have the identity matrix as its variance. This transformed 
+  variable plays the role of <b><span style="font-weight: bold;">J</span></b> in 
+  all equations above, and <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image071.gif" height="37" width="77"></sub>&nbsp;plays the role of the lead field in all 
+  equations above. All else proceeds identically with these new formal substitutions.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that the final <i><span style="font-style: italic;">s</span></i>LORETA image corresponds to standardized 
+  estimates of activity (Eqs. 20 or 22) for the pre-standardized current density 
+  <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image070.gif" height="37" width="80"></sub>.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that this approach 
+  can be applied to any <i><span style="font-style: italic;">actual</span></i> (<i><span style="font-style: italic;">prior</span></i>) 
+  current density variance <b><span style="font-weight: bold;">W</span></b>, as long as it is positive definite, and 
+  there exists a meaningful decomposition:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image072.gif" height="42" width="175"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 24</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">for the square 
+  root matrix <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image073.gif" height="27" width="45"></sub>. 
+  For example, this is the case of the classical LORETA method (2), where <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image074.gif" height="27" width="52"></sub>&nbsp;embodies a discrete 
+  spatial Laplacian operator that achieves smoothness between neighboring voxels.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><font face="Arial" size="4"><span style="font-size: 13pt;">Estimating the regularization parameter </span></font></b><i><font face="Symbol"><span style="font-family: Symbol; font-style: italic;">a</span></font></i></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">The regularization parameter 
+  </span></font><i><font face="Symbol"><span style="font-family: Symbol; font-style: italic;">a</span></font></i> cannot be estimated from the functional 
+  in Eq. 8. However, it can be estimated via the cross-validation functional. 
+  This has been published in (14), in a reply to comments made to the paper in 
+  (2), which includes the detailed derivation of the method, and a set of equations 
+  that can be used efficiently in practice.</p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 13pt; font-style: italic;">s</span></font></i>LORETA in experimental 
+  designs (statistical analysis of tomographic images)</b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Although <i><span style="font-style: italic;">s</span></i>LORETA calculations produce pseudo-statistics, 
+  it is highly recommended to <i><span style="font-style: italic;">not</span></i> 
+  use these values as actual statistics in testing of hypotheses in experimental 
+  designs.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Unlike the approach of 
+  Dale et al. (6), which makes use of their statistics for hypothesis testing, 
+  it is recommended to use <i><span style="font-style: italic;">s</span></i>LORETA 
+  pseudo-statistic values as <i><span style="font-style: italic;">estimates of activity</span></i>, 
+  and to apply standard techniques such as in statistical non-parametric mapping 
+  (SnPM) (7) for the analysis of experimental designs.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h3 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 13pt; font-style: italic;">s</span></font></i>LORETA in testing 
+  for absolute activation</b></h3>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">Note that tests for absolute 
+  activation with <i><span style="font-style: italic;">s</span></i>LORETA can be 
+  performed by using the modified pseudo-statistics:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image075.gif" height="47" width="115"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 25</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">or:</span></font></p>
+<p class="MsoCaption" style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><sub><img src="sLORETA-Math02_files/sLORETA-Math02_image076.gif" height="75" width="73"></sub>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+Eq. 26</font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">which correspond 
+  to Eqs. 20 and 22, respectively.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">These pseudo-statistics 
+  should be used in an experimental design where there are <i><span style="font-style: italic;">N</span></i> independent <i><span style="font-style: italic;">s</span></i>LORETA images. For example, in a visual event related potential 
+  study with <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image077.gif" height="23" width="67"></sub>&nbsp;subjects, consider the 10 <i><span style="font-style: italic;">s</span></i>LORETA images at the P100 latency.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In Eq. 25, <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image078.gif" height="47" width="95"></sub>&nbsp;denotes the unique 
+  symmetric inverse square root matrix of <sub><img src="sLORETA-Math02_files/sLORETA-Math02_image057.gif" height="38" width="55"></sub>. The pseudo-statistic in Eq. 26 has the 
+  form of a univariate Student’s <i><span style="font-style: italic;">t</span></i>-statistic, 
+  and the pseudo-statistic in Eq. 25 has the form of a Mahalanobis transform (10).</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the case of unknown 
+  amplitudes only, significant absolute activation is based on testing for zero 
+  mean of the pseudo-statistic in Eq. 26. SnPM can be used to correct for multiple 
+  comparisons and to bypass assumptions of Gaussianity.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">In the case of unknown 
+  current density vector, significant absolute activation is based on testing 
+  for zero mean of the “<i><span style="font-style: italic;">max-statistic</span></i>” 
+  of the pseudo-statistic in Eq. 25. This corresponds to the maximum of the absolute 
+  value among the three components. The “<i><span style="font-style: italic;">max-statistic</span></i>” 
+  reduces three numbers per voxel to a single number per voxel. This is then used 
+  in SnPM to correct for multiple comparisons and to bypass assumptions of Gaussianity.</span></font></p>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">Conclusions</span></font></i></b></h2>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">1. Localization 
+  error can not be improved beyond the present result. It is zero. Up to the present, 
+  no other instantaneous, distributed, discrete, imaging method for EEG/MEG has 
+  been published (to the best of the author’s knowledge) that achieved perfect 
+  localization. All other previously published methods at best produced systematic 
+  non-zero localization errors (see (2), (6), (15), (16), (17)).</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">2. If the aim 
+  is localization, this new method, denoted as <i><span style="font-style: italic;">s</span></i>LORETA, 
+  at least has perfect first order localization.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">3. A distributed 
+  imaging method capable of exact localization of point sources is of great interest, 
+  since the principles of linearity and superposition would guarantee its trustworthiness 
+  as a functional imaging method, given that brain activity occurs in the form 
+  of a finite number of distributed “hot spots”.</span></font></p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">4. The detailed 
+  information provided here allows the reader to reproduce, check, test, and validate 
+  the previous claims.</span></font></p>
+<font face="Century Schoolbook" size="3"><br style="page-break-before: always;" clear="all">
+</font> 
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<h2 style="text-align: left;" align="left"><b><i><font face="Arial" size="4"><span style="font-size: 14pt;">References</span></font></i></b></h2>
+<p style="text-align: left;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">1)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Hämäläinen, M.S., and Ilmoniemi, R.J. Interpreting 
+  measured magnetic fields of the brain: estimates of current distributions. Tech. 
+  Rep. TKK-F-A559, Helsinki University of Technology, Espoo, 1984.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">2)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Pascual-Marqui RD. Review of methods for solving 
+  the EEG inverse problem. International Journal of Bioelectromagnetism 1999, 
+  1: 75-86.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">3)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Pascual-Marqui RD. Reply to comments by Hämäläinen, 
+  Ilmoniemi and Nunez. In Source Localization: Continuing Discussion of the Inverse 
+  Problem (W. Skrandies, Ed.), ISBET Newsletter, 1995, No. 6, pp:16-28 (ISSN 0947-5133).</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">4)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Backus G and Gilbert F. The resolving power of gross 
+  earth data. Geophys. J. R. Astr. Soc. 1968, 16:169-205.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">5)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>A. Tarantola. Inverse problem theory: methods for 
+  data fitting and model parameter estimation. Elsevier, Amsterdam, 1987.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">6)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Dale AM, Liu AK, Fischl BR, Buckner RL, Belliveau 
+  JW, Lewine JD, Halgren E. Dynamic statistical parametric mapping: combining 
+  fMRI and MEG for high-resolution imaging of cortical activity. Neuron 2000, 
+  26: 55-67.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">7)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Nichols TE, Holmes AP. Nonparametric permutation 
+  tests for functional neuroimaging: a primer with examples. Human Brain Mapping 
+  2001, 15: 1–25.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">8)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>Pascual-Marqui RD, Esslen M, Kochi K, Lehmann D. 
+  Functional imaging with low resolution brain electromagnetic tomography (LORETA): 
+  review, new comparisons, and new validation. Japanese Journal of Clinical Neurophysiology 
+  2002, 30:81-94.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">9)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
+  </span></font></span></font>C.R. Rao and S.K. Mitra. Theory and application 
+  of constrained inverse of matrices. SIAM J. Appl. Math., 1973, 24: 473-488.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">10)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>K.V. 
+  Mardia, J.T. Kent, and J.M. Bibby. Multivariate Analysis. Academic Press, London, 
+  1979.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">11)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Talairach 
+  J and Tournoux P. Co-Planar Stereotaxic Atlas of the Human Brain. Thieme, Stuttgart. 
+  1988.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">12)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Towle 
+  VL, Bolanos J, Suarez D, Tan K, Grzeszczuk R, Levin DN, Cakmur R, Frank SA, 
+  and Spire JP. The spatial location of EEG electrodes: locating the best-fitting 
+  sphere relative to cortical anatomy. Electroencephalography and Clinical Neurophysiology 
+  1993, 86, 1-6.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">13)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font><span lang="DE">Dickson J, Drury H., Van Essen DC. </span>‘The surface management system’ 
+  (SuMS) database: a surface-based database to aid cortical surface reconstruction, 
+  visualization and analysis. Philosophical Transactions of the Royal Society, 
+  London, B 2001, 356: 1277-1292. Cortices downloadable at: http://stp.wustl.edu</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">14)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Pascual-Marqui 
+  RD. Reply to Comments Made by R. Grave De Peralta Menendez and S.I. Gozalez 
+  Andino. International Journal of Bioelectromagnetism 1999, Vol. 1, No. 2, at: 
+  http://www.ee.tut.fi/rgi/ijbem/volume1/number2/html/pascual.htm. [View <a href="http://www.uzh.ch/keyinst/NewLORETA/SomePapers/LORETAcve/01-Reply.htm" target="_parent">HTML</a> 
+  or <a href="http://www.uzh.ch/keyinst/NewLORETA/SomePapers/LORETAcve/01-Reply.pdf" target="_parent">PDF</a>]</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">15)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Menendez 
+  RGD, Andino SG, Lantz G, Michel CM, Landis T. Noninvasive localization of electromagnetic 
+  epileptic activity. I. Method descriptions and simulations. Brain Topography. 
+  2001, 14:131-137.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">16)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Phillips 
+  C, Rugg MD, Friston KJ. Systematic regularization of linear inverse solutions 
+  of the EEG source localization problem. Neuroimage. 2002, 17:287-301.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">17)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Phillips 
+  C, Rugg MD, Friston KJ. Anatomically informed basis functions for EEG source 
+  localization: Combining functional and anatomical constraints. Neuroimage. 2002, 
+  16:678-695.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">18)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Pascual-Marqui 
+  RD, Michel CM, Lehmann D. Low resolution electromagnetic tomography: a new method 
+  for localizing electrical activity in the brain. International Journal of Psychophysiology. 
+  1994, 18:49-65.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">19)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Strik 
+  WK, Fallgatter AJ, Brandeis D, Pascual-Marqui RD. Three-dimensional tomography 
+  of event-related potentials during response inhibition: evidence for phasic 
+  frontal lobe activation. Evoked Potentials-Electroencephalography and Clinical 
+  Neurophysiology 1998, 108:406-413.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">20)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Anderer 
+  P, Pascual-Marqui RD, Semlitsch HV, Saletu B. Electrical sources of P300 event-related 
+  brain potentials revealed by low resolution electromagnetic tomography .1. Effects 
+  of normal aging. Neuropsychobiology 1998, 37:20-27.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">21)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Anderer 
+  P, Saletu B, Semlitsch HV, Pascual-Marqui RD. Electrical sources of P300 event-related 
+  brain potentials revealed by low resolution electromagnetic tomography .2. Effects 
+  of nootropic therapy in age-associated memory impairment. Neuropsychobiology 
+  1998, 37:28-35.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">22)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Anderer 
+  P, Pascual-Marqui RD, Semlitsch HV, Saletu B. Differential effects of normal 
+  aging on sources of standard N1, target N1 and target P300 auditory event-related 
+  brain potentials revealed by low resolution electromagnetic tomography (LORETA). 
+  Evoked Potentials-Electroencephalography and Clinical Neurophysiology 1998, 
+  108:160-174.</p>
+<p style="margin-left: 1cm; text-align: left; text-indent: -1cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">23)<font face="Times New Roman" size="1"><span style="font-family: &quot;Times New Roman&quot;; font-style: normal; font-variant: normal; font-weight: normal; font-size: 7pt; line-height: normal; font-size-adjust: none; font-stretch: normal;">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></font></span></font>Pascual-Marqui 
+  RD, Lehmann D, Koenig T, Kochi K, Merlo MCG, Hell D, Koukkou M. Low resolution 
+  brain electromagnetic tomography (LORETA) functional imaging in acute, neuroleptic-naive, 
+  first-episode, productive schizophrenia. Psychiatry Research-Neuroimaging 1999, 
+  90:169-179.</p>
+<p style="text-align: left; text-indent: 0cm;" align="left"><font face="Century Schoolbook" size="3"><span style="font-size: 12pt;">&nbsp;</span></font></p>
+
+</body></html>

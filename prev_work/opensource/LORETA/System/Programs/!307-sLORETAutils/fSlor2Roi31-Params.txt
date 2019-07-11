@@ -1,0 +1,25 @@
+3
+UserRoiFn
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\ROI.ROIspinv
+NFtxt
+4
+FileMaskTxt
+*.slor
+0
+1
+EEGlst
+4
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\TIN_su0002_Average_TN_Raw Data.slor
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\TIN_su0002_Average_TT_Raw Data.slor
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\TIN_su0002_Average_BN_Raw Data.slor
+C:\Users\user\Desktop\TIN_Analysis\TIN\sLORETA\TIN_su0002_Average_BT_Raw Data.slor
+2
+TrLog
+0
+TrNone
+-1
+1
+IncldSubFlderChk
+0
+0
+0

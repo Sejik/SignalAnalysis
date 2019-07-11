@@ -1,0 +1,188 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Time-varying cross-spectra</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Constantia","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Constantia","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:36.0pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+@page Section1
+	{size:21.0cm 842.0pt;
+	margin:1.0cm 1.0cm 1.0cm 1.0cm;}
+div.Section1
+	{page:Section1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=Section1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>Time-varying cross-spectra</b></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal style='text-indent:0cm'><img width=900 height=720
+src="0009_files/image001.jpg"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This module will compute <b>time-varying cross-spectra</b> from
+a group of ERP files. If classical average ERP files are used, the <b>time-varying
+cross-spectra</b> contain information related to what is by convention
+denominated evoked time-varying oscillations. If average-removed single trial
+ERPs are used, the <b>time-varying cross-spectra</b> contain information
+related to what is by convention denominated induced time-varying oscillations.
+If non-corrected single trial ERPs are used, the <b>time-varying cross-spectra</b>
+contains mixed information, and might not be appropriate for any inference
+regarding induced/evoked time-varying oscillations.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><b>Average-removed single trial ERPs</b> for the study of induced
+time-varying oscillations can be obtained from the original single trials using
+the <a href="../0013/0013.htm"><b>Averager</b></a> module.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that <b>time-varying cross-spectra</b> can be computed
+from a single file, or from several.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This module is very similar to the <b>EEG to cross-spectrum</b>
+module. In this case, the user must additionally specify two items:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>1. The window function</p>
+
+<p class=MsoNormal style='text-indent:0cm'>2. The window width</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that the idea behind time-frequency analysis is a
+simple one: perform a <b>local</b> FFT with a sliding time window. Some of the
+windows implemented here are found in the Wiki page on window function:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><a
+href="http://en.wikipedia.org/wiki/Window_function">http://en.wikipedia.org/wiki/Window_function</a></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>By default, the continuous Gaussian window is used. As a
+rule of thumb, the width (in time frame units) can be about one-sixth of the
+total number of time frames in the ERP files. However, the User is free to
+choose any value. A very large window width is equivalent to making a plain FFT
+without any window, i.e. all time resolution is lost. A very narrow window will
+have high time resolution, but will miss all information on slow frequencies.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Time-varying cross-spectrum files are generally <b>very</b>
+large. The total number of distinct, non-redundant numbers is (<b>NTF</b>x<b>NDF</b>x<b>NE</b>x<b>NE</b>),
+where <b>NTF</b> is number of time frames, <b>NDF</b> is number of frequencies,
+and <b>NE</b> is number of electrodes. Let the 4-dimensional array m[1...NTF, 1...NDF,
+1...NE, 1...NE] denote the time-varying cross-spectrum. Consider the element
+m[t,w,i,j]. Note that i=j denotes the spectral density at the i-th electrode,
+at time instant t, at frequency w; i&lt;j contains the real part of the
+Hermitian covariance between electrodes i and j; i&gt;j contains the imaginary
+part of the Hermitian covariance between electrodes i and j.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>This module performs an enormous amount of computations, and
+is very slow, especially for files with a large number of time frames.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

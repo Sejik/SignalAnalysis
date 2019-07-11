@@ -1,0 +1,843 @@
+<html>
+
+<head>
+<meta http-equiv=Content-Type content="text/html; charset=windows-1252">
+<meta name=Generator content="Microsoft Word 12 (filtered)">
+<title>Independent component analysis (ICA) / Blind source separation (BSS)</title>
+<style>
+<!--
+ /* Font Definitions */
+ @font-face
+	{font-family:"Cambria Math";
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Cambria;
+	panose-1:2 4 5 3 5 4 6 3 2 4;}
+@font-face
+	{font-family:Calibri;
+	panose-1:2 15 5 2 2 2 4 3 2 4;}
+@font-face
+	{font-family:Constantia;
+	panose-1:2 3 6 2 5 3 6 3 3 3;}
+ /* Style Definitions */
+ p.MsoNormal, li.MsoNormal, div.MsoNormal
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:justify;
+	text-indent:36.0pt;
+	font-size:12.0pt;
+	font-family:"Cambria","serif";}
+h1
+	{mso-style-link:"Heading 1 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:16.0pt;
+	font-family:"Cambria","serif";}
+h2
+	{mso-style-link:"Heading 2 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	page-break-after:avoid;
+	font-size:14.0pt;
+	font-family:"Cambria","serif";
+	font-style:italic;}
+h3
+	{mso-style-link:"Heading 3 Char";
+	margin-top:12.0pt;
+	margin-right:0cm;
+	margin-bottom:3.0pt;
+	margin-left:0cm;
+	text-align:justify;
+	text-indent:31.2pt;
+	page-break-after:avoid;
+	font-size:13.0pt;
+	font-family:"Cambria","serif";}
+p.MsoHeader, li.MsoHeader, div.MsoHeader
+	{mso-style-link:"Header Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoFooter, li.MsoFooter, div.MsoFooter
+	{mso-style-link:"Footer Char";
+	margin:0cm;
+	margin-bottom:.0001pt;
+	text-align:right;
+	font-size:8.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+p.MsoCaption, li.MsoCaption, div.MsoCaption
+	{margin:0cm;
+	margin-bottom:.0001pt;
+	font-size:10.0pt;
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+a:link, span.MsoHyperlink
+	{color:blue;
+	text-decoration:underline;}
+a:visited, span.MsoHyperlinkFollowed
+	{color:purple;
+	text-decoration:underline;}
+span.Heading1Char
+	{mso-style-name:"Heading 1 Char";
+	mso-style-link:"Heading 1";
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.Heading2Char
+	{mso-style-name:"Heading 2 Char";
+	mso-style-link:"Heading 2";
+	font-family:"Constantia","serif";
+	font-weight:bold;
+	font-style:italic;}
+span.Heading3Char
+	{mso-style-name:"Heading 3 Char";
+	mso-style-link:"Heading 3";
+	font-family:"Cambria","serif";
+	font-weight:bold;}
+span.HeaderChar
+	{mso-style-name:"Header Char";
+	mso-style-link:Header;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+span.FooterChar
+	{mso-style-name:"Footer Char";
+	mso-style-link:Footer;
+	font-family:"Constantia","serif";
+	font-weight:bold;}
+@page WordSection1
+	{size:21.0cm 842.0pt;
+	margin:2.0cm 2.0cm 2.0cm 2.0cm;}
+div.WordSection1
+	{page:WordSection1;}
+-->
+</style>
+
+</head>
+
+<body lang=EN-US link=blue vlink=purple>
+
+<div class=WordSection1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Independent component analysis (ICA) / Blind source separation (BSS)</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Briefly, this module takes as input one or more EEG/ERP
+files, and produces as outputs:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>1. A text file with the <b><i>component</i></b>
+scalp maps that are common to the group of all input files.</p>
+
+<p class=MsoNormal style='text-indent:0cm'>2. Corresponding to each input file,
+a text file with the <b><i>component</i></b> time series.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>When the input corresponds to more than one EEG/ERP file, the
+group ICA methodology corresponds to that used by:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>- N. Kovacevic and A.R. McIntosh,
+Groupwise independent component decomposition of EEG data and partial least
+square analysis, NeuroImage 35 (2007), pp. 1103–1112.</p>
+
+<p class=MsoNormal style='text-indent:0cm'>- Andreea Oliviana Diaconescu,
+Natasa Kovacevic, Anthony Randal McIntosh. Modality-independent processes in
+cued motor preparation revealed by cortical potentials. NeuroImage, Volume 42,
+Issue 3, September 2008, Pages 1255-1265.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In this form of group ICA, the EEG files are appended one
+after another along the time dimension. For instance, two EEG files seen as
+matrices with NE*NT numbers (NE is number of electrodes, NT is number of time
+frames), will be appended to form a single matrix with dimension NE*(2NT),
+where the first NT columns correspond to the first file, and the second group
+of NT columns corresponds to the second file.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The ICA methods implemented here are of the algebraic type. <b><i>Independence</i></b>
+in this case corresponds to two conditions:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>1. Independence for classical second
+order.</p>
+
+<p class=MsoNormal style='text-indent:0cm'>2. Independence for <i>C</i>-order
+moment with or without time shift. <i>C</i> is in the range [-7.3...+7.3],
+allowing for fractional and even negative moments. <i>C</i> must be unequal to
+two if there is zero time shift.<i> C</i> can be equal to two if there is
+non-zero time shift.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>When the “Independent component analysis” tab is invoked,
+the following appears:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><img width=799 height=640
+src="0035_files/image001.gif"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>As an example, drag and drop the files provided with this
+software package, corresponding to the ERP data, paired, Flowers, located in:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><span style='font-size:9.0pt'>...\Documents\sLORETA-ExampleDataSets\ExampleERPdata(MichaelaEsslen)\ERPPaired\02-FlowersERPs</span></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Fill out the fields as shown here:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><img width=799 height=640
+src="0035_files/image002.gif"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that the File Mask should be set to *.asc.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that a new folder was specifically created for the
+output files. This helps in organizing the results, since a large number of
+files are produced as output.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Click Go. Then the following should appear:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><img width=799 height=640
+src="0035_files/image003.gif"></p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The second column from the left shows all output files
+produced by the program.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>For each input ERP file, a corresponding text file appears,
+with extension:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>*-IndepTimeSeries(256X24).txt</p>
+
+<p class=MsoNormal style='text-indent:0cm'>This file, seen as a table, has 256
+rows (one for each time frame), and 24 columns (one for each component). Note
+that the number of components is 24, which is one less than the number of
+electrodes. This will be explained later on.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These <b><i>component</i></b> time series (“*-IndepTimeSeries(256X24).txt”)
+can be opened in the sLORETA viewer/explorer. DO NOT load any electrode
+coordinates nor any sLORETA transformation matrix when viewing these files,
+since all the information they contain are time series for each <b><i>component</i></b>.
+They ARE NOT time series for each electrode.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Corresponding to the whole group of files analyzed, there is
+a text file with extension:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>*-ScalpMapComponents-MixMat-(24X25).txt</p>
+
+<p class=MsoNormal style='text-indent:0cm'>containing the <b><i>component</i></b>
+scalp maps. This file, seen as a table, has 24 rows (one for each component),
+and 25 columns (one for each electrode).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>These <b><i>component</i></b> scalp maps (“*-ScalpMapComponents-MixMat-(24X25).txt”)
+can be opened in the sLORETA viewer/explorer. In this case, you certainly are
+allowed to load the electrode coordinates AND the sLORETA transformation matrix
+when viewing these files. It so happens that the component time series of the
+ICA model are unique under any linear spatial transform, such as sLORETA. This
+means one can equivalently compute ICA on sLORETA time series, or on the scalp
+(EEG/ERP) time series.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>At the moment of this writing (August 2008), a good ICA
+viewer is yet to be developed, which shows side-by-side the component time
+series and the component scalp maps and its corresponding sLORETA generators.
+Meanwhile, these two aspects (component time series and component scalp maps)
+must be viewed in two instances of the sLORETA viewer/explorer.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Other User-Options:</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>1. <span class=Heading3Char><span style='font-size:13.0pt'>Cumulant
+(statistical moment) order</span></span>: This value must be in the range</p>
+
+<p class=MsoNormal style='text-indent:0cm'>[-7.3...+7.3], allowing for negative
+and fractional order. Restriction: If this value is set to 2, then the time lag
+must be set to a non-zero value.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The value 4 corresponds to the well known FOBI method:
+“fourth order blind identification”. This method is due to Jean-François
+Cardoso:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>Homepage: http://www.tsi.enst.fr/~cardoso/</p>
+
+<p class=MsoNormal style='text-indent:0cm'>Papers: http://www.tsi.enst.fr/~cardoso/jfbib.html</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The main FOBI paper, which is the basis of all the algebraic
+ICA methods implemented here, is [Jean-François Cardoso. Source separation using
+higher order moments, In Proc. ICASSP, pages 2109-2112, 1989]:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>Downloadable at: http://www.tsi.enst.fr/~cardoso/Papers.PDF/icassp89.pdf)</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The ICA methods implemented here are of the algebraic type. <b><i>Independence</i></b>
+in this case corresponds to two conditions:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>- Classical second order moment
+independence</p>
+
+<p class=MsoNormal style='text-indent:0cm'>- <i>C</i>-order moment with or
+without time shift independence. <i>C</i> is in the range [-7.3...+7.3],
+allowing for fractional and even negative moments. This is the <i>Cumulant
+(statistical moment) order</i>. <i>C</i> must be unequal to two if there is
+zero time shift.<i> C</i> can be equal to two if there is non-zero time shift.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>2. <span class=Heading3Char><span style='font-size:13.0pt'>Time
+lag</span></span>: This is the time shift to be used in demanding the second
+statistical independence condition (see above).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>For instance, the well known AMUSE method [L. Tong, V.C.
+Soon, Y.F. Huang, and R. Liu. AMUSE: a new blind identification algorithm. In
+Proc. IEEE ISCAS, pages 1784–1787 vol.3, New Orleans, LA, 1990. IEEE],
+corresponds to setting the time lag to any non-zero value (e.g. 1), and setting
+the cumulant order to 2.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>3. <span class=Heading3Char><span style='font-size:13.0pt'>Pre-whitening
+method</span></span>: This is explained in the references and notes below
+[Adaptive Blind Signal and Image Processing: Learning Algorithms and
+Applications. A. Cichocki and S. Amari (Chichester, U.K.: Wiley, 2002)].</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>4. <span class=Heading3Char><span style='font-size:13.0pt'>Number
+of components (signal subspace dimension)</span></span>: When All is selected,
+then all components are computed. This number might be reduced automatically by
+the program, if the data is of rank smaller than the number of electrodes. This
+can occur when using the default option “Force average reference”, which will
+decrease the maximum possible number of components by one (i.e. number of
+electrodes minus one). When the option “User defined” is selected, then the
+user must input the number of components to be fitted. This number must be
+greater than one, and less or equal to the number of electrodes.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>5. <span class=Heading3Char><span style='font-size:13.0pt'>Eps
+for numerical rank</span></span>: This value is used for computing the maximum
+possible number of components inherent in the data. It is suggested to leave as
+is (1.0e-7).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>6. <span class=Heading3Char><span style='font-size:13.0pt'>Force
+average reference</span></span>: The user can turn this option on or off at
+will. If the EEG/ERP files are already average referenced, then this option
+will have no effect. Note that ICA solutions depend on the reference electrode
+used! This can affect all results. This statement holds true for all ICA
+methods in existence, not only for the ones implemented here.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>7. <span class=Heading3Char><span style='font-size:13.0pt'>Output
+file name</span></span>: It is recommended to create a folder for the output.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Other outputs:</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span class=Heading3Char><span style='font-size:13.0pt'>Estimators
+for signal subspace dimension</span></span>: After the program runs, the
+program reports estimated values of the number of components using AIC and BIC
+criteria. Refer to the paper [N. Kovacevic and A.R. McIntosh, Groupwise
+independent component decomposition of EEG data and partial least square
+analysis, NeuroImage 35 (2007), pp. 1103–1112], which uses the BIC criteria.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Note that the dimensions reported by AIC and BIC are
+approximate only.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>One way to make use of these numbers is to first run ICA
+with “All” components, and then to rerun ICA but setting (user defined) the
+number of components to the value suggested by one of these methods (if the
+number suggested is actually lower than the maximum number of components).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><span class=Heading3Char><span style='font-size:13.0pt'>Quality
+of independence</span></span>: In algebraic ICA, the method might fail in the
+sense that it is impossible to actually fit the desired number of independent
+components. This corresponds to the case when two eigenvalues are equal in the
+second condition for independence (statistical independence for <i>C</i>-order
+moment and time shift). This number, quality of independence, is the ratio of
+the absolute difference of the two closest eigenvalues divided by their
+average. Numerically, if this number is larger than 1.0e-5, then the ICA method
+can be considered successful, otherwise, it is suspect, and the components
+might not really be independent.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>References and notes:</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>1. Jean-François Cardoso.</h3>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Homepage: http://www.tsi.enst.fr/~cardoso/</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Papers: http://www.tsi.enst.fr/~cardoso/jfbib.html</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Main paper, basis for algebraic ICA methods:</p>
+
+<p class=MsoNormal>Jean-François Cardoso. Source separation using higher order
+moments, In Proc. ICASSP, pages 2109-2112, 1989.</p>
+
+<p class=MsoNormal style='text-indent:0cm'>(Downloadable at: http://www.tsi.enst.fr/~cardoso/Papers.PDF/icassp89.pdf)</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>2. Adaptive Blind Signal and Image Processing: Learning Algorithms and
+Applications. A. Cichocki and S. Amari (Chichester, U.K.: Wiley, 2002)</h3>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Excellent book.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The “fourth order blind identification” method of Cardoso
+(see paper quoted above: Cardoso 1989) is explained in this book on page 147.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The original AMUSE (Algorithm for Multiple Unknown Signals
+Extraction) method can be found in:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>L. Tong, V.C. Soon, Y.F. Huang, and
+R. Liu. AMUSE: a new blind identification algorithm. In Proc. IEEE ISCAS, pages
+1784–1787 vol.3, New Orleans, LA, 1990. IEEE.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The AMUSE method in this book is on page 146.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The “robust” and “regularized” methods for “prewhitening”
+are explained on pages 140, 141. The “truncate” method for “prewhitening”
+corresponds to setting the noise variance to zero (i.e. using a truncated
+eigen-decomposition expansion).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>3. The use of fractional- and negative-order moments</h3>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In other fields, fractional- and negative-order moments have
+been used. Example:</p>
+
+<p class=MsoNormal style='text-indent:0cm'>&nbsp;</p>
+
+<p class=MsoNormal style='text-indent:0cm'>Matthias Gruber and Ken-Yuh Hsu.
+Moment-Based Image Normalization With High Noise-Tolerance. IEEE TRANSACTIONS
+ON PATTERN ANALYSIS AND MACHINE INTELLIGENCE, VOL. 19, NO. 2, FEBRUARY 1997</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>4. The ICA algorithms are performed on data with DC level set to zero. This
+is not optional. The DC level is set to zero upon reading the data.</h3>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>5. Very important places / references:</h3>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.1. The EEGLAB homepage:</i></p>
+
+<p class=MsoNormal>http://sccn.ucsd.edu/eeglab/</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.2. The FastIca homepage:</i></p>
+
+<p class=MsoNormal>http://www.cis.hut.fi/projects/ica/</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.3. LORETA and PCA:</i></p>
+
+<p class=MsoNormal>L. Carretié, J.A. Hinojosa, M. Martín-Loeches, F. Mercado
+and M. Tapia, Automatic attention to emotional stimuli: neural correlates, Hum.
+Brain Mapp. 22 (2004), pp. 290–299.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.4. LORETA and ICA:</i></p>
+
+<p class=MsoNormal>J. Marco-Pallarés, C. Grau and G. Ruffini, Combined
+ICA-LORETA analysis of mismatch negativity, NeuroImage 25 (2005), pp. 471–477.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.5. LORETA and ICA:</i></p>
+
+<p class=MsoNormal>Arnaud Delorme, Marissa Westerfield, and Scott Makeig.
+Medial Prefrontal Theta Bursts Precede Rapid Motor Responses during Visual
+Selective Attention. J. Neurosci., Oct 2007; 27: 11949 - 11959.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.6. LORETA and group ICA:</i></p>
+
+<p class=MsoNormal>Andreea Oliviana Diaconescu, Natasa Kovacevic, Anthony
+Randal McIntosh. Modality-independent processes in cued motor preparation
+revealed by cortical potentials. NeuroImage, Volume 42, Issue 3, September
+2008, Pages 1255-1265.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal><i>5.7. Group ICA:</i></p>
+
+<p class=MsoNormal>N. Kovacevic and A.R. McIntosh, Groupwise independent
+component decomposition of EEG data and partial least square analysis, NeuroImage
+35 (2007), pp. 1103–1112.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>6. ICA on scalp data or on intracranial data:</h3>
+
+<p class=MsoNormal>It so happens that the component time series of the ICA
+model are unique under any linear spatial transform, such as sLORETA. This
+means one can equivalently compute ICA on sLORETA time series, or on the scalp
+(EEG/ERP) time series.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>7. In practice, using finite data sets, it is impossible to achieve total
+statistical independence. For finite data sets, only approximate statistical
+independence can at nest be achieved. This gives rise to many different ICA
+methods, each one approximating independence in different ways. There is no
+simple solution to the problem of method selection. Even worse, you can always
+force fit and obtain independent components, even if none exist as underlying
+truth.</h3>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>8. This is a very preliminary release of the ICA module:</h3>
+
+<p class=MsoNormal style='text-indent:0cm'>File formats may change in future
+releases, and more output files may be included. Furthermore, for artifact
+correction purposes, a future reconstruction module will be included (reconstructed
+EEG/ERP data after having identified and eliminated the “bad” components).</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h3>9. All the algorithms implemented here were tested on images:</h3>
+
+<p class=MsoNormal>http://www.cis.hut.fi/projects/ica/data/images/</p>
+
+<p class=MsoNormal>Natural Image Collection for ICA experiments</p>
+
+<p class=MsoNormal>ICA group</p>
+
+<p class=MsoNormal>Laboratory of Computer and Information Science</p>
+
+<p class=MsoNormal>Helsinki University of Technology</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Quoting from their homepage: “This is the image data used in
+our ICA experiments on natural images. The images are in TIFF format for easy
+reading into MATLAB using the 'imread' command. (They can also be viewed for
+example with the 'xv' program in unix.)”</p>
+
+<p class=MsoNormal>The photographs are copyrighted: © Janne Sinkkonen 1994,
+1995, 1996, 1997. Copying is permitted only for noncommercial use.</p>
+
+<p class=MsoNormal>Thanks are due to Janne Sinkkonen for taking the images.
+They are originally in color and of much higher resolution. You can take a tour
+of his work at his homepage.”</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Images were arbitrarily mixed, and the algorithms were quite
+capable of de-mixing them.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h1>Algebraic ICA technical details</h1>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Introduction</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Let <sub><img width=79 height=25
+src="0035_files/image004.gif"></sub> denote a data matrix with <i>p</i>
+variables (electrodes) and <i>n</i> objects (items, time frames, etc). The rows
+are assumed to have mean zero (DC level set to zero). Consider the matrix
+factorization model:</p>
+
+<p class=MsoCaption><sub><img width=71 height=24 src="0035_files/image005.gif"></sub>                                                                                                                                                                             Eq.
+1</p>
+
+<p class=MsoNormal style='text-indent:0cm'>where <sub><img width=79 height=25
+src="0035_files/image006.gif"></sub>, <sub><img width=71 height=26
+src="0035_files/image007.gif"></sub>, <sub><img width=50 height=25
+src="0035_files/image008.gif"></sub>, <sub><img width=50 height=25
+src="0035_files/image009.gif"></sub>, and <sub><img width=151 height=34
+src="0035_files/image010.gif"></sub>.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The problem is to find the mixing matrix <b>A</b>, with
+pseudo-inverse <sub><img width=86 height=25 src="0035_files/image011.gif"></sub>,
+such that:</p>
+
+<p class=MsoCaption><sub><img width=81 height=26 src="0035_files/image012.gif"></sub>                                                                                                                                                                          Eq.
+2</p>
+
+<p class=MsoNormal style='text-indent:0cm'>and <b>S</b> satisfies the following
+properties:</p>
+
+<p class=MsoCaption><sub><img width=86 height=51 src="0035_files/image013.gif"></sub>                                                                                                                                                                         Eq.
+3</p>
+
+<p class=MsoNormal style='text-indent:0cm'>and:</p>
+
+<p class=MsoCaption><sub><img width=116 height=51 src="0035_files/image014.gif"></sub>                                                                                                                                                                 Eq.
+4</p>
+
+<p class=MsoNormal style='text-indent:0cm'>where <sub><img width=75 height=25
+src="0035_files/image015.gif"></sub> is a diagonal matrix. The matrix <sub><img
+width=85 height=26 src="0035_files/image016.gif"></sub>, with <sub><img
+width=121 height=34 src="0035_files/image017.gif"></sub>, with <sub><img
+width=46 height=25 src="0035_files/image018.gif"></sub>, need not be symmetric.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Eq. 3 means that the <i>q</i> variables (sources) in <b>S</b>
+have zero covariance and unit variance. Eq. 4 means that the new covariances
+induced by the transformation matrix <b>W</b> are also zero.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>The choice of <b>W</b> determines the nature of the
+statistical independence forced on the sources <b>S</b>. Some examples will be given
+later on.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>The algorithm</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A1. Given <sub><img width=79 height=25
+src="0035_files/image004.gif"></sub>. Given <i>q</i>, such that <sub><img
+width=50 height=25 src="0035_files/image008.gif"></sub>, <sub><img width=50
+height=25 src="0035_files/image009.gif"></sub>, and <sub><img width=121
+height=34 src="0035_files/image019.gif"></sub>, with <sub><img width=86
+height=25 src="0035_files/image020.gif"></sub>. Given <sub><img width=85
+height=26 src="0035_files/image016.gif"></sub>, with <sub><img width=121
+height=34 src="0035_files/image017.gif"></sub>, with <sub><img width=46
+height=25 src="0035_files/image018.gif"></sub>. <b>X</b> must have rows with
+mean zero.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A2. If <i>m</i> is unknown, it can be estimated as a
+numerical rank from the eigenvalues of <sub><img width=86 height=56
+src="0035_files/image021.gif"></sub>:</p>
+
+<p class=MsoNormal style='text-indent:0cm'><sub><img width=158 height=119
+src="0035_files/image022.gif"></sub></p>
+
+<p class=MsoNormal style='text-indent:0cm'>where <sub><img width=20 height=30
+src="0035_files/image023.gif"></sub> are the descending ordered eigenvalues and
+e.g., <sub><img width=70 height=26 src="0035_files/image024.gif"></sub>.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A3. Compute the SVD of the symmetric matrix:</p>
+
+<p class=MsoCaption><sub><img width=151 height=51 src="0035_files/image025.gif"></sub>                                                                                                                                                        Eq.
+5</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A4. Compute the noise variance:</p>
+
+<p class=MsoCaption><sub><img width=254 height=94 src="0035_files/image026.gif"></sub>                                                                                                                            Eq.
+6</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A5. Compute a whitener:</p>
+
+<p class=MsoCaption><sub><img width=101 height=31 src="0035_files/image027.gif"></sub>                                                                                                                                                                     Eq.
+7</p>
+
+<p class=MsoNormal style='text-indent:0cm'>with <sub><img width=81 height=31
+src="0035_files/image028.gif"></sub> the first <i>q</i> eigenvectors, <sub><img
+width=99 height=31 src="0035_files/image029.gif"></sub>:</p>
+
+<p class=MsoCaption><sub><img width=444 height=154 src="0035_files/image030.gif"></sub>                                                                          Eq.
+8</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>NOTE: The first line corresponds to a robust whitener; the
+second line corresponds to a regularized whitener. If the noise variance <sub><img
+width=26 height=26 src="0035_files/image031.gif"></sub> is set to zero, then
+either equation leads to the truncated whitener.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A6. Compute whitened data:</p>
+
+<p class=MsoCaption><sub><img width=130 height=30 src="0035_files/image032.gif"></sub>                                                                                                                                                             Eq.
+9</p>
+
+<p class=MsoNormal style='text-indent:0cm'>and covariance with SVD:</p>
+
+<p class=MsoCaption><sub><img width=176 height=51 src="0035_files/image033.gif"></sub>                                                                                                                                                 Eq.
+10</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A7. It is essential that the eigenvalues in <sub><img
+width=29 height=31 src="0035_files/image034.gif"></sub> be distinct. This must
+be checked, or the method fails!</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A8. Compute:</p>
+
+<p class=MsoCaption><sub><img width=184 height=34 src="0035_files/image035.gif"></sub>                                                                                                                                               Eq.
+11</p>
+
+<p class=MsoNormal style='text-indent:0cm'>where:</p>
+
+<p class=MsoCaption><sub><img width=101 height=31 src="0035_files/image036.gif"></sub>                                                                                                                                                                     Eq.
+12</p>
+
+<p class=MsoNormal style='text-indent:0cm'>and:</p>
+
+<p class=MsoCaption><sub><img width=419 height=126 src="0035_files/image037.gif"></sub>                                                                                                Eq.
+13</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>NOTE: As before, the first line corresponds to a robust
+whitener; the second line corresponds to a regularized whitener. If the noise
+variance <sub><img width=26 height=26 src="0035_files/image031.gif"></sub> is
+set to zero, then either equation leads to the truncated whitener.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A9. Compute:</p>
+
+<p class=MsoCaption><sub><img width=271 height=34 src="0035_files/image038.gif"></sub>                                                                                                                        Eq.
+14</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<h2>Some particular cases</h2>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>In FOBI, the matrix <b>W</b> is diagonal:</p>
+
+<p class=MsoCaption><sub><img width=99 height=31 src="0035_files/image039.gif"></sub>                                                                                                                                                                      Eq.
+15</p>
+
+<p class=MsoNormal style='text-indent:0cm'>where <sub><img width=79 height=31
+src="0035_files/image040.gif"></sub> is the <i>i</i>-th column of the matrix <b>Y</b>.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A generalization is:</p>
+
+<p class=MsoCaption><sub><img width=126 height=49 src="0035_files/image041.gif"></sub>                                                                                                                                                              Eq.
+16</p>
+
+<p class=MsoNormal style='text-indent:0cm'>where <i>C</i> is the cumulant
+order. For instance, <sub><img width=46 height=24 src="0035_files/image042.gif"></sub> corresponds
+to the FOBI method. In principal, <i>C</i> can take any value, fractional and
+even negative. <i>C</i> should not take the value two (which corresponds again
+to second order moment), unless there is time shift, as explained next. </p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>If the dimension <i>n</i> corresponds to time frames (time
+series data), one can set <b>W</b> to be a sub-diagonal matrix with ones. For
+example, <sub><img width=95 height=35 src="0035_files/image043.gif"></sub> for <sub><img
+width=70 height=24 src="0035_files/image044.gif"></sub>, with zeros elsewhere.
+Then the product <sub><img width=106 height=36 src="0035_files/image045.gif"></sub> corresponds
+to the lagged auto-covariance of order <i><span style='font-family:Symbol'>t</span></i>.
+This means that the components are instantaneously and <i><span
+style='font-family:Symbol'>t</span></i>-lagged independent.</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>A further generalization combines both any cumulant order
+and lag. In this case:</p>
+
+<p class=MsoCaption><sub><img width=140 height=49 src="0035_files/image046.gif"></sub>                                                                                                                                                           Eq.
+17</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>Many other possibilities exist...</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+<p class=MsoNormal>&nbsp;</p>
+
+</div>
+
+</body>
+
+</html>

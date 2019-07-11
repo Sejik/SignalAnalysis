@@ -1,0 +1,502 @@
+* 3T 30 DIR script BIDMC
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/DMN/Patients';
+group(1).name = '';
+subjlist = {'AA','BW_control','CC'};
+niftilist = {'AA_1','C_BW_1','CC_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b0 = 0;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_B0_1(work,group)
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/ED';
+group(1).name = '';
+subjlist = {'Subject2217'};
+niftilist = {'Subject2217_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b0 = 0;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_ED3(work,group)
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/ED';
+group(1).name = '';
+subjlist = {'Subject17632'};
+niftilist = {'Subject17632_2'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b0 = 0;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_ED4(work,group)
+
+
+
+* 3T 30 DIR script BIDMC
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/Stroke';
+group(1).name = '';
+subjlist = {'Case3'};
+niftilist = {'raw2'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b01 = 0;
+%	group(1).subj(i).round(1).run(1).nifti.b02 = 1;
+%	group(1).subj(i).round(1).run(1).nifti.b03 = 2;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_B0_1(work,group)
+
+
+* 3T 30 DIR script BIDMC
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/TBI';
+group(1).name = '';
+subjlist = {'P_CR110722_1'};
+niftilist = {'P_CR110722_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b01 = 0;
+%	group(1).subj(i).round(1).run(1).nifti.b02 = 1;
+%	group(1).subj(i).round(1).run(1).nifti.b03 = 2;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_B0_2(work,group)
+
+* 3T 30 DIR script BIDMC
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Volumes/data/DM';
+group(1).name = '';
+subjlist = {'S0264'};
+niftilist = {'case264'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b01 = 0;
+%	group(1).subj(i).round(1).run(1).nifti.b02 = 1;
+%	group(1).subj(i).round(1).run(1).nifti.b03 = 2;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_B0_1(work,group)
+
+
+* 3T 30 DIR script BIDMC
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/TBI';
+group(1).name = '';
+subjlist = {'C_SK110531_1'};
+niftilist = {'C_SK110531_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).nifti.name = niftilist{i};
+	group(1).subj(i).round(1).run(1).nifti.b01 = 0;
+%	group(1).subj(i).round(1).run(1).nifti.b02 = 1;
+%	group(1).subj(i).round(1).run(1).nifti.b03 = 2;
+	
+end
+
+>> Parrec_Dtifit_BIDMC_B0_1(work,group)
+
+work.data.diffimg.path = '/Users/Rehab/Boston_VA';
+group(1).name = '';
+subjlist = {'P022'};
+parreclist = {'P022_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 1;
+    group(1).subj(i).round(1).run(1).parrec.omit = 17;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_15dir/15_dirs_DTI1.txt';
+end
+
+>> Parrec_Dtifit_3T_VA(work,group)
+
+* 3T 32 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/ED2/RTMS';
+group(1).name = '';
+subjlist = {'S_PAMI_PRE'};
+parreclist = {'PAMI_PRE_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_3T/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_3T_BU(work,group)
+
+* 3T 32 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/DMN/Patients';
+group(1).name = '';
+subjlist = {'AA','BW_control','CC'};
+parreclist = {'AA_1','C_BW_1','CC_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_3T/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_3T_BU(work,group)
+
+* 3T 32 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/DMN/';
+group(1).name = '';
+subjlist = {'LC_100504','MG_100520'};
+parreclist = {'LC_100504_1','MG_100520_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_3T/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_3T_BU(work,group)
+
+
+* 3T 15 DIR script V4
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Volumes/MAC2/DTI_PD';
+group(1).name = '';
+subjlist = {'COS','CSI','CYA','KDS','KJJ','KKL','LDM','LJS','LKW','LSA','LSS','SBH','YAK','YCW','YSJ'};
+parreclist = {'COS_1','CSI_1','CYA_1','KDS_1','KJJ_1','KKL_1','LDM_1','LJS_1','LKW_1','LSA_1','LSS_1','SBH_1','YAK_1','YCW_1','YSJ_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/rehab/Works/b_3T/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_V4(work,group)
+
+* 3T 15 DIR script BU
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/Boston_VA';
+group(1).name = '';
+subjlist = {'P022'};
+parreclist = {'P022_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 16;
+	group(1).subj(i).round(1).run(1).parrec.omit = 17;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_3T/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_3T_BU_15(work,group)
+
+
+
+* 3D Image
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/BIDMC/ED2/Control';
+group(1).name = '';
+subjlist = {'CAWA'};
+parreclist = {'CAWA_3D'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+end
+
+>> Parrec_Dtifit_3T_3D(work,group)
+
+* 3T 15 DIR script Nerve
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/Nerve';
+group(1).name = '';
+subjlist = {'Park_Mija2'};
+parreclist = {'Park_Mija_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 1;
+	group(1).subj(i).round(1).run(1).parrec.omit = 17;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_3T/grad.txt';
+end
+
+>> Parrec_Dtifit_3T_nerve(work,group)
+
+
+* 3T 15 DIR script Nerve
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/Nerve';
+group(1).name = '';
+subjlist = {'Park_Mija2'};
+parreclist = {'Park_Mija_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 1;
+	group(1).subj(i).round(1).run(1).parrec.omit = 17;
+
+end
+
+>> Parrec_Dtifit_3T_nerve2(work,group)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+* 3T 32 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTI_3T';
+group(1).name = '';
+subjlist = {'Lee_JongBoon'};
+parreclist = {'Lee_JongBoon_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_3T/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_3T(work,group)
+
+* 3T 45 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTI_3T';
+group(1).name = '';
+subjlist = {'Kim_KyungHwa3'};
+parreclist = {'Kim_KyungHwa_3'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 46;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_45dir/DTI_high_new_45.txt';
+end
+
+>> Parrec_Dtifit_3T_45(work,group)
+
+* 1.5T 32 DIR script
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTIdata2';
+group(1).name = '';
+subjlist = {'Kwon_SoonCheon3'};
+parreclist = {'Kwon_SoonCheon_3'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 1;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/rehab/Works/pride_b/DTI_high_new.txt';
+end
+
+>> Parrec_Dtifit_V4(work,group)
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTI_3T';
+group(1).name = '';
+subjlist = {'Kwon_SoonCheon3'};
+parreclist = {'Kwon_SoonCheon_3'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b/rawgrad.txt';
+end
+
+>> Parrec_Dtifit(work,group)
+
+
+* 3T 15 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/Boston_VA';
+group(1).name = '';
+subjlist = {'P004'};
+parreclist = {'P004_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 16;
+    group(1).subj(i).round(1).run(1).parrec.omit = 17;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_15dir/15_dirs_DTI.txt';
+end
+
+>> Parrec_Dtifit_3T_Spine(work,group)
+
+
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTI_TBI';
+group(1).name = '';
+subjlist = {'Choi_SeHun','Choi_SeokJoon','Choo_YooYeong','Chung_JoongYeong','Ham_YeongYong','Kim_ByeongKook','Kim_DongJoo','Kim_GiGoon','Kim_SeungKwon'};
+parreclist = {'Choi_SeHun_1','Choi_SeokJoon_1','Choo_YooYeong_1','Chung_JoongYeong_1','Ham_YeongYong_1','Kim_ByeongKook_1','Kim_DongJoo_1','Kim_GiGoon_1','Kim_SeungKwon_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b/rawgrad.txt';
+end
+
+>> Parrec_Dtifit(work,group)
+
+
+
+
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTIdata2';
+subjlist = {'Kim_YeongDal'};
+parreclist = {'Kim_YeongDal_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 46;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/pride_b(46dir)/bvecs.txt';
+end
+
+>> parrec_dtifit(work,group)
+
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTIdata2';
+group(1).name = '';
+subjlist = {'Ji_SungMee','Ji_SungMee2'};
+parreclist = {'Ji_SungMee_1','Ji_SungMee_2'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 33;
+	group(1).subj(i).round(1).run(1).parrec.omit = 34;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b/rawgrad.txt';
+end
+
+>> Parrec_Dtifit(work,group)
+
+work.app.fsl.path = '/Users/conan/Applications/fsl';
+work.data.diffimg.path = '/Volumes/NETWORK/motor_network';
+group(1).name = 'normal';
+subjlist = {'01','02','03','04','05','06','07','08','09','10','11'};
+parreclist = {'19471142CHUNYJ DTI 1_13_1','18689593LEEYH DTI_13_1','01429072LEESK DTI_10_1','02778629LEESJ DTI_8_1','02778405AHNMS DTI 1_10_1',...
+	'19679256CHOKS DTI _11_1','19689862SONMH DTI 1_10_1','19738041HWANGGB DTI 1_10_1','20081547PARKYJ DTI 1_4_1','07218072YOOKS DTI 1_5_1','00084241NAMMS DTI_4_1'};
+for i_subj = 1:length(subjlist)
+	group(1).subj(i_subj).name = subjlist{i_subj};
+	group(1).subj(i_subj).round(1).name = '';
+	group(1).subj(i_subj).round(1).run(1).name = 'dwi1';
+	group(1).subj(i_subj).round(1).run(1).parrec.name = parreclist{i_subj};
+	group(1).subj(i_subj).round(1).run(1).parrec.b0 = 46;
+	group(1).subj(i_subj).round(1).run(1).parrec.gradienttable = '/Volumes/NETWORK/motor_network/bvecs.txt';
+end
+
+>> parrec_dtifit(work,group)
+
+* 3T 45 DIR script
+work.app.fsl.path = '/Applications/fsl';
+work.data.diffimg.path = '/Users/Rehab/DTI_3T';
+group(1).name = '';
+subjlist = {'Han_KiHoi'};
+parreclist = {'Han_KiHoi_1'};
+for i = 1:length(subjlist)
+	group(1).subj(i).name = subjlist{i};
+	group(1).subj(i).round(1).name = '';
+	group(1).subj(i).round(1).run(1).name = '';
+	group(1).subj(i).round(1).run(1).parrec.name = parreclist{i};
+	group(1).subj(i).round(1).run(1).parrec.b0 = 46;
+	group(1).subj(i).round(1).run(1).parrec.gradienttable = '/Users/Rehab/Works/b_45dir/DTI_high_new_45.txt';
+end
+
+>> Parrec_Dtifit_3T_45_test(work,group)
+
