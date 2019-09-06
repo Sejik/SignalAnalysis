@@ -1,1 +1,0 @@
-Simulated-MEG-by-Interictal-ECoG.mat is a basic format supported by eConnectome. 

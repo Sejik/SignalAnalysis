@@ -1,1 +1,0 @@
-62-channel Visual Evoked Potential EEG data.
